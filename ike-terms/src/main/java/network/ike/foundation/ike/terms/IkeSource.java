@@ -47,6 +47,13 @@ public final class IkeSource implements KnowledgeSetSource {
         // bootstrap concepts.
         FoundationSet.compose(Ike.SET);
         ConceptSet.compose(Ike.SET);
+        // ProseElementSet declares the shared prose-element apparatus at its foundation
+        // home (IKE-Network/ike-issues#937): the pattern the narrative sections attach
+        // prose semantics to, with the role concepts its declaration references —
+        // adopted RichSurfaceTerms identities, declared before the first referencing
+        // section (ConstraintPatternSet's worked-example narratives) so the registry
+        // answers the declared identity, never a premature derivation.
+        ProseElementSet.compose(Ike.SET);
         // ConstraintPatternSet mints the field constraint apparatus (the Taxonomy and
         // Value-set Field Constraint Patterns, IKE-Network/ike-issues#890); its worked
         // examples attach to declared-identity components the foundation sections open,

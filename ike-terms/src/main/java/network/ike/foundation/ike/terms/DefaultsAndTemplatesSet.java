@@ -76,6 +76,11 @@ final class DefaultsAndTemplatesSet {
         // so they stamp in the foundation module.
         ActiveStamp apparatus = Ike.INCEPTION;
 
+        // The shared prose-element pattern, declared at its foundation home by
+        // ProseElementSet (IKE-Network/ike-issues#937), which composes earlier.
+        EntityProxy.Pattern proseElementPattern =
+                set.patternRef(ProseElementSet.PROSE_ELEMENT_PATTERN_FQN);
+
         // ── Apparatus concepts (foundation module) ──────────────────────
 
         // The taxonomy root of the apparatus terminology (IKE-Network/ike-issues#950,
@@ -111,7 +116,7 @@ final class DefaultsAndTemplatesSet {
                 // this koncept — foundation-module terminology, exactly like its
                 // descriptions above, never defaults/template content (the module's
                 // live-and-die invariant holds).
-                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: DefaultValueConcept (Default Values — The Default Value"
                                         + " Semantic)")), """
@@ -143,7 +148,7 @@ final class DefaultsAndTemplatesSet {
                         + " declaration, never a domain assertion, and no child joins a"
                         + " domain member set.")
                 .isA(set.conceptRef("Defaults and templates model (IkeFoundation)"))
-                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: TemplateConcept (Default Values — Templates)")), """
                         k:TemplateConcept[] is the parent of the per-purpose template attachment concepts:
@@ -178,7 +183,7 @@ final class DefaultsAndTemplatesSet {
                         + " defaults and templates alongside domain content, exclude it"
                         + " to leave them behind.")
                 .isA(IkeTerm.MODULE)
-                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: DefaultsAndTemplatesModule (Default Values — The Defaults and"
                                         + " Templates Module)")), """

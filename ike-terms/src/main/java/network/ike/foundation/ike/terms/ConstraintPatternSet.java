@@ -80,6 +80,11 @@ final class ConstraintPatternSet {
         // component) holds trivially (IKE-Network/ike-issues#894).
         ActiveStamp inception = Ike.INCEPTION;
 
+        // The shared prose-element pattern, declared at its foundation home by
+        // ProseElementSet (IKE-Network/ike-issues#937), which composes earlier.
+        EntityProxy.Pattern proseElementPattern =
+                set.patternRef(ProseElementSet.PROSE_ELEMENT_PATTERN_FQN);
+
         // ── Taxonomy field constraint kind + its 4 values ───────────────
         // The four taxonomy-relative kinds share one identical parameter tuple, so one
         // pattern carries them all with the kind as a genuine parameter. Value-set
@@ -176,7 +181,7 @@ final class ConstraintPatternSet {
                 // Curated narrative (IKE-Network/ike-issues#888): domain description OF
                 // this koncept, complementing the Constrained Pattern hub narrative
                 // (NarrativeContentSet).
-                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: MemberMatchRelation (Field Constraints — The Member"
                                         + " Match Relation)")), """
@@ -216,7 +221,7 @@ final class ConstraintPatternSet {
                 .isA(memberMatchRelation)
                 // Curated narrative (IKE-Network/ike-issues#888) — see the parent
                 // relation's note above.
-                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: EqualMatchRelation (Field Constraints — The Member"
                                         + " Match Relation)")), """
@@ -320,7 +325,7 @@ final class ConstraintPatternSet {
                 // this pattern, complementing — never repeating — the Constrained
                 // Pattern hub narrative (NarrativeContentSet), which carries the
                 // shape-level, field-by-field walk-through for both constraint shapes.
-                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: TaxonomyFieldConstraintPattern (Field Constraints — The"
                                         + " Taxonomy Field Constraint)")), """
@@ -361,7 +366,7 @@ final class ConstraintPatternSet {
                         set.conceptRef("Match Rule (IkeFoundation)"), IkeTerm.COMPONENT_FIELD)
                 // Curated narrative (IKE-Network/ike-issues#888) — see the taxonomy
                 // pattern's note above.
-                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                .semantic(proseElementPattern,
                         PublicIds.of(set.uuidFor(
                                 "Narrative: ValueSetFieldConstraintPattern (Field Constraints — The"
                                         + " Value-set Field Constraint)")), """

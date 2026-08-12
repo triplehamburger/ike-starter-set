@@ -274,7 +274,7 @@ final class DataTypeDefaultsSet {
                 // this pattern — foundation-module terminology like its descriptions,
                 // never defaults/template content (the module's live-and-die invariant
                 // holds; only the default value semantic below stamps in the module).
-                .semantic(NarrativeContentSet.PROSE_ELEMENT_PATTERN,
+                .semantic(set.patternRef(ProseElementSet.PROSE_ELEMENT_PATTERN_FQN),
                         PublicIds.of(set.uuidFor(
                                 "Narrative: DataTypeDefaultsPattern (Default Values — Loud Defaults for"
                                         + " Every Data Type)")), """

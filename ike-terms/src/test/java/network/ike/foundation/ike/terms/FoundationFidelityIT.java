@@ -138,8 +138,13 @@ class FoundationFidelityIT {
      * The IKE-Network/ike-issues#952 two-parent root and dual licensing add 3:
      * {@code StampModelSet} mints STAMP (+1) and {@code LicenseModelSet} mints License
      * and Apache 2.0 license (+2).
+     * <p>
+     * The IKE-Network/ike-issues#937 closure follow-through adds 3:
+     * {@code ProseElementSet} declares the shared prose-element role concepts at their
+     * foundation home — Prose element, Prose content, and Element content, adopted
+     * RichSurfaceTerms identities the prose pattern's declaration references.
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 98;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 101;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field
@@ -149,9 +154,12 @@ class FoundationFidelityIT {
      * examples), {@code AssemblageTerminologySet} (1 — Solor Concepts Pattern, the
      * IKE-native replacement for the dormant SOLORConceptAssemblage), and
      * {@code DataTypeDefaultsSet} (1 — Data Type Defaults Pattern,
-     * IKE-Network/ike-issues#885) deliberately author.
+     * IKE-Network/ike-issues#885) deliberately author; plus {@code ProseElementSet}
+     * (1 — the shared Prose element pattern, an adopted RichSurfaceTerms identity
+     * declared at its foundation home so the set's own prose semantics satisfy
+     * referential closure, IKE-Network/ike-issues#937).
      */
-    private static final int AUTHORED_CONTENT_PATTERNS = 6;
+    private static final int AUTHORED_CONTENT_PATTERNS = 7;
 
     /**
      * Components whose stated-axiom semantic's own historical versions resolve to more
@@ -795,8 +803,9 @@ class FoundationFidelityIT {
                 // narrative ABOUT Default value concept (a domain description of the
                 // koncept, IKE-Network/ike-issues#888) — foundation-module terminology
                 // exactly like its descriptions, never defaults/template content, so the
-                // defaults-module content count below stays 2.
-                NarrativeContentSet.PROSE_ELEMENT_PATTERN.nid());
+                // defaults-module content count below stays 2. Declared by
+                // ProseElementSet since IKE-Network/ike-issues#937.
+                ProseElementSet.PROSE_ELEMENT_PATTERN.nid());
     }
 
     /**
