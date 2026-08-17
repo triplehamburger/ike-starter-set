@@ -1,0 +1,13 @@
+== Types & Literals
+
+=== Type Name (5)
+
+The five built-in data types CQL's operators work with.
+
+Members: <<term-Code,`Code`>>, <<term-Concept,`Concept`>>, <<term-Interval,`Interval`>>, <<term-List,`List`>>, <<term-Tuple,`Tuple`>>
+
+=== Literal (3)
+
+The three fixed values CQL expressions can carry directly.
+
+Members: <<term-false,`false`>>, <<term-null,`null`>>, <<term-true,`true`>>

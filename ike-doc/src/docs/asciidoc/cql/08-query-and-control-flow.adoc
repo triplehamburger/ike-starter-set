@@ -1,0 +1,19 @@
+== Query & Control Flow
+
+=== Query Clause (12)
+
+The clauses that make up a CQL query: source, filter, relate, shape, sort.
+
+Members: <<term-aggregate,`aggregate`>>, <<term-all,`all`>>, <<term-by,`by`>>, <<term-from,`from`>>, <<term-let,`let`>>, <<term-return,`return`>>, <<term-sort,`sort`>>, <<term-starting,`starting`>>, <<term-such-that,`such that`>>, <<term-where,`where`>>, <<term-with,`with`>>, <<term-without,`without`>>
+
+=== Conditional Expression (5)
+
+Branching logic -- choose a result based on a condition.
+
+Members: <<term-case,`case`>>, <<term-else,`else`>>, <<term-if,`if`>>, <<term-then,`then`>>, <<term-when,`when`>>
+
+=== Sort Modifier (4)
+
+Direction keywords for the sort clause.
+
+Members: <<term-asc,`asc`>>, <<term-ascending,`ascending`>>, <<term-desc,`desc`>>, <<term-descending,`descending`>>

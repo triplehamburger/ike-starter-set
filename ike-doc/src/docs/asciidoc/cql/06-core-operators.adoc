@@ -1,0 +1,25 @@
+== Core Operators
+
+=== Logical Operator (6)
+
+Boolean connectives, evaluated with three-valued (true/false/null) logic.
+
+Members: <<term-and,`and`>>, <<term-exists,`exists`>>, <<term-implies,`implies`>>, <<term-not,`not`>>, <<term-or,`or`>>, <<term-xor,`xor`>>
+
+=== Arithmetic Operator (6)
+
+Numeric operators beyond the basic +, -, *, /.
+
+Members: <<term-div,`div`>>, <<term-maximum,`maximum`>>, <<term-minimum,`minimum`>>, <<term-mod,`mod`>>, <<term-predecessor,`predecessor`>>, <<term-successor,`successor`>>
+
+=== Type Operator (5)
+
+Casting and type-checking between CQL's types.
+
+Members: <<term-as,`as`>>, <<term-cast,`cast`>>, <<term-convert,`convert`>>, <<term-is,`is`>>, <<term-to,`to`>>
+
+=== Comparison Operator (1)
+
+General-purpose range comparison.
+
+Members: <<term-between,`between`>>
