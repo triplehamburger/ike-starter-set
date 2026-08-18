@@ -1,4 +1,4 @@
-== CQL in Komet Guide Chapter: Overview and Reading Guide
+== Overview and Reading Guide
 
 CQL (Clinical Quality Language) is the HL7 standard expression language used to author clinical quality measures and decision-support logic -- the language behind retrieve expressions, timing phrases, and query clauses that pull structured data from a FHIR (or QUICK-based) source and evaluate it against a measure's logic. This chapter inventories every reserved keyword and lexical construct in the language and tracks how each one is being represented as a concept inside Komet, the IKE-Foundation terminology authoring platform.
 

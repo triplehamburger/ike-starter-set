@@ -567,21 +567,23 @@ Defaults and templates module, `StampCalculator.getDefault(pattern)` resolves it
 computed identity, and the same value renders as the _default_ row of
 <<koncept-pattern-table-PreferredReviewerPattern>>.
 
-include::cql/01-overview-and-reading-guide.adoc[]
+== CQL in Komet
 
-include::cql/02-running-cql-queries.adoc[]
+include::cql/01-overview-and-reading-guide.adoc[leveloffset=1]
 
-include::cql/03-family-summaries.adoc[]
+include::cql/02-running-cql-queries.adoc[leveloffset=1]
 
-include::cql/04-types-and-literals.adoc[]
+include::cql/03-family-summaries.adoc[leveloffset=1]
 
-include::cql/05-declarations.adoc[]
+include::cql/04-types-and-literals.adoc[leveloffset=1]
 
-include::cql/06-core-operators.adoc[]
+include::cql/05-declarations.adoc[leveloffset=1]
 
-include::cql/07-data-and-timing-operators.adoc[]
+include::cql/06-core-operators.adoc[leveloffset=1]
 
-include::cql/08-query-and-control-flow.adoc[]
+include::cql/07-data-and-timing-operators.adoc[leveloffset=1]
+
+include::cql/08-query-and-control-flow.adoc[leveloffset=1]
 
 == Tinkar Base Model
 
