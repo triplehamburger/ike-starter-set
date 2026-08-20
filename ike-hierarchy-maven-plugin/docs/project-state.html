@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ike-starter-set — current state</title>
+<style>
+  .viz-root {
+    color-scheme: light;
+    --surface-1:#fcfcfb; --page:#f9f9f7;
+    --text-primary:#0b0b0b; --text-secondary:#52514e; --muted:#898781;
+    --rule:#e1e0d9; --axis:#c3c2b7; --ring:rgba(11,11,11,0.10);
+    --box:#ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) .viz-root {
+      color-scheme: dark;
+      --surface-1:#1a1a19; --page:#0d0d0d;
+      --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+      --rule:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+      --box:#232322;
+    }
+  }
+  :root[data-theme="dark"] .viz-root {
+    color-scheme: dark;
+    --surface-1:#1a1a19; --page:#0d0d0d;
+    --text-primary:#ffffff; --text-secondary:#c3c2b7; --muted:#898781;
+    --rule:#2c2c2a; --axis:#383835; --ring:rgba(255,255,255,0.10);
+    --box:#232322;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--page); font-family:system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .viz-root { background:var(--page); color:var(--text-primary); padding:28px 22px 44px; }
+  .wrap { max-width:1010px; margin:0 auto; }
+  h1 { font-size:19px; margin:0 0 4px; letter-spacing:-0.01em; }
+  .sub { font-size:13px; color:var(--text-secondary); margin:0 0 20px; }
+  .stats { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:22px; }
+  .stat { flex:1 1 150px; background:var(--surface-1); border:1px solid var(--ring); border-radius:10px; padding:12px 14px; }
+  .stat-v { font-size:23px; font-weight:600; letter-spacing:-0.02em; }
+  .stat-l { font-size:12px; color:var(--text-secondary); margin-top:2px; display:flex; align-items:center; gap:5px; }
+  .dot { font-size:11px; line-height:1; }
+  section { background:var(--surface-1); border:1px solid var(--ring); border-radius:12px; padding:16px 18px 8px; margin-bottom:16px; }
+  h2 { font-size:14px; margin:0 0 2px; }
+  .cap { font-size:12px; color:var(--text-secondary); margin:0 0 10px; }
+  .legend { display:flex; gap:14px; flex-wrap:wrap; font-size:12px; color:var(--text-secondary); margin:2px 0 12px; align-items:center; }
+  .lg { display:inline-flex; align-items:center; gap:5px; }
+  .lg-line { display:inline-flex; align-items:center; gap:6px; }
+  .lg-line svg { overflow:visible; }
+  svg.chart { display:block; width:100%; height:auto; overflow:visible; }
+  .box { fill:var(--box); stroke:var(--axis); stroke-width:1; }
+  .n-title { font-size:12.5px; font-weight:600; fill:var(--text-primary); }
+  .n-sub { font-size:10.5px; fill:var(--text-secondary); }
+  .n-glyph { font-size:12px; font-weight:700; }
+  .e-label { font-size:10px; fill:var(--muted); }
+  .edge { fill:none; stroke:var(--axis); stroke-width:2; }
+  .edge.dashed { stroke-dasharray:5 4; stroke-width:1.5; opacity:.75; }
+  .arrowhead { fill:var(--axis); }
+  .arrowhead.dim { opacity:.75; }
+  .node { cursor:default; outline:none; }
+  .node:hover .box, .node:focus .box { stroke:var(--text-secondary); stroke-width:1.6; }
+  #tip { position:fixed; max-width:330px; background:var(--box); color:var(--text-primary);
+    border:1px solid var(--ring); border-radius:8px; padding:9px 11px; font-size:12px; line-height:1.45;
+    box-shadow:0 6px 22px rgba(0,0,0,.16); pointer-events:none; opacity:0; transition:opacity .1s; z-index:9; }
+  table { width:100%; border-collapse:collapse; font-size:12px; margin-bottom:10px; }
+  th, td { text-align:left; padding:7px 9px; border-bottom:1px solid var(--rule); }
+  th { color:var(--text-secondary); font-weight:600; }
+  td:nth-child(2), td:nth-child(3) { color:var(--text-secondary); white-space:nowrap; }
+  .note { font-size:12px; color:var(--text-secondary); line-height:1.55; margin:10px 0 12px; }
+  .note strong { color:var(--text-primary); }
+</style></head>
+<body><div class="viz-root"><div class="wrap">
+
+<h1>ike-starter-set — current state</h1>
+<p class="sub">Directed: every arrow points from a thing to what depends on it. Snapshot taken 20 Aug 2026.</p>
+
+<div class="stats"><div class="stat"><div class="stat-v">95 / 95</div><div class="stat-l"><span class="dot" style="color:#0ca30c">✓</span>tests passing</div></div><div class="stat"><div class="stat-v">46</div><div class="stat-l"><span class="dot" style="color:#0ca30c">✓</span>Java sources written</div></div><div class="stat"><div class="stat-v">3</div><div class="stat-l"><span class="dot" style="color:#0ca30c">✓</span>modules added or rewritten</div></div><div class="stat"><div class="stat-v">1</div><div class="stat-l"><span class="dot" style="color:#d03b3b">✕</span>blocker</div></div></div>
+
+<section>
+  <h2>Build reactor</h2>
+  <p class="cap">Layered by dependency, so left-to-right is also build order.</p>
+  <div class="legend"><span class="lg"><span class="dot" style="color:#0ca30c">✓</span>verified</span><span class="lg"><span class="dot" style="color:#fab219">▲</span>stale build</span><span class="lg"><span class="dot" style="color:#d03b3b">✕</span>blocking</span><span class="lg"><span class="dot" style="color:#898781">○</span>not built</span>
+    <span class="lg-line"><svg width="26" height="8"><line x1="0" y1="4" x2="26" y2="4" class="edge"/></svg>depends on</span>
+    <span class="lg-line"><svg width="26" height="8"><line x1="0" y1="4" x2="26" y2="4" class="edge dashed"/></svg>secondary dependency</span>
+  </div>
+  <svg class="chart" viewBox="0 0 980 356" role="img" aria-label="Maven reactor dependency tree">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" class="arrowhead"/>
+    </marker>
+    <marker id="arrow-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" class="arrowhead dim"/>
+    </marker>
+  </defs>
+  <path class="edge" d="M216.0,172 C256.0,172.0 213.0,76.0 253.0,76" marker-end="url(#arrow)"/>
+  <path class="edge" d="M216.0,172 C256.0,172.0 213.0,268.0 253.0,268" marker-end="url(#arrow)"/>
+  <path class="edge" d="M456.0,76 C496.0,76.0 461.0,40.0 501.0,40" marker-end="url(#arrow)"/>
+  <path class="edge" d="M456.0,76 C496.0,76.0 461.0,112.0 501.0,112" marker-end="url(#arrow)"/>
+  <path class="edge" d="M456.0,268 C496.0,268.0 461.0,232.0 501.0,232" marker-end="url(#arrow)"/>
+  <path class="edge" d="M456.0,268 C496.0,268.0 461.0,304.0 501.0,304" marker-end="url(#arrow)"/>
+  <path class="edge" d="M704.0,112 C744.0,112.0 711.0,112.0 751.0,112" marker-end="url(#arrow)"/>
+  <path class="edge" d="M704.0,304 C744.0,304.0 711.0,268.0 751.0,268" marker-end="url(#arrow)"/>
+  <path class="edge dashed" d="M704.0,112 C744.0,86 711.0,242 751.0,268" marker-end="url(#arrow-d)"/>
+  <path class="edge dashed" d="M704.0,232 C744.0,198 711.0,234 751.0,268" marker-end="url(#arrow-d)"/>
+  <text x="856" y="224" class="e-label" text-anchor="middle">runs as plugin</text>
+
+  <g class="node" tabindex="0" data-tip="The reactor root. Its &lt;modules&gt; list now names 8 modules; all 9 POMs parse.">
+    <rect x="20.0" y="148.0" width="196" height="48" rx="8" class="box st-pending"/>
+    <rect x="20.0" y="148.0" width="4" height="48" rx="2" fill="#898781"/>
+    <text x="36.0" y="168.0" class="n-title">ike-starter-set</text>
+    <text x="36.0" y="184.0" class="n-sub">pom · aggregator</text>
+    <text x="203.0" y="177.0" class="n-glyph" fill="#898781" text-anchor="end">○</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Untouched by this work. Not built in this session.">
+    <rect x="260.0" y="52.0" width="196" height="48" rx="8" class="box st-pending"/>
+    <rect x="260.0" y="52.0" width="4" height="48" rx="2" fill="#898781"/>
+    <text x="276.0" y="72.0" class="n-title">ike-terms</text>
+    <text x="276.0" y="88.0" class="n-sub">jar · pre-existing</text>
+    <text x="443.0" y="81.0" class="n-glyph" fill="#898781" text-anchor="end">○</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Built 02:54 today. 95 of 95 tests pass, 0 failures, 0 errors. Zero external dependencies — this is the module that holds every rule.">
+    <rect x="260.0" y="244.0" width="196" height="48" rx="8" class="box st-pass"/>
+    <rect x="260.0" y="244.0" width="4" height="48" rx="2" fill="#0ca30c"/>
+    <text x="276.0" y="264.0" class="n-title">ike-hierarchy-model</text>
+    <text x="276.0" y="280.0" class="n-sub">jar · new · 33 sources</text>
+    <text x="443.0" y="273.0" class="n-glyph" fill="#0ca30c" text-anchor="end">✓</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Depends on ike-terms. Not built in this session.">
+    <rect x="508.0" y="16.0" width="196" height="48" rx="8" class="box st-pending"/>
+    <rect x="508.0" y="16.0" width="4" height="48" rx="2" fill="#898781"/>
+    <text x="524.0" y="36.0" class="n-title">ike-bindings</text>
+    <text x="524.0" y="52.0" class="n-sub">jar · pre-existing</text>
+    <text x="691.0" y="45.0" class="n-glyph" fill="#898781" text-anchor="end">○</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Depends on ike-terms. Produces ike-koncepts.yml for the guide.">
+    <rect x="508.0" y="88.0" width="196" height="48" rx="8" class="box st-pending"/>
+    <rect x="508.0" y="88.0" width="4" height="48" rx="2" fill="#898781"/>
+    <text x="524.0" y="108.0" class="n-title">ike-changeset</text>
+    <text x="524.0" y="124.0" class="n-sub">jar · pre-existing</text>
+    <text x="691.0" y="117.0" class="n-glyph" fill="#898781" text-anchor="end">○</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Never built — no target/ directory and no generated plugin.xml. This is the next step, and where maven.api.version would bite if your Maven is not on rc-5.">
+    <rect x="508.0" y="208.0" width="196" height="48" rx="8" class="box st-pending"/>
+    <rect x="508.0" y="208.0" width="4" height="48" rx="2" fill="#898781"/>
+    <text x="524.0" y="228.0" class="n-title">ike-hierarchy-maven-plugin</text>
+    <text x="524.0" y="244.0" class="n-sub">maven-plugin · new · 10 sources</text>
+    <text x="691.0" y="237.0" class="n-glyph" fill="#898781" text-anchor="end">○</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="target/classes still holds ChapterIncludeProcessor from 19 Aug 20:51 — the retired code. The new sources have never been compiled.">
+    <rect x="508.0" y="280.0" width="196" height="48" rx="8" class="box st-stale"/>
+    <rect x="508.0" y="280.0" width="4" height="48" rx="2" fill="#fab219"/>
+    <text x="524.0" y="300.0" class="n-title">ike-doc-extension</text>
+    <text x="524.0" y="316.0" class="n-sub">jar · rewritten · 3 sources</text>
+    <text x="691.0" y="309.0" class="n-glyph" fill="#fab219" text-anchor="end">▲</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Depends on ike-changeset.">
+    <rect x="758.0" y="88.0" width="196" height="48" rx="8" class="box st-pending"/>
+    <rect x="758.0" y="88.0" width="4" height="48" rx="2" fill="#898781"/>
+    <text x="774.0" y="108.0" class="n-title">ike-kb</text>
+    <text x="774.0" y="124.0" class="n-sub">pom · pre-existing</text>
+    <text x="941.0" y="117.0" class="n-glyph" fill="#898781" text-anchor="end">○</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Runs ike-hierarchy:index at generate-resources, then asciidoctor. Not built.">
+    <rect x="758.0" y="244.0" width="196" height="48" rx="8" class="box st-pending"/>
+    <rect x="758.0" y="244.0" width="4" height="48" rx="2" fill="#898781"/>
+    <text x="774.0" y="264.0" class="n-title">ike-doc</text>
+    <text x="774.0" y="280.0" class="n-sub">pom · renders the guide</text>
+    <text x="941.0" y="273.0" class="n-glyph" fill="#898781" text-anchor="end">○</text>
+  </g>
+  </svg>
+</section>
+
+<section>
+  <h2>Document hierarchy</h2>
+  <p class="cap">What the guide would assemble from — the live output of the system.</p>
+  <svg class="chart" viewBox="0 0 980 160" role="img" aria-label="Chapter hierarchy">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" class="arrowhead"/>
+    </marker>
+    <marker id="arrow-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" class="arrowhead dim"/>
+    </marker>
+  </defs>
+  <path class="edge" d="M308.0,74 C406.5,74.0 406.5,40.0 505.0,40" marker-end="url(#arrow)"/>
+  <text x="406.5" y="51.0" class="e-label" text-anchor="middle">declares parent</text>
+  <path class="edge dashed" d="M308.0,74 C406.5,74.0 406.5,118.0 505.0,118" marker-end="url(#arrow-d)"/>
+  <text x="406.5" y="90.0" class="e-label" text-anchor="middle">awaiting decompose</text>
+
+  <g class="node" tabindex="0" data-tip="ike-guide.adoc was reverted to the committed version at 15:55 today. Its &#x27;:chapter-id:&#x27; and &#x27;:chapter-root:&#x27; lines are gone, so no file declares this root.">
+    <rect x="112.0" y="50.0" width="196" height="48" rx="8" class="box st-blocked"/>
+    <rect x="112.0" y="50.0" width="4" height="48" rx="2" fill="#d03b3b"/>
+    <text x="128.0" y="70.0" class="n-title">ike-guide</text>
+    <text x="128.0" y="86.0" class="n-sub">root NOT DECLARED</text>
+    <text x="295.0" y="79.0" class="n-glyph" fill="#d03b3b" text-anchor="end">✕</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Declares &#x27;:chapter-parent: ike-guide&#x27;, but nothing declares that root — a DanglingParent violation. ike-hierarchy:index will fail the build here.">
+    <rect x="512.0" y="16.0" width="196" height="48" rx="8" class="box st-blocked"/>
+    <rect x="512.0" y="16.0" width="4" height="48" rx="2" fill="#d03b3b"/>
+    <text x="528.0" y="36.0" class="n-title">cql</text>
+    <text x="528.0" y="52.0" class="n-sub">cql/cql.adoc · order 1050</text>
+    <text x="695.0" y="45.0" class="n-glyph" fill="#d03b3b" text-anchor="end">✕</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Language Concepts, STAMP Concepts, EL++, Field Constraints, Default Values, Tinkar Base Model and 15 more. A decompose dry run placed all 21 cleanly.">
+    <rect x="512.0" y="94.0" width="196" height="48" rx="8" class="box st-pending"/>
+    <rect x="512.0" y="94.0" width="4" height="48" rx="2" fill="#898781"/>
+    <text x="528.0" y="114.0" class="n-title">21 chapters</text>
+    <text x="528.0" y="130.0" class="n-sub">still written inline</text>
+    <text x="695.0" y="123.0" class="n-glyph" fill="#898781" text-anchor="end">○</text>
+  </g>
+  </svg>
+  <p class="note"><strong>This is the one blocker.</strong> <code>ike-guide.adoc</code> was reverted at 15:55 today, taking its
+  <code>:chapter-id:</code> and <code>:chapter-root:</code> lines with it, so <code>cql</code> now points at a parent nobody declares.
+  <code>ike-hierarchy:index</code> will stop the build with a <em>DanglingParent</em> violation naming both files — which is the
+  designed behaviour, not a regression: a chapter that cannot be placed must never quietly disappear from a 22-chapter book.
+  Re-adding two lines to the top of the guide clears it.</p>
+</section>
+
+<section>
+  <h2>Render pipeline</h2>
+  <p class="cap">Discovery happens once, on the left. Everything downstream reads the index.</p>
+  <svg class="chart" viewBox="0 0 980 96" role="img" aria-label="Render pipeline">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" class="arrowhead"/>
+    </marker>
+    <marker id="arrow-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L9,5 L0,9 z" class="arrowhead dim"/>
+    </marker>
+  </defs>
+  <path class="edge" d="M216.0,46 C256.0,46.0 221.0,46.0 261.0,46" marker-end="url(#arrow)"/>
+  <path class="edge" d="M464.0,46 C504.0,46.0 469.0,46.0 509.0,46" marker-end="url(#arrow)"/>
+  <path class="edge" d="M712.0,46 C752.0,46.0 717.0,46.0 757.0,46" marker-end="url(#arrow)"/>
+
+  <g class="node" tabindex="0" data-tip="Only cql/cql.adoc carries a hierarchy header today.">
+    <rect x="20.0" y="22.0" width="196" height="48" rx="8" class="box st-stale"/>
+    <rect x="20.0" y="22.0" width="4" height="48" rx="2" fill="#fab219"/>
+    <text x="36.0" y="42.0" class="n-title">chapter .adoc files</text>
+    <text x="36.0" y="58.0" class="n-sub">1 declared · 21 pending</text>
+    <text x="203.0" y="51.0" class="n-glyph" fill="#fab219" text-anchor="end">▲</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Would fail right now on the dangling parent — by design. A chapter that cannot be placed must not vanish silently.">
+    <rect x="268.0" y="22.0" width="196" height="48" rx="8" class="box st-blocked"/>
+    <rect x="268.0" y="22.0" width="4" height="48" rx="2" fill="#d03b3b"/>
+    <text x="284.0" y="42.0" class="n-title">ike-hierarchy:index</text>
+    <text x="284.0" y="58.0" class="n-sub">scan · validate · write</text>
+    <text x="451.0" y="51.0" class="n-glyph" fill="#d03b3b" text-anchor="end">✕</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="The single seam. Written once per build; rendering reads only this.">
+    <rect x="516.0" y="22.0" width="196" height="48" rx="8" class="box st-pending"/>
+    <rect x="516.0" y="22.0" width="4" height="48" rx="2" fill="#898781"/>
+    <text x="532.0" y="42.0" class="n-title">ike-hierarchy-index.json</text>
+    <text x="532.0" y="58.0" class="n-sub">not generated</text>
+    <text x="699.0" y="51.0" class="n-glyph" fill="#898781" text-anchor="end">○</text>
+  </g>
+  <g class="node" tabindex="0" data-tip="Resolves include::hierarchy:… from the index. No directory walking, no path it was not handed.">
+    <rect x="764.0" y="22.0" width="196" height="48" rx="8" class="box st-stale"/>
+    <rect x="764.0" y="22.0" width="4" height="48" rx="2" fill="#fab219"/>
+    <text x="780.0" y="42.0" class="n-title">Include processor</text>
+    <text x="780.0" y="58.0" class="n-sub">resolves hierarchy: · stale</text>
+    <text x="947.0" y="51.0" class="n-glyph" fill="#fab219" text-anchor="end">▲</text>
+  </g>
+  </svg>
+</section>
+
+<section>
+  <h2>Table view</h2>
+  <p class="cap">The same state, without relying on colour or position.</p>
+  <table><thead><tr><th>Component</th><th>Packaging</th><th>State</th><th>Detail</th></tr></thead><tbody><tr><td>ike-hierarchy-model</td><td>jar</td><td>verified</td><td>Built; 95/95 tests green</td></tr><tr><td>ike-hierarchy-maven-plugin</td><td>maven-plugin</td><td>not built</td><td>No target/; next build step</td></tr><tr><td>ike-doc-extension</td><td>jar</td><td>stale build</td><td>target/ holds the retired ChapterIncludeProcessor</td></tr><tr><td>ike-doc</td><td>pom</td><td>not built</td><td>Wired to run ike-hierarchy:index at generate-resources</td></tr><tr><td>ike-terms / bindings / changeset / kb</td><td>jar, pom</td><td>not built</td><td>Pre-existing; untouched</td></tr><tr><td>ike-guide root declaration</td><td>adoc</td><td>blocking</td><td>Reverted at 15:55 — :chapter-root: is gone</td></tr><tr><td>cql chapter</td><td>adoc</td><td>blocking</td><td>Dangling parent: ike-guide is not declared</td></tr><tr><td>21 inline chapters</td><td>adoc</td><td>pending</td><td>Decompose dry run placed all 21 cleanly</td></tr></tbody></table>
+</section>
+
+</div></div>
+<div id="tip" role="tooltip"></div>
+<script>
+  const tip = document.getElementById('tip');
+  for (const n of document.querySelectorAll('.node')) {
+    const show = e => {
+      tip.textContent = n.dataset.tip; tip.style.opacity = 1;
+      const r = tip.getBoundingClientRect();
+      const b = n.getBoundingClientRect();
+      let x = b.left + b.width / 2 - r.width / 2;
+      x = Math.max(8, Math.min(x, window.innerWidth - r.width - 8));
+      let y = b.top - r.height - 10;
+      if (y < 8) y = b.bottom + 10;
+      tip.style.left = x + 'px'; tip.style.top = y + 'px';
+    };
+    const hide = () => { tip.style.opacity = 0; };
+    n.addEventListener('mouseenter', show); n.addEventListener('focus', show);
+    n.addEventListener('mouseleave', hide); n.addEventListener('blur', hide);
+  }
+</script>
+</body></html>
