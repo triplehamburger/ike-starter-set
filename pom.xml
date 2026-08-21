@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns="http://maven.apache.org/POM/4.1.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
 
     <parent>
         <groupId>network.ike.platform</groupId>
@@ -72,19 +72,19 @@
         <ike-maven-plugin.version>239</ike-maven-plugin.version>
     </properties>
 
-    <modules>
-        <module>ike-terms</module>
-        <module>ike-bindings</module>
-        <module>ike-changeset</module>
+    <subprojects>
+        <subproject>ike-terms</subproject>
+        <subproject>ike-bindings</subproject>
+        <subproject>ike-changeset</subproject>
         <!-- The decentralized live hierarchy: the pure model, the Maven 4 plugin that writes
              the index, and the Asciidoctor extension that reads it. Build order follows the
              dependency graph; the listing order here just reads top-down. -->
-        <module>ike-hierarchy-model</module>
-        <module>ike-hierarchy-maven-plugin</module>
-        <module>ike-doc-extension</module>
-        <module>ike-doc</module>
-        <module>ike-kb</module>
-    </modules>
+        <subproject>ike-hierarchy-model</subproject>
+        <subproject>ike-hierarchy-maven-plugin</subproject>
+        <subproject>ike-doc-extension</subproject>
+        <subproject>ike-doc</subproject>
+        <subproject>ike-kb</subproject>
+    </subprojects>
 
     <build>
         <pluginManagement>

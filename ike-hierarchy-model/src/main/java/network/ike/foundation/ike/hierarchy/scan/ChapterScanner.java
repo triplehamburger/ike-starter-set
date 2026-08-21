@@ -128,6 +128,9 @@ public final class ChapterScanner {
             return;
         }
         if (size > limits.maxFileBytes()) {
+            violations.add(new Violation.ScanLimitExceeded(
+                    "file '" + describe(realRoot, real) + "' is " + size + " bytes, exceeding the maximum of "
+                            + limits.maxFileBytes() + " bytes"));
             return;
         }
 
@@ -135,8 +138,8 @@ public final class ChapterScanner {
         try {
             lines = Files.readAllLines(real, StandardCharsets.UTF_8);
         } catch (MalformedInputException e) {
-            // Not UTF-8, so not a chapter this build can render. Silent: the tree is allowed to
-            // contain files that are none of our business.
+            violations.add(new Violation.MalformedHeader(
+                    SafePath.relativise(realRoot, real), "is not valid UTF-8 text"));
             return;
         } catch (IOException e) {
             violations.add(new Violation.MalformedHeader(

@@ -25,10 +25,10 @@ import java.util.Set;
 public final class HierarchyValidator {
 
     /** The deepest nesting assumed when a caller expresses no preference. */
-    public static final int DEFAULT_MAX_DEPTH = 5;
+    public static final int DEFAULT_MAX_DEPTH = 4;
 
-    /** The deepest nesting AsciiDoc can render, since headings stop at six levels. */
-    public static final int ABSOLUTE_MAX_DEPTH = 6;
+    /** The deepest nesting AsciiDoc can render, since headings stop at five levels below document title. */
+    public static final int ABSOLUTE_MAX_DEPTH = 5;
 
     private HierarchyValidator() {
     }

@@ -65,7 +65,7 @@ public final class ScanRoots {
 
             Optional<Path> real = SafePath.realDirectory(absolute);
             if (real.isEmpty()) {
-                report.warn("Scan root '" + entry + "' does not exist and was skipped.");
+                report.fail("Configured scan root '" + entry + "' does not exist or is not a directory.");
                 continue;
             }
             if (!real.get().startsWith(base)) {

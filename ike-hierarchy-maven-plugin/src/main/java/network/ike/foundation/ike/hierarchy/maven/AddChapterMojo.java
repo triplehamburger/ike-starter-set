@@ -49,9 +49,13 @@ public class AddChapterMojo implements org.apache.maven.api.plugin.Mojo {
     @Parameter(property = "parent")
     private String parent;
 
+    /** The display title. Derived from the document heading or existing declaration when omitted. */
+    @Parameter(property = "title")
+    private String title;
+
     /** The sort key among siblings. Leave room between values so a chapter can be inserted later. */
-    @Parameter(defaultValue = "500", property = "order")
-    private int order;
+    @Parameter(property = "order")
+    private Integer order;
 
     /** One of draft, proposed, review, published, deprecated. */
     @Parameter(property = "status")
@@ -76,8 +80,9 @@ public class AddChapterMojo implements org.apache.maven.api.plugin.Mojo {
                 MojoSupport.splitList(roots),
                 file,
                 MojoSupport.optional(id),
+                MojoSupport.optional(title),
                 MojoSupport.optional(parent),
-                Optional.of(order),
+                Optional.ofNullable(order),
                 MojoSupport.optional(status),
                 root,
                 MojoSupport.limits(0, 0L, null),

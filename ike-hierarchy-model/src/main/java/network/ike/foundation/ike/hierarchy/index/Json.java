@@ -248,7 +248,7 @@ public sealed interface Json {
     default String render() {
         StringBuilder builder = new StringBuilder();
         JsonWriter.write(this, builder, 0);
-        builder.append(System.lineSeparator());
+        builder.append('\n');
         return builder.toString();
     }
 }

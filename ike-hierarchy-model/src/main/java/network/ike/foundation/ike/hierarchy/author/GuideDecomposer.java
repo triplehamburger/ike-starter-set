@@ -66,10 +66,20 @@ public final class GuideDecomposer {
         taken.add(rootId);
 
         int order = ORDER_STEP;
+        int fallbackIndex = 1;
         for (Section section : sections) {
             Optional<ChapterId> id = Slug.unique(section.title(), taken);
             if (id.isEmpty()) {
-                continue;
+                String fallback = "section-" + fallbackIndex;
+                while (ChapterId.parse(fallback).isPresent() && taken.contains(ChapterId.parse(fallback).get())) {
+                    fallbackIndex++;
+                    fallback = "section-" + fallbackIndex;
+                }
+                id = ChapterId.parse(fallback);
+                fallbackIndex++;
+            }
+            if (id.isEmpty()) {
+                throw new IllegalStateException("Cannot generate a valid chapter identifier for section: " + section.title());
             }
             taken.add(id.get());
 

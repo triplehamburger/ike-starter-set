@@ -74,6 +74,6 @@ public final class AtomicFiles {
         if (lines.isEmpty()) {
             return "";
         }
-        return String.join(System.lineSeparator(), lines) + System.lineSeparator();
+        return String.join("\n", lines) + "\n";
     }
 }

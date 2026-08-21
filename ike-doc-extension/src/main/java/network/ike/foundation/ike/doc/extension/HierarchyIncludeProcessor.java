@@ -2,6 +2,7 @@ package network.ike.foundation.ike.doc.extension;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -210,6 +211,8 @@ public class HierarchyIncludeProcessor extends IncludeProcessor {
 
     private static void push(PreprocessorReader reader, String content,
                              Map<String, Object> attributes) {
-        reader.push_include(content, null, null, 1, attributes);
+        Map<String, Object> cleanAttributes = new HashMap<>(attributes != null ? attributes : Map.of());
+        cleanAttributes.remove("leveloffset");
+        reader.push_include(content, null, null, 1, cleanAttributes);
     }
 }
