@@ -22,3 +22,8 @@ include::06-core-operators.adoc[leveloffset=+1]
 include::07-data-and-timing-operators.adoc[leveloffset=+1]
 
 include::08-query-and-control-flow.adoc[leveloffset=+1]
+
+[TIP]
+====
+For the complete alphabetical reference of all 122 CQL keywords, including formal syntax, typing rules, and clinical examples, see the standalone xref:cql-dictionary.html[CQL Keyword Dictionary].
+====

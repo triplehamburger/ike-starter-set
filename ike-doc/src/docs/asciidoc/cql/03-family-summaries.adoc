@@ -4,7 +4,7 @@ Quick-scan view of each family in this guide and what it contributes to CQL auth
 
 === Types & Literals (8)
 
-This family defines the foundational values CQL expressions operate on: built-in types (<<term-Code,`Code`>>, <<term-Concept,`Concept`>>, <<term-Interval,`Interval`>>, <<term-List,`List`>>, <<term-Tuple,`Tuple`>>) and fixed literals (<<term-true,`true`>>, <<term-false,`false`>>, <<term-null,`null`>>). These terms establish the basic data shapes and constants used throughout the language.
+This family defines the foundational values CQL expressions operate on: built-in types (xref:cql-dictionary.html#term-Code[`Code`], xref:cql-dictionary.html#term-Concept[`Concept`], xref:cql-dictionary.html#term-Interval[`Interval`], xref:cql-dictionary.html#term-List[`List`], xref:cql-dictionary.html#term-Tuple[`Tuple`]) and fixed literals (xref:cql-dictionary.html#term-true[`true`], xref:cql-dictionary.html#term-false[`false`], xref:cql-dictionary.html#term-null[`null`]). These terms establish the basic data shapes and constants used throughout the language.
 
 === Declarations (19)
 
@@ -12,11 +12,11 @@ This family contains the top-level library-building language: context, terminolo
 
 === Core Operators (18)
 
-This family covers general-purpose expression logic: boolean composition, arithmetic operations, type checks/conversions, and core comparison (<<term-between,`between`>>). These terms are the primary tools for computing, combining, and evaluating conditions inside definitions and queries.
+This family covers general-purpose expression logic: boolean composition, arithmetic operations, type checks/conversions, and core comparison (xref:cql-dictionary.html#term-between[`between`]). These terms are the primary tools for computing, combining, and evaluating conditions inside definitions and queries.
 
 === Data & Timing Operators (56)
 
-This family provides most of CQL's clinical data-shaping and temporal logic, including list/interval operations, temporal relationships, precision units, and date/time extraction (<<term-difference,`difference`>>, <<term-duration,`duration`>>, parts of dates/times). It is central for measure logic that depends on membership, boundaries, overlap, ordering, and timing windows.
+This family provides most of CQL's clinical data-shaping and temporal logic, including list/interval operations, temporal relationships, precision units, and date/time extraction (xref:cql-dictionary.html#term-difference[`difference`], xref:cql-dictionary.html#term-duration[`duration`], parts of dates/times). It is central for measure logic that depends on membership, boundaries, overlap, ordering, and timing windows.
 
 === Query & Control Flow (21)
 

@@ -4,16 +4,16 @@
 
 The library-level statements that give a CQL file its shape.
 
-Members: <<term-code,`code`>>, <<term-codesystem,`codesystem`>>, <<term-concept,`concept`>>, <<term-context,`context`>>, <<term-define,`define`>>, <<term-function,`function`>>, <<term-include,`include`>>, <<term-library,`library`>>, <<term-parameter,`parameter`>>, <<term-using,`using`>>, <<term-valueset,`valueset`>>
+Members: xref:cql-dictionary.html#term-code[`code`], xref:cql-dictionary.html#term-codesystem[`codesystem`], xref:cql-dictionary.html#term-concept[`concept`], xref:cql-dictionary.html#term-context[`context`], xref:cql-dictionary.html#term-define[`define`], xref:cql-dictionary.html#term-function[`function`], xref:cql-dictionary.html#term-include[`include`], xref:cql-dictionary.html#term-library[`library`], xref:cql-dictionary.html#term-parameter[`parameter`], xref:cql-dictionary.html#term-using[`using`], xref:cql-dictionary.html#term-valueset[`valueset`]
 
 === Declaration Modifier (6)
 
 Modifiers that refine a declaration -- an alias, a default, a version.
 
-Members: <<term-called,`called`>>, <<term-codesystems,`codesystems`>>, <<term-default,`default`>>, <<term-display,`display`>>, <<term-fluent,`fluent`>>, <<term-version,`version`>>
+Members: xref:cql-dictionary.html#term-called[`called`], xref:cql-dictionary.html#term-codesystems[`codesystems`], xref:cql-dictionary.html#term-default[`default`], xref:cql-dictionary.html#term-display[`display`], xref:cql-dictionary.html#term-fluent[`fluent`], xref:cql-dictionary.html#term-version[`version`]
 
 === Access Modifier (2)
 
 Controls whether a definition is visible outside its own library.
 
-Members: <<term-private,`private`>>, <<term-public,`public`>>
+Members: xref:cql-dictionary.html#term-private[`private`], xref:cql-dictionary.html#term-public[`public`]

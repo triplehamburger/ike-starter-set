@@ -188,6 +188,53 @@ class HierarchyRenderTest {
             assertThat(html).contains("Ike Starter Set");
             assertThat(html).contains("How to Read This Guide");
             assertThat(html).contains("Tinkar Base Model");
+            assertThat(html).contains("CQL in Komet");
+            assertThat(html).contains("cql-dictionary.html");
+            assertThat(html).doesNotContain("All 122 CQL keywords");
+        } finally {
+            asciidoctor.shutdown();
+        }
+    }
+
+    @Test
+    void renderCqlDictionaryIfPresent() throws IOException {
+        Path projectRoot = Paths.get("..").toAbsolutePath().normalize();
+        if (!Files.exists(projectRoot.resolve("ike-doc"))) {
+            projectRoot = Paths.get(".").toAbsolutePath().normalize();
+        }
+
+        Path dictPath = projectRoot.resolve("ike-doc/src/docs/asciidoc/cql-dictionary.adoc");
+        Path outputDir = projectRoot.resolve("ike-doc/target/generated-docs");
+
+        if (!Files.exists(dictPath)) {
+            return;
+        }
+
+        Files.createDirectories(outputDir);
+        Path outputFile = outputDir.resolve("cql-dictionary.html");
+
+        Asciidoctor asciidoctor = Asciidoctor.Factory.create();
+        try {
+            Attributes attributes = Attributes.builder()
+                    .attribute("toc", "left")
+                    .attribute("sectnums", "true")
+                    .build();
+
+            Options options = Options.builder()
+                    .baseDir(dictPath.getParent().toFile())
+                    .safe(SafeMode.UNSAFE)
+                    .backend("html5")
+                    .toFile(outputFile.toFile())
+                    .attributes(attributes)
+                    .build();
+
+            asciidoctor.convertFile(dictPath.toFile(), options);
+
+            assertThat(outputFile).exists();
+            String html = Files.readString(outputFile);
+            assertThat(html).contains("CQL Keyword Dictionary");
+            assertThat(html).contains("All 122 CQL keywords");
+            assertThat(html).contains("term-and");
         } finally {
             asciidoctor.shutdown();
         }
