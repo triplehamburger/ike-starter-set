@@ -1,11 +1,16 @@
+:chapter-id: keyword-dictionary
+:chapter-parent: cql-dictionary
+:chapter-order: 100
+:chapter-status: published
+
 [#keyword-dictionary]
-== Keyword Dictionary
+= Keyword Dictionary
 
 All 122 CQL keywords, alphabetically. Definition, example, and current Komet status for each.
 
 [[term-after]]
 [discrete]
-==== *after*
+=== *after*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -22,7 +27,7 @@ Relational operator testing whether one date, time, or interval occurs later tha
 
 [[term-aggregate]]
 [discrete]
-==== *aggregate*
+=== *aggregate*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -39,7 +44,7 @@ aggregate "RunningTotal" starting 0: RunningTotal + Claim.amount
 
 [[term-all]]
 [discrete]
-==== *all*
+=== *all*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -56,7 +61,7 @@ Modifier that keeps duplicate values instead of the default distinct behavior, u
 
 [[term-and]]
 [discrete]
-==== *and*
+=== *and*
 
 `Logical Operator` -- *Implemented in Komet*
 
@@ -75,7 +80,7 @@ Komet concept: *And*
 
 [[term-as]]
 [discrete]
-==== *as*
+=== *as*
 
 `Type Operator` -- (Core Operators > Type Operator) Not yet in Komet
 
@@ -92,7 +97,7 @@ define function "GetQuantity"(obs Observation): obs.value as Quantity
 
 [[term-asc]]
 [discrete]
-==== *asc*
+=== *asc*
 
 `Sort Modifier` -- (Query & Control Flow > Sort Modifier) Not yet in Komet
 
@@ -109,7 +114,7 @@ Short form of ‘ascending’ — orders sort-clause results from lowest to high
 
 [[term-ascending]]
 [discrete]
-==== *ascending*
+=== *ascending*
 
 `Sort Modifier` -- (Query & Control Flow > Sort Modifier) Not yet in Komet
 
@@ -126,7 +131,7 @@ Full form of ‘asc’ — orders sort-clause results from lowest to highest.
 
 [[term-before]]
 [discrete]
-==== *before*
+=== *before*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -143,7 +148,7 @@ Relational operator testing whether one date, time, or interval occurs earlier t
 
 [[term-between]]
 [discrete]
-==== *between*
+=== *between*
 
 `Comparison Operator` -- (Core Operators > Comparison Operator) Not yet in Komet
 
@@ -160,7 +165,7 @@ Tests whether a value falls within an inclusive range (e.g. ‘4 between 2 and 8
 
 [[term-by]]
 [discrete]
-==== *by*
+=== *by*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -177,7 +182,7 @@ Connector introducing the ordering expression in a sort clause (‘sort by ...�
 
 [[term-called]]
 [discrete]
-==== *called*
+=== *called*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier) Not yet in Komet
 
@@ -194,7 +199,7 @@ include FHIRHelpers version '4.0.1' called FHIRHelpers
 
 [[term-case]]
 [discrete]
-==== *case*
+=== *case*
 
 `Conditional Expression` -- (Query & Control Flow > Conditional Expression) Not yet in Komet
 
@@ -215,7 +220,7 @@ end
 
 [[term-cast]]
 [discrete]
-==== *cast*
+=== *cast*
 
 `Type Operator` -- (Core Operators > Type Operator) Not yet in Komet
 
@@ -232,7 +237,7 @@ cast "SomeValue" as Integer
 
 [[term-code]]
 [discrete]
-==== *code*
+=== *code*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -249,7 +254,7 @@ code "Diabetes code": '73211009' from "SNOMED"
 
 [[term-Code]]
 [discrete]
-==== *Code*
+=== *Code*
 
 `Type Name` -- (Types & Literals > Type Name) Not yet in Komet
 
@@ -266,7 +271,7 @@ define "DiabetesCode": Code '73211009' from "SNOMED" display 'Diabetes mellitus'
 
 [[term-codesystem]]
 [discrete]
-==== *codesystem*
+=== *codesystem*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -283,7 +288,7 @@ codesystem "SNOMED": 'http://snomed.info/sct'
 
 [[term-codesystems]]
 [discrete]
-==== *codesystems*
+=== *codesystems*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier) Not yet in Komet
 
@@ -300,7 +305,7 @@ valueset "Example": 'urn:oid:2.16.1' codesystems { "SNOMED", "LOINC" }
 
 [[term-collapse]]
 [discrete]
-==== *collapse*
+=== *collapse*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -317,7 +322,7 @@ collapse "OverlappingEncounterPeriods"
 
 [[term-concept]]
 [discrete]
-==== *concept*
+=== *concept*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -334,7 +339,7 @@ concept "Diabetes concept": { "Diabetes code" } display 'Diabetes mellitus'
 
 [[term-Concept]]
 [discrete]
-==== *Concept*
+=== *Concept*
 
 `Type Name` -- (Types & Literals > Type Name) Not yet in Komet
 
@@ -351,7 +356,7 @@ define "DiabetesConcept": Concept { "DiabetesCode" } display 'Diabetes mellitus'
 
 [[term-contains]]
 [discrete]
-==== *contains*
+=== *contains*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -368,7 +373,7 @@ Membership operator testing whether an interval or list contains a given point o
 
 [[term-context]]
 [discrete]
-==== *context*
+=== *context*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -385,7 +390,7 @@ context Patient
 
 [[term-convert]]
 [discrete]
-==== *convert*
+=== *convert*
 
 `Type Operator` -- (Core Operators > Type Operator) Not yet in Komet
 
@@ -402,7 +407,7 @@ convert 5000 'g' to 'kg'
 
 [[term-date]]
 [discrete]
-==== *date*
+=== *date*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator) Not yet in Komet
 
@@ -419,7 +424,7 @@ date from "EncounterDateTime"
 
 [[term-day]]
 [discrete]
-==== *day*
+=== *day*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -436,7 +441,7 @@ AdmissionDateTime + 1 day
 
 [[term-days]]
 [discrete]
-==== *days*
+=== *days*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -453,7 +458,7 @@ Interval["AdmissionDateTime", "AdmissionDateTime" + 3 days]
 
 [[term-default]]
 [discrete]
-==== *default*
+=== *default*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier) Not yet in Komet
 
@@ -471,7 +476,7 @@ parameter "MeasurementPeriod" Interval<DateTime>
 
 [[term-define]]
 [discrete]
-==== *define*
+=== *define*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -488,7 +493,7 @@ define "InInitialPopulation": exists "QualifyingEncounters"
 
 [[term-desc]]
 [discrete]
-==== *desc*
+=== *desc*
 
 `Sort Modifier` -- (Query & Control Flow > Sort Modifier) Not yet in Komet
 
@@ -505,7 +510,7 @@ Short form of ‘descending’ — orders sort-clause results from highest to lo
 
 [[term-descending]]
 [discrete]
-==== *descending*
+=== *descending*
 
 `Sort Modifier` -- (Query & Control Flow > Sort Modifier) Not yet in Komet
 
@@ -522,7 +527,7 @@ Full form of ‘desc’ — orders sort-clause results from highest to lowest.
 
 [[term-difference]]
 [discrete]
-==== *difference*
+=== *difference*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator) Not yet in Komet
 
@@ -539,7 +544,7 @@ difference in days between "AdmissionDateTime" and "DischargeDateTime"
 
 [[term-display]]
 [discrete]
-==== *display*
+=== *display*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier) Not yet in Komet
 
@@ -556,7 +561,7 @@ code "Diabetes code": '73211009' from "SNOMED" display 'Diabetes mellitus'
 
 [[term-distinct]]
 [discrete]
-==== *distinct*
+=== *distinct*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -573,7 +578,7 @@ distinct { 1, 1, 2, 3 }
 
 [[term-div]]
 [discrete]
-==== *div*
+=== *div*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator) Not yet in Komet
 
@@ -590,7 +595,7 @@ Truncated (integer-style) division, discarding any remainder — e.g. ‘4 div 2
 
 [[term-duration]]
 [discrete]
-==== *duration*
+=== *duration*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator) Not yet in Komet
 
@@ -607,7 +612,7 @@ duration in days between "AdmissionDateTime" and "DischargeDateTime"
 
 [[term-during]]
 [discrete]
-==== *during*
+=== *during*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -624,7 +629,7 @@ Tests whether a point or interval falls entirely within another interval.
 
 [[term-else]]
 [discrete]
-==== *else*
+=== *else*
 
 `Conditional Expression` -- (Query & Control Flow > Conditional Expression) Not yet in Komet
 
@@ -641,7 +646,7 @@ if AgeInYears() >= 18 then 'Adult' else 'Minor'
 
 [[term-end]]
 [discrete]
-==== *end*
+=== *end*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -658,7 +663,7 @@ end of "MeasurementPeriod"
 
 [[term-ends]]
 [discrete]
-==== *ends*
+=== *ends*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -675,7 +680,7 @@ Tests whether one interval finishes at the same point as another (a ‘suffix’
 
 [[term-except]]
 [discrete]
-==== *except*
+=== *except*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -692,7 +697,7 @@ Set-difference operator — returns the elements or range in the left operand th
 
 [[term-exists]]
 [discrete]
-==== *exists*
+=== *exists*
 
 `Logical Operator` -- (Core Operators > Logical Operator) Not yet in Komet
 
@@ -709,7 +714,7 @@ exists "QualifyingEncounters"
 
 [[term-expand]]
 [discrete]
-==== *expand*
+=== *expand*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -726,7 +731,7 @@ expand "MeasurementPeriod" per day
 
 [[term-false]]
 [discrete]
-==== *false*
+=== *false*
 
 `Literal` -- (Types & Literals > Literal) Not yet in Komet
 
@@ -743,7 +748,7 @@ define "IsExcluded": false
 
 [[term-flatten]]
 [discrete]
-==== *flatten*
+=== *flatten*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -760,7 +765,7 @@ flatten { { 1, 2 }, { 3, 4 } }
 
 [[term-fluent]]
 [discrete]
-==== *fluent*
+=== *fluent*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier) Not yet in Komet
 
@@ -777,7 +782,7 @@ define fluent function "ToAgeInYears"(BirthDate Date): AgeInYears(BirthDate)
 
 [[term-from]]
 [discrete]
-==== *from*
+=== *from*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -794,7 +799,7 @@ from [Encounter] E, [Condition] C where E.subject = C.subject
 
 [[term-function]]
 [discrete]
-==== *function*
+=== *function*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -811,7 +816,7 @@ define function "CalculateAge"(BirthDate Date): AgeInYears(BirthDate)
 
 [[term-hour]]
 [discrete]
-==== *hour*
+=== *hour*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -828,7 +833,7 @@ Singular calendar-duration unit of one hour.
 
 [[term-hours]]
 [discrete]
-==== *hours*
+=== *hours*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -845,7 +850,7 @@ Plural calendar-duration unit of hours.
 
 [[term-if]]
 [discrete]
-==== *if*
+=== *if*
 
 `Conditional Expression` -- (Query & Control Flow > Conditional Expression) Not yet in Komet
 
@@ -862,7 +867,7 @@ if AgeInYears() >= 18 then 'Adult' else 'Minor'
 
 [[term-implies]]
 [discrete]
-==== *implies*
+=== *implies*
 
 `Logical Operator` -- (Core Operators > Logical Operator) Not yet in Komet
 
@@ -879,7 +884,7 @@ Logical implication — false only when the left operand is true and the right i
 
 [[term-in]]
 [discrete]
-==== *in*
+=== *in*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -896,7 +901,7 @@ Tests whether a value is a member of a list, interval, or terminology set — th
 
 [[term-include]]
 [discrete]
-==== *include*
+=== *include*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -913,7 +918,7 @@ include FHIRHelpers version '4.0.1' called FHIRHelpers
 
 [[term-included-in]]
 [discrete]
-==== *include*d in
+=== *include*d in
 
 `List/Interval Operator` -- _Related concept in Komet_
 
@@ -932,7 +937,7 @@ Related Komet concept(s): *Clause Included in*
 
 [[term-includes]]
 [discrete]
-==== *includes*
+=== *includes*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -949,7 +954,7 @@ Tests whether one interval or list entirely contains another — the inverse of 
 
 [[term-intersect]]
 [discrete]
-==== *intersect*
+=== *intersect*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -966,7 +971,7 @@ Returns the elements, or overlapping range, common to both operands.
 
 [[term-Interval]]
 [discrete]
-==== *Interval*
+=== *Interval*
 
 `Type Name` -- _Related concept in Komet_
 
@@ -985,7 +990,7 @@ Related Komet concept(s): *Interval Set Axioms*, *Interval role*, *Interval Uppe
 
 [[term-is]]
 [discrete]
-==== *is*
+=== *is*
 
 `Type Operator` -- (Core Operators > Type Operator) Not yet in Komet
 
@@ -1002,7 +1007,7 @@ Tests the run-time type of a value (e.g. ‘5 is Integer’), or tests for null/
 
 [[term-let]]
 [discrete]
-==== *let*
+=== *let*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -1019,7 +1024,7 @@ Defines a named, reusable intermediate expression scoped to a single query.
 
 [[term-library]]
 [discrete]
-==== *library*
+=== *library*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -1036,7 +1041,7 @@ library CQMExample version '1.0.0'
 
 [[term-List]]
 [discrete]
-==== *List*
+=== *List*
 
 `Type Name` -- (Types & Literals > Type Name) Not yet in Komet
 
@@ -1053,7 +1058,7 @@ define "Encounters": [Encounter] E return E.period
 
 [[term-maximum]]
 [discrete]
-==== *maximum*
+=== *maximum*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator) Not yet in Komet
 
@@ -1070,7 +1075,7 @@ maximum Integer
 
 [[term-meets]]
 [discrete]
-==== *meets*
+=== *meets*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -1087,7 +1092,7 @@ Tests whether two intervals are adjacent — one ends exactly where the other be
 
 [[term-millisecond]]
 [discrete]
-==== *millisecond*
+=== *millisecond*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -1104,7 +1109,7 @@ Singular calendar-duration unit of one millisecond — the finest date/time prec
 
 [[term-milliseconds]]
 [discrete]
-==== *milliseconds*
+=== *milliseconds*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -1121,7 +1126,7 @@ duration in milliseconds between "Start" and "End"
 
 [[term-minimum]]
 [discrete]
-==== *minimum*
+=== *minimum*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator) Not yet in Komet
 
@@ -1138,7 +1143,7 @@ minimum Integer
 
 [[term-minute]]
 [discrete]
-==== *minute*
+=== *minute*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -1155,7 +1160,7 @@ Singular calendar-duration unit of one minute.
 
 [[term-minutes]]
 [discrete]
-==== *minutes*
+=== *minutes*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -1172,7 +1177,7 @@ duration in minutes between "Start" and "End"
 
 [[term-mod]]
 [discrete]
-==== *mod*
+=== *mod*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator) Not yet in Komet
 
@@ -1189,7 +1194,7 @@ Modulo operator — returns the remainder of dividing the left operand by the ri
 
 [[term-month]]
 [discrete]
-==== *month*
+=== *month*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -1206,7 +1211,7 @@ Singular calendar-duration unit of one month.
 
 [[term-months]]
 [discrete]
-==== *months*
+=== *months*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -1223,7 +1228,7 @@ duration in months between "Start" and "End"
 
 [[term-not]]
 [discrete]
-==== *not*
+=== *not*
 
 `Logical Operator` -- (Core Operators > Logical Operator) Not yet in Komet
 
@@ -1240,7 +1245,7 @@ not exists "Exclusions"
 
 [[term-null]]
 [discrete]
-==== *null*
+=== *null*
 
 `Literal` -- (Types & Literals > Literal) Not yet in Komet
 
@@ -1257,7 +1262,7 @@ The literal representing an unknown or missing value.
 
 [[term-occurs]]
 [discrete]
-==== *occurs*
+=== *occurs*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -1274,7 +1279,7 @@ Optional word that may appear anywhere ‘starts’ or ‘ends’ can appear in 
 
 [[term-of]]
 [discrete]
-==== *of*
+=== *of*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator) Not yet in Komet
 
@@ -1291,7 +1296,7 @@ start of "MeasurementPeriod"
 
 [[term-on]]
 [discrete]
-==== *on*
+=== *on*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -1308,7 +1313,7 @@ Timing keyword combined with ‘or before’ / ‘or after’ to build the inclu
 
 [[term-or]]
 [discrete]
-==== *or*
+=== *or*
 
 `Logical Operator` -- *Implemented in Komet*
 
@@ -1327,7 +1332,7 @@ Komet concept: *Or*
 
 [[term-or-after]]
 [discrete]
-==== *or* after
+=== *or* after
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -1344,7 +1349,7 @@ Qualifies a precision- or quantity-based timing comparison to include the bounda
 
 [[term-or-before]]
 [discrete]
-==== *or* before
+=== *or* before
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -1361,7 +1366,7 @@ Qualifies a precision- or quantity-based timing comparison to include the bounda
 
 [[term-or-less]]
 [discrete]
-==== *or* less
+=== *or* less
 
 `Timing Operator` -- _Related concept in Komet_
 
@@ -1380,7 +1385,7 @@ Related Komet concept(s): *Clause Less or equal*
 
 [[term-or-more]]
 [discrete]
-==== *or* more
+=== *or* more
 
 `Timing Operator` -- _Related concept in Komet_
 
@@ -1399,7 +1404,7 @@ Related Komet concept(s): *Clause Greater or equal*
 
 [[term-or-on]]
 [discrete]
-==== *or* on
+=== *or* on
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -1416,7 +1421,7 @@ Qualifies a timing comparison to include the exact-boundary case, used to build 
 
 [[term-overlaps]]
 [discrete]
-==== *overlaps*
+=== *overlaps*
 
 `Timing Operator` -- _Related concept in Komet_
 
@@ -1435,7 +1440,7 @@ Related Komet concept(s): *Clause Overlaps*
 
 [[term-parameter]]
 [discrete]
-==== *parameter*
+=== *parameter*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -1452,7 +1457,7 @@ parameter "MeasurementPeriod" Interval<DateTime>
 
 [[term-per]]
 [discrete]
-==== *per*
+=== *per*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -1469,7 +1474,7 @@ expand "MeasurementPeriod" per day
 
 [[term-point]]
 [discrete]
-==== *point*
+=== *point*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -1486,7 +1491,7 @@ point from Interval[5, 5]
 
 [[term-predecessor]]
 [discrete]
-==== *predecessor*
+=== *predecessor*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator) Not yet in Komet
 
@@ -1503,7 +1508,7 @@ predecessor of 5
 
 [[term-private]]
 [discrete]
-==== *private*
+=== *private*
 
 `Access Modifier` -- (Declarations > Access Modifier) Not yet in Komet
 
@@ -1520,7 +1525,7 @@ define private "HelperCalculation": 1 + 1
 
 [[term-properly]]
 [discrete]
-==== *properly*
+=== *properly*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -1537,7 +1542,7 @@ Strengthens ‘includes’ / ‘included in’ so an exactly-equal value no long
 
 [[term-public]]
 [discrete]
-==== *public*
+=== *public*
 
 `Access Modifier` -- (Declarations > Access Modifier) Not yet in Komet
 
@@ -1554,7 +1559,7 @@ define public "InitialPopulation": true
 
 [[term-return]]
 [discrete]
-==== *return*
+=== *return*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -1571,7 +1576,7 @@ Shapes or projects a query’s result, optionally computing new values; defaults
 
 [[term-same]]
 [discrete]
-==== *same*
+=== *same*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -1588,7 +1593,7 @@ Precision-based equality comparison for date/time values: ‘same as’, ‘same
 
 [[term-second]]
 [discrete]
-==== *second*
+=== *second*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -1605,7 +1610,7 @@ Singular calendar-duration unit of one second.
 
 [[term-seconds]]
 [discrete]
-==== *seconds*
+=== *seconds*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -1622,7 +1627,7 @@ duration in seconds between "Start" and "End"
 
 [[term-singleton]]
 [discrete]
-==== *singleton*
+=== *singleton*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -1639,7 +1644,7 @@ singleton from ["Patient"]
 
 [[term-sort]]
 [discrete]
-==== *sort*
+=== *sort*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -1656,7 +1661,7 @@ Introduces the sort clause that orders a query’s results; must be the last cla
 
 [[term-start]]
 [discrete]
-==== *start*
+=== *start*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -1673,7 +1678,7 @@ start of "MeasurementPeriod"
 
 [[term-starting]]
 [discrete]
-==== *starting*
+=== *starting*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -1690,7 +1695,7 @@ aggregate "RunningTotal" starting 0: RunningTotal + Claim.amount
 
 [[term-starts]]
 [discrete]
-==== *starts*
+=== *starts*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -1707,7 +1712,7 @@ Tests whether one interval begins at the same point as another (a ‘prefix’ r
 
 [[term-successor]]
 [discrete]
-==== *successor*
+=== *successor*
 
 `Arithmetic Operator` -- (Core Operators > Arithmetic Operator) Not yet in Komet
 
@@ -1724,7 +1729,7 @@ successor of 5
 
 [[term-such-that]]
 [discrete]
-==== such that
+=== such that
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -1741,7 +1746,7 @@ Attaches the filtering condition to a with/without relationship clause.
 
 [[term-then]]
 [discrete]
-==== *then*
+=== *then*
 
 `Conditional Expression` -- (Query & Control Flow > Conditional Expression) Not yet in Komet
 
@@ -1758,7 +1763,7 @@ if AgeInYears() >= 18 then 'Adult' else 'Minor'
 
 [[term-time]]
 [discrete]
-==== *time*
+=== *time*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator) Not yet in Komet
 
@@ -1775,7 +1780,7 @@ time from "EncounterDateTime"
 
 [[term-timezoneoffset]]
 [discrete]
-==== *timezoneoffset*
+=== *timezoneoffset*
 
 `Extraction Operator` -- (Data & Timing Operators > Extraction Operator) Not yet in Komet
 
@@ -1792,7 +1797,7 @@ timezoneoffset from "EncounterDateTime"
 
 [[term-to]]
 [discrete]
-==== *to*
+=== *to*
 
 `Type Operator` -- (Core Operators > Type Operator) Not yet in Komet
 
@@ -1809,7 +1814,7 @@ convert 98.6 '[degF]' to 'Cel'
 
 [[term-true]]
 [discrete]
-==== *true*
+=== *true*
 
 `Literal` -- (Types & Literals > Literal) Not yet in Komet
 
@@ -1826,7 +1831,7 @@ define "MeetsInitialPopulation": true
 
 [[term-Tuple]]
 [discrete]
-==== *Tuple*
+=== *Tuple*
 
 `Type Name` -- (Types & Literals > Type Name) Not yet in Komet
 
@@ -1843,7 +1848,7 @@ define "PatientSummary": Tuple { name: 'Jane Doe', age: 45 }
 
 [[term-union]]
 [discrete]
-==== *union*
+=== *union*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -1860,7 +1865,7 @@ Combines two lists or intervals into one (duplicates removed for lists; for inte
 
 [[term-using]]
 [discrete]
-==== *using*
+=== *using*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -1877,7 +1882,7 @@ using FHIR version '4.0.1'
 
 [[term-valueset]]
 [discrete]
-==== *valueset*
+=== *valueset*
 
 `Declaration` -- (Declarations > Declaration) Not yet in Komet
 
@@ -1894,7 +1899,7 @@ valueset "Diabetes": 'urn:oid:2.16.840.1.113883.3.464.1003.103.12.1001'
 
 [[term-version]]
 [discrete]
-==== *version*
+=== *version*
 
 `Declaration Modifier` -- (Declarations > Declaration Modifier) Not yet in Komet
 
@@ -1911,7 +1916,7 @@ library CQMExample version '1.0.0'
 
 [[term-week]]
 [discrete]
-==== *week*
+=== *week*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -1928,7 +1933,7 @@ Singular calendar-duration unit of one week (always treated as 7 days).
 
 [[term-weeks]]
 [discrete]
-==== *weeks*
+=== *weeks*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -1945,7 +1950,7 @@ duration in weeks between "Start" and "End"
 
 [[term-when]]
 [discrete]
-==== *when*
+=== *when*
 
 `Conditional Expression` -- (Query & Control Flow > Conditional Expression) Not yet in Komet
 
@@ -1965,7 +1970,7 @@ end
 
 [[term-where]]
 [discrete]
-==== *where*
+=== *where*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -1982,7 +1987,7 @@ Filters a query’s results to only the elements for which a boolean condition e
 
 [[term-width]]
 [discrete]
-==== *width*
+=== *width*
 
 `List/Interval Operator` -- (Data & Timing Operators > List/Interval Operator) Not yet in Komet
 
@@ -1999,7 +2004,7 @@ width of "MeasurementPeriod"
 
 [[term-with]]
 [discrete]
-==== *with*
+=== *with*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -2016,7 +2021,7 @@ Filters a query’s primary source to elements that have a specified relationshi
 
 [[term-within]]
 [discrete]
-==== *within*
+=== *within*
 
 `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
 
@@ -2033,7 +2038,7 @@ Tests whether a point or interval falls within a specified proximity or range of
 
 [[term-without]]
 [discrete]
-==== *without*
+=== *without*
 
 `Query Clause` -- (Query & Control Flow > Query Clause) Not yet in Komet
 
@@ -2050,7 +2055,7 @@ Filters a query’s primary source to elements that do NOT have a specified rela
 
 [[term-xor]]
 [discrete]
-==== *xor*
+=== *xor*
 
 `Logical Operator` -- (Core Operators > Logical Operator) Not yet in Komet
 
@@ -2067,7 +2072,7 @@ Boolean exclusive-or — true only when exactly one operand is true.
 
 [[term-year]]
 [discrete]
-==== *year*
+=== *year*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 
@@ -2084,7 +2089,7 @@ Singular calendar-duration unit of one year.
 
 [[term-years]]
 [discrete]
-==== *years*
+=== *years*
 
 `Time-Precision Unit` -- (Data & Timing Operators > Time-Precision Unit) Not yet in Komet
 

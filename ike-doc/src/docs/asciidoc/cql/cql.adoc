@@ -1,29 +1,11 @@
 // The CQL chapter, migrated to the decentralized hierarchy.
 //
+// No include:: line here on purpose: ike-guide's own 'include::hierarchy:ike-guide[]'
+// already walks this chapter's descendants transitively (see HierarchyIndex#descendantsOf),
+// so an 'include::hierarchy:cql[]' here would render every child chapter a second time.
 :chapter-id: cql
 :chapter-parent: ike-guide
 :chapter-order: 1050
 :chapter-status: published
 
 = CQL in Komet
-
-include::01-overview-and-reading-guide.adoc[leveloffset=+1]
-
-include::02-running-cql-queries.adoc[leveloffset=+1]
-
-include::03-family-summaries.adoc[leveloffset=+1]
-
-include::04-types-and-literals.adoc[leveloffset=+1]
-
-include::05-declarations.adoc[leveloffset=+1]
-
-include::06-core-operators.adoc[leveloffset=+1]
-
-include::07-data-and-timing-operators.adoc[leveloffset=+1]
-
-include::08-query-and-control-flow.adoc[leveloffset=+1]
-
-[TIP]
-====
-For the complete alphabetical reference of all 122 CQL keywords, including formal syntax, typing rules, and clinical examples, see the standalone xref:cql-dictionary.html[CQL Keyword Dictionary].
-====
