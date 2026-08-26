@@ -204,9 +204,11 @@ class HierarchyRenderTest {
         }
 
         Path dictPath = projectRoot.resolve("ike-doc/src/docs/asciidoc/cql-dictionary.adoc");
+        Path indexPath = projectRoot.resolve("ike-doc/target/ike-hierarchy-index.json");
         Path outputDir = projectRoot.resolve("ike-doc/target/generated-docs");
 
-        if (!Files.exists(dictPath)) {
+        if (!Files.exists(dictPath) || !Files.exists(indexPath)) {
+            // Evaluated during isolated module tests; fixture test covers hermetic rendering
             return;
         }
 
@@ -215,7 +217,11 @@ class HierarchyRenderTest {
 
         Asciidoctor asciidoctor = Asciidoctor.Factory.create();
         try {
+            new HierarchyExtensionRegistry().register(asciidoctor);
+
             Attributes attributes = Attributes.builder()
+                    .attribute("ike-hierarchy-index", indexPath.toString())
+                    .attribute("ike-hierarchy-base", projectRoot.toString())
                     .attribute("toc", "left")
                     .attribute("sectnums", "true")
                     .build();
