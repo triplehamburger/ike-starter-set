@@ -164,10 +164,15 @@ public final class KeywordDictionary {
         int metadata = nextContentLine(block, 3, anchor, "the category/status line");
         Metadata parsed = parseMetadata(block.get(metadata), anchor);
 
-        int definition = nextContentLine(block, metadata + 1, anchor, "the definition");
         int source = block.indexOf(SOURCE_BLOCK);
         if (source < 0) {
             throw new MalformedEntryException(anchor, "no '" + SOURCE_BLOCK + "' example block");
+        }
+        int definition = nextContentLine(block, metadata + 1, anchor, "the definition");
+        if (definition >= source) {
+            throw new MalformedEntryException(anchor,
+                    "the entry carries no definition paragraph between its category/status line"
+                            + " and its '" + SOURCE_BLOCK + "' example block");
         }
         for (int i = definition + 1; i < source; i++) {
             if (!block.get(i).isBlank()) {

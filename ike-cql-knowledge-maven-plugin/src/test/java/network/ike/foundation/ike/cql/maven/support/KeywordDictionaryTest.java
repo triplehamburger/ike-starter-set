@@ -2,6 +2,7 @@ package network.ike.foundation.ike.cql.maven.support;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -31,17 +32,13 @@ class KeywordDictionaryTest {
 
     @Test
     void readsEveryEntryInTheRealChapter() throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         assertThat(realChapter()).hasSize(122);
     }
 
     @Test
     void splitsTheRealChapterIntoTheThreeKometStatuses() throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         List<Entry> entries = realChapter();
         assertThat(entries).filteredOn(e -> e.status() == KometStatus.NOT_YET).hasSize(115);
         assertThat(entries).filteredOn(e -> e.status() == KometStatus.RELATED).hasSize(5);
@@ -50,9 +47,7 @@ class KeywordDictionaryTest {
 
     @Test
     void readsMultiWordKeywordsWhoseTitlesBoldOnlyPartOfTheName() throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         // '=== *include*d in', '=== *or* after', '=== such that'. Reading the bolded run instead
         // of the whole title would name five separate keywords 'or'.
         assertThat(realChapter()).extracting(Entry::name)
@@ -177,6 +172,24 @@ class KeywordDictionaryTest {
     }
 
     @Test
+    void refusesAnEntryWithNoDefinition() {
+        assertThatThrownBy(() -> one("""
+                [[term-after]]
+                [discrete]
+                === *after*
+
+                `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
+
+                [source,cql]
+                ----
+                X after Y
+                ----
+                """))
+                .isInstanceOf(KeywordDictionary.MalformedEntryException.class)
+                .hasMessageContaining("carries no definition paragraph");
+    }
+
+    @Test
     void refusesAnEntryWithNoExample() {
         assertThatThrownBy(() -> one("""
                 [[term-after]]
@@ -251,9 +264,7 @@ class KeywordDictionaryTest {
 
     @Test
     void everyRealEntryCarriesADefinitionAndAnExample() throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         assertThat(realChapter()).allSatisfy(entry -> {
             assertThat(entry.definition()).isNotBlank();
             assertThat(entry.example()).isNotBlank();

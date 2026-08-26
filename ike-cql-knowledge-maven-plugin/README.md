@@ -35,6 +35,12 @@ chapter happens to list keywords in. So:
   Every derived UUID is therefore written into the generated source as a literal, so a rewording
   arrives in review as a changed identity rather than as a quietly duplicated concept.
 
+Parents are cited in the generated source as `set.conceptRef(name)`, which the knowledge set
+re-derives from **its own** namespace at compose time, while the concepts themselves carry the
+literal UUIDs derived here. The two agree only while `namespace` equals the namespace of the set
+the output is composed into, so the generated class records that constraint in its javadoc: compose
+it elsewhere and every `.isA(...)` points at an identity no concept in the file declares.
+
 ## What is generated, and what is not
 
 The dictionary's Komet status decides:

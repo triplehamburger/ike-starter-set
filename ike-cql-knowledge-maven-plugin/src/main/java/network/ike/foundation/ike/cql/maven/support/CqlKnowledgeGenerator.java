@@ -135,7 +135,7 @@ public final class CqlKnowledgeGenerator {
      * @param target  where the concepts are being authored
      * @return the generated source, the concepts it authors, and what was deferred
      * @throws IllegalStateException if two concepts would claim the same fully qualified name, or
-     *         if two families would produce the same method name
+     *         if a family would produce a method name the generated class already uses
      */
     public static Result generate(List<Entry> entries, Target target) {
         List<String> deferrals = new ArrayList<>();
@@ -157,6 +157,7 @@ public final class CqlKnowledgeGenerator {
         Set<String> concepts = new LinkedHashSet<>();
         StringBuilder taxonomy = new StringBuilder();
         Map<String, StringBuilder> familyBodies = new LinkedHashMap<>();
+        Set<String> methodNames = new LinkedHashSet<>(List.of("compose", "composeTaxonomy"));
 
         String rootFqn = fqn(target.rootName(), target);
         emit(taxonomy, target, concepts, rootFqn, target.rootName(),
@@ -184,10 +185,11 @@ public final class CqlKnowledgeGenerator {
                 }
             }
             String method = methodName(family.getKey());
-            if (familyBodies.put(method, body) != null) {
+            if (!methodNames.add(method)) {
                 throw new IllegalStateException(
-                        "Two keyword families produce the same method name '" + method + "'");
+                        "Two methods of the generated class would both be named '" + method + "'");
             }
+            familyBodies.put(method, body);
         }
         return new Result(render(target, taxonomy, familyBodies), List.copyOf(concepts),
                 List.copyOf(deferrals));
@@ -246,6 +248,15 @@ public final class CqlKnowledgeGenerator {
                 .append(" * fully qualified name alone, and written out so that a rewording is"
                         + " visible in review as a\n")
                 .append(" * changed UUID rather than a silently duplicated concept.\n")
+                .append(" *\n")
+                .append(" * <p>Parents are cited as {@code set.conceptRef(name)}, which the"
+                        + " knowledge set re-derives from\n")
+                .append(" * <em>its own</em> namespace. Compose this class only into a set whose"
+                        + " namespace is\n")
+                .append(" * {@code ").append(target.namespace()).append("}: composed into any"
+                        + " other, the literal identities above\n")
+                .append(" * and the parents cited below them would belong to different"
+                        + " concepts.\n")
                 .append(" */\n")
                 .append("public final class ").append(target.className()).append(" {\n\n")
                 .append("    private ").append(target.className()).append("() {\n    }\n\n")

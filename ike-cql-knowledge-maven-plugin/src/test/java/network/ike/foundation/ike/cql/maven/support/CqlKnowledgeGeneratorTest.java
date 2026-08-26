@@ -1,6 +1,7 @@
 package network.ike.foundation.ike.cql.maven.support;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
@@ -67,17 +68,13 @@ class CqlKnowledgeGeneratorTest {
 
     @Test
     void regeneratesByteIdenticalSourceFromTheSameDictionary() throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         assertThat(generateFromChapter().source()).isEqualTo(generateFromChapter().source());
     }
 
     @Test
     void isIndifferentToTheOrderTheDictionaryListsKeywordsIn() throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         List<Entry> entries = parseChapter();
         List<Entry> shuffled = new java.util.ArrayList<>(entries);
         java.util.Collections.reverse(shuffled);
@@ -87,9 +84,7 @@ class CqlKnowledgeGeneratorTest {
 
     @Test
     void mintsOnlyTheKeywordsWithNoKometConceptYet() throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         Result result = generateFromChapter();
         // 115 generatable keywords, plus the root, 5 families and 16 categories they hang from.
         assertThat(result.concepts()).hasSize(115 + 1 + 5 + 16);
@@ -103,9 +98,7 @@ class CqlKnowledgeGeneratorTest {
 
     @Test
     void authorsEveryParentBeforeTheConceptsThatCiteIt() throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         Result result = generateFromChapter();
         // The taxonomy method runs first and carries every parent, so nothing needs sorting: the
         // root precedes its families, which precede their categories, which precede the keywords.
@@ -119,9 +112,7 @@ class CqlKnowledgeGeneratorTest {
 
     @Test
     void writesEachConceptAsOneFluentChainCarryingItsDerivedIdentity() throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         assertThat(generateFromChapter().source()).contains("""
                         set.concept("after (CQL)", PublicIds.of(UUID.fromString("6953bac7-cc79-5b7d-a0da-77bfed7e0267"))).at(inception)
                                 .synonym("after")
@@ -132,9 +123,7 @@ class CqlKnowledgeGeneratorTest {
 
     @Test
     void hangsTheWholeTaxonomyOffTheConfiguredRootParent() throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         assertThat(generateFromChapter().source())
                 .contains(".isA(IkeTerm.MODEL_CONCEPT);")
                 .contains(".isA(set.conceptRef(\"Clinical Quality Language (CQL)\"));");
@@ -151,9 +140,7 @@ class CqlKnowledgeGeneratorTest {
      */
     @Test
     void emitsJavaThatParses(@TempDir Path work) throws Exception {
-        if (!Files.exists(CHAPTER)) {
-            return;
-        }
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
         JavaCompiler javac = ToolProvider.getSystemJavaCompiler();
         DiagnosticCollector<JavaFileObject> diagnostics = new DiagnosticCollector<>();
         String source = generateFromChapter().source();
