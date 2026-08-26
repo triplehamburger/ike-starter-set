@@ -42,7 +42,11 @@ class CqlKeywordGeneratorTest {
     private static final Path DICTIONARY =
             Path.of("..", "ike-doc", "src", "docs", "asciidoc", "cql", "keyword-dictionary.adoc");
 
-    /** The IkeFoundation set's namespace, as declared in ike-terms' {@code Ike.SET}. */
+    /**
+     * The IkeFoundation set's namespace, as declared in ike-terms' {@code Ike.SET} — and
+     * deliberately the CQL set's namespace too. The {@code IkeCql} tag names concepts within this
+     * one namespace rather than opening a second identity space; see the README.
+     */
     private static final UUID IKE_FOUNDATION =
             UUID.fromString("d890e06f-ec35-429a-b541-d0ead19695e2");
 
@@ -268,6 +272,42 @@ class CqlKeywordGeneratorTest {
                 .hasMessageContaining("duplicate anchor term-after");
     }
 
+    /**
+     * An anchor line the reader cannot match is the one degradation this generator must not have:
+     * the entry would vanish, the parse would come back short, and the build would stay green with
+     * one keyword missing from the ledger. Every heading belongs to an entry, so the counts have
+     * to agree.
+     */
+    @Test
+    void rejectsAnAnchorTypoRatherThanSilentlyDroppingTheEntry() {
+        assertThatDroppedEntryFails("[[term-after_on]]")
+                .hasMessageContaining("read 1 entries but the file carries 2");
+    }
+
+    @Test
+    void rejectsAnAnchorWithTrailingWhitespace() {
+        assertThatDroppedEntryFails("[[term-after]] ")
+                .hasMessageContaining("read 1 entries but the file carries 2");
+    }
+
+    /**
+     * Category names are concept names, so the same name under two families would collapse two
+     * intended concepts into one UUID hung under whichever family the generator saw last.
+     */
+    @Test
+    void rejectsACategoryNameSharedByTwoFamilies() {
+        List<String> lines = twoEntries();
+        lines.set(lines.indexOf(METADATA_LINE),
+                "`Timing Operator` -- (Core Operators > Timing Operator) Not yet in Komet");
+
+        assertThatThrownBy(() -> CqlKeywordSetGenerator.generate(
+                CqlKeywordDictionary.parse(lines), OPTIONS))
+                .isInstanceOf(MalformedEntryException.class)
+                .hasMessageContaining("category \"Timing Operator\" appears under two families")
+                .hasMessageContaining("Core Operators")
+                .hasMessageContaining("Data & Timing Operators");
+    }
+
     @Test
     void rejectsAFileWithNoEntries() {
         assertThatThrownBy(() -> CqlKeywordDictionary.parse(List.of("= Keyword Dictionary", "")))
@@ -295,8 +335,26 @@ class CqlKeywordGeneratorTest {
 
             * * *""";
 
+    private static final String METADATA_LINE =
+            "`Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet";
+
     private static List<String> entry(String text) {
         return List.of(text.split("\n", -1));
+    }
+
+    /** Two well-formed entries — "after" and the same entry reworded to "before". */
+    private static List<String> twoEntries() {
+        return new ArrayList<>(entry(ENTRY + "\n" + ENTRY.replace("after", "before")));
+    }
+
+    /** Corrupts the first entry's anchor line, then asserts the short parse is refused. */
+    private static org.assertj.core.api.AbstractThrowableAssert<?, ?> assertThatDroppedEntryFails(
+            String corruptedAnchor) {
+        List<String> lines = twoEntries();
+        lines.set(lines.indexOf("[[term-after]]"), corruptedAnchor);
+
+        return assertThatThrownBy(() -> CqlKeywordDictionary.parse(lines))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     /** Replaces the one fixture line starting with {@code prefix}, then asserts the parse fails. */

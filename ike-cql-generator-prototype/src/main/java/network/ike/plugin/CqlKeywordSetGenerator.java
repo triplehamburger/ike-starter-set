@@ -114,9 +114,18 @@ final class CqlKeywordSetGenerator {
 
         // Category -> family, sorted: the taxonomy tiers authored above the keywords themselves.
         // Sorted rather than first-seen so the file is stable against dictionary reordering.
+        // A category name is a concept name, so it identifies exactly one concept: the same name
+        // under two families would collapse them into one UUID hung under whichever family was
+        // written last. That invariant is the dictionary's, so it is enforced, not assumed.
         Map<String, String> familyOfCategory = new TreeMap<>();
         for (Entry e : minted) {
-            familyOfCategory.put(e.category(), e.family());
+            String previous = familyOfCategory.put(e.category(), e.family());
+            if (previous != null && !previous.equals(e.family())) {
+                throw new CqlKeywordDictionary.MalformedEntryException(e.line(), "category \""
+                        + e.category() + "\" appears under two families, \"" + previous
+                        + "\" and \"" + e.family() + "\" — category names identify one concept"
+                        + " each, so one of the two families is wrong");
+            }
         }
 
         // Families, then categories, then keywords, so a parent is always authored before its

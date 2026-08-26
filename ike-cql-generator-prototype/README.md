@@ -91,6 +91,19 @@ it is permanent once anything is authored. The root is authored by this goal rat
 referenced, so the generated set closes over every name it mentions except its parent — a term
 from outside the set, referenced by constant rather than by name.
 
+**The namespace is settled too, and it is IkeFoundation's.** All 137 identities are minted under
+`d890e06f-ec35-429a-b541-d0ead19695e2` — the namespace `Ike.SET` declares and its own javadoc
+calls *the permanent type-5 namespace*. There is exactly one such namespace in this repo and no
+precedent for a second, and these concepts are authored *into* IkeFoundation's set: they are
+already rooted under `IkeTerm.MODEL_CONCEPT`. A separate CQL namespace would need its own
+permanent UUID decision that nothing yet justifies. So the identities in
+`src/test/resources/expected/cql-keyword-identities.txt` stand as minted; nothing moves.
+
+`IkeCql` is a *naming* choice within that one namespace, not a separate identity space. The
+semantic tag suffixes names and `stampExpression` points at `network.ike.cql.terms.IkeCql`, but
+neither implies a CQL-owned namespace — identity is `UUIDv5(IkeFoundation namespace, fqn)` for
+every concept here, exactly as it is for `Stamp coordinate properties (IkeFoundation)`.
+
 Deliberately out of scope for this first step:
 
 - **The 5 `Related concept in Komet` keywords are excluded**, deferred unminted. Linking them

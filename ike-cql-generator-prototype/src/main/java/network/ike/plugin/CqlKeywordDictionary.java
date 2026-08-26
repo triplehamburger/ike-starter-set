@@ -182,6 +182,15 @@ final class CqlKeywordDictionary {
             throw new IllegalArgumentException(
                     "No [[term-...]] entries found — is this the keyword dictionary?");
         }
+        long headings = lines.stream().filter(l -> HEADING.matcher(l).matches()).count();
+        if (headings != entries.size()) {
+            throw new IllegalArgumentException("keyword-dictionary: read " + entries.size()
+                    + " entries but the file carries " + headings + " \"=== \" keyword headings"
+                    + " — every heading belongs to an entry, so the gap of "
+                    + Math.abs(headings - entries.size()) + " means an anchor line was not read"
+                    + " as [[term-...]] (a stray character, or trailing whitespace, will do it)."
+                    + " Entries are never skipped silently");
+        }
         return List.copyOf(entries);
     }
 
