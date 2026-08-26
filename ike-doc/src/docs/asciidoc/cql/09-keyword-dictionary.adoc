@@ -3,7 +3,6 @@
 :chapter-order: 100
 :chapter-status: published
 
-[#keyword-dictionary]
 = Keyword Dictionary
 
 All 122 CQL keywords, alphabetically. Definition, example, and current Komet status for each.
