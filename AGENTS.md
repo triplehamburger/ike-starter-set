@@ -36,6 +36,14 @@ for a dry run). The reactor requires JDK 25+ (`JAVA_HOME` to a 25+ JDK) and netw
 some unrelated modules (`ike-terms` → external `ike-knowledge-provider`/`tinkar` artifacts) that
 isn't needed just to build/validate the doc hierarchy.
 
+To actually *render* the real guide without that full build, run `ike-doc-extension`'s
+`HierarchyRenderTest`: its `renderIkeGuideIfIndexExists`/`renderCqlDictionaryIfPresent` tests
+convert the real `ike-guide.adoc`/`cql-dictionary.adoc` into `ike-doc/target/generated-docs/`
+whenever `ike-doc/target/ike-hierarchy-index.json` exists (run the `index` goal first, else they
+silently no-op). Diffing that HTML across a change is the way to prove a doc edit is render-neutral.
+A chapter's location on disk carries no meaning (see the plugin README) — a pure `git mv` of a
+chapter file changes only its `path` in the index.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.
