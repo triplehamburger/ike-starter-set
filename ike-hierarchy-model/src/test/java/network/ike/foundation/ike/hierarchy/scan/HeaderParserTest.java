@@ -162,4 +162,14 @@ class HeaderParserTest {
 
         assertThat(result).isInstanceOf(HeaderParseResult.Malformed.class);
     }
+
+    /** Asciidoctor's own chapter-* built-ins are not a misspelled chapter declaration. */
+    @Test
+    void shouldNotMistakeAsciidoctorsOwnChapterAttributesForAChapter() {
+        HeaderParseResult result = HeaderParser.parse(
+                List.of(":chapter-signifier: Chapter", ":chapter-refsig: Chapter", "", "= A Fragment"),
+                LIMITS);
+
+        assertThat(result).isInstanceOf(HeaderParseResult.NotAChapter.class);
+    }
 }

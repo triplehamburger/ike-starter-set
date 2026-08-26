@@ -2,8 +2,10 @@ package network.ike.foundation.ike.hierarchy.scan;
 
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,6 +34,14 @@ public final class HeaderParser {
             Pattern.compile("^:([A-Za-z0-9_][A-Za-z0-9_.-]*)!?:(?:[ \\t]+(.*?))?[ \\t]*$");
     private static final Pattern HEADING =
             Pattern.compile("^(={1,6})[ \\t]+(\\S.*?)[ \\t]*$");
+    /**
+     * Asciidoctor's own built-in attributes that happen to share {@link HeaderAttribute#PREFIX}.
+     * They say nothing about the hierarchy, so a fragment that sets one is an ordinary file and
+     * must not be reported as a chapter whose id was misspelled.
+     */
+    private static final Set<String> ASCIIDOCTOR_BUILTINS =
+            Set.of("chapter-signifier", "chapter-refsig");
+
     private static final Pattern BLOCK_DELIMITER =
             Pattern.compile("^(////|----|\\.\\.\\.\\.|\\+\\+\\+\\+|____|====|\\*\\*\\*\\*)[ \\t]*$");
 
@@ -79,9 +89,10 @@ public final class HeaderParser {
             }
             Matcher attribute = ATTRIBUTE_ENTRY.matcher(line);
             if (attribute.matches()) {
-                hierarchyAttributeSeen |= attribute.group(1).regionMatches(
-                        true, 0, HeaderAttribute.PREFIX, 0, HeaderAttribute.PREFIX.length());
-                Optional<HeaderAttribute> known = HeaderAttribute.fromAttributeName(attribute.group(1));
+                String name = attribute.group(1).toLowerCase(Locale.ROOT);
+                hierarchyAttributeSeen |= name.startsWith(HeaderAttribute.PREFIX)
+                        && !ASCIIDOCTOR_BUILTINS.contains(name);
+                Optional<HeaderAttribute> known = HeaderAttribute.fromAttributeName(name);
                 if (known.isPresent()) {
                     String value = attribute.group(2) == null ? "" : attribute.group(2).trim();
                     if (value.length() > limits.maxValueLength()) {
