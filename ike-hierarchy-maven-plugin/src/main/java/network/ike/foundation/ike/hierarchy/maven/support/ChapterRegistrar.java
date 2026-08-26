@@ -4,8 +4,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import network.ike.foundation.ike.hierarchy.author.AtomicFiles;
 import network.ike.foundation.ike.hierarchy.author.HeaderStamper;
@@ -15,12 +17,14 @@ import network.ike.foundation.ike.hierarchy.model.Chapter;
 import network.ike.foundation.ike.hierarchy.model.ChapterHeader;
 import network.ike.foundation.ike.hierarchy.model.ChapterId;
 import network.ike.foundation.ike.hierarchy.model.ChapterStatus;
+import network.ike.foundation.ike.hierarchy.model.Violation;
 import network.ike.foundation.ike.hierarchy.scan.ChapterScanner;
 import network.ike.foundation.ike.hierarchy.scan.HeaderParseResult;
 import network.ike.foundation.ike.hierarchy.scan.HeaderParser;
 import network.ike.foundation.ike.hierarchy.scan.SafePath;
 import network.ike.foundation.ike.hierarchy.scan.ScanLimits;
 import network.ike.foundation.ike.hierarchy.scan.ScanOutcome;
+import network.ike.foundation.ike.hierarchy.scan.ScanRoot;
 
 /**
  * Registers an existing AsciiDoc file as a chapter, in the place it already occupies.
@@ -191,18 +195,40 @@ public final class ChapterRegistrar {
      *
      * <p>Re-registering the same file under the same identifier is legitimate — that is what makes
      * the command re-runnable — so the check compares paths, not just identifiers.
+     *
+     * <p>A scan that stopped early has not seen every chapter, so the check cannot be trusted and
+     * the goal refuses. A file that could not be read as a chapter is different: the id may be
+     * hiding in it, but refusing would make this goal unable to repair the very file it was
+     * pointed at — the one whose defect it exists to clear — so it proceeds and says so.
      */
     private static boolean checkIdIsFree(ScanRoots.Resolved roots, ScanLimits limits, ChapterId id,
                                          Path target, Path base, GoalReport report) {
 
         ScanOutcome scan = ChapterScanner.scan(roots.scanRoots(), limits);
-        if (!scan.violations().isEmpty()) {
+        String targetRelative = SafePath.relativise(base, target);
+
+        List<Violation> incomplete = scan.violations().stream()
+                .filter(violation -> violation instanceof Violation.ScanLimitExceeded)
+                .toList();
+        if (!incomplete.isEmpty()) {
             report.fail("Could not check whether chapter id '" + id + "' is already taken; the "
                     + "scan did not complete:");
-            scan.violations().forEach(violation -> report.fail("  " + violation.message()));
+            incomplete.forEach(violation -> report.fail("  " + violation.message()));
             return false;
         }
-        String targetRelative = SafePath.relativise(base, target);
+
+        Set<String> selfPaths = selfPaths(roots, target, targetRelative);
+        List<String> unread = scan.violations().stream()
+                .map(ChapterRegistrar::violationPath)
+                .flatMap(Optional::stream)
+                .filter(path -> !selfPaths.contains(path))
+                .toList();
+        if (!unread.isEmpty()) {
+            report.warn("Could not fully verify that chapter id '" + id + "' is free: "
+                    + String.join(", ", unread) + " could not be read as a chapter, so the id "
+                    + "stamped here may collide with one of them. Fix those files and re-run the "
+                    + "build.");
+        }
 
         for (Chapter existing : scan.chapters()) {
             if (!existing.id().equals(id)) {
@@ -218,6 +244,31 @@ public final class ChapterRegistrar {
             }
         }
         return true;
+    }
+
+    /**
+     * Returns the ways the target file could have been named by a violation.
+     *
+     * <p>The scanner records a path relative to the scan root that found it, which is the reactor
+     * root for the default configuration and a nested directory otherwise.
+     */
+    private static Set<String> selfPaths(ScanRoots.Resolved roots, Path target, String targetRelative) {
+        Set<String> paths = new HashSet<>();
+        paths.add(targetRelative);
+        for (ScanRoot root : roots.scanRoots()) {
+            if (target.startsWith(root.directory())) {
+                paths.add(SafePath.relativise(root.directory(), target));
+            }
+        }
+        return paths;
+    }
+
+    private static Optional<String> violationPath(Violation violation) {
+        return switch (violation) {
+            case Violation.MalformedHeader malformed -> Optional.of(malformed.path());
+            case Violation.EscapesRoot escapes -> Optional.of(escapes.path());
+            default -> Optional.empty();
+        };
     }
 
     private static GoalReport stamp(Path target, Path base, List<String> lines, ChapterHeader header, boolean write,

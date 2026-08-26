@@ -20,6 +20,39 @@ class ChapterRegistrarTest {
     Path temp;
 
     @Test
+    void shouldStampAFreshFile() throws IOException {
+        Path fresh = write("new.adoc", "= New\n");
+
+        GoalReport report = register(fresh, "my-chapter");
+
+        assertThat(report.failed()).isFalse();
+        assertThat(Files.readString(fresh)).contains(":chapter-id: my-chapter");
+    }
+
+    @Test
+    void shouldRepairAFileThatDeclaresAParentButNoId() throws IOException {
+        Path handWritten = write("my.adoc", ":chapter-parent: ike-guide\n\n= My chapter\n");
+
+        GoalReport report = register(handWritten, "my-chapter");
+
+        assertThat(report.failed()).isFalse();
+        assertThat(Files.readString(handWritten)).contains(":chapter-id: my-chapter");
+    }
+
+    @Test
+    void shouldStampButWarnWhenAnotherFileCannotBeReadAsAChapter() throws IOException {
+        write("broken.adoc", ":chapter-parent: ike-guide\n\n= Broken\n");
+        Path fresh = write("new.adoc", "= New\n");
+
+        GoalReport report = register(fresh, "my-chapter");
+
+        assertThat(report.failed()).isFalse();
+        assertThat(report.warnings()).anySatisfy(warning ->
+                assertThat(warning).contains("broken.adoc").contains("my-chapter"));
+        assertThat(Files.readString(fresh)).contains(":chapter-id: my-chapter");
+    }
+
+    @Test
     void shouldRefuseAnIdAlreadyDeclaredElsewhere() throws IOException {
         write("taken.adoc", ":chapter-id: cql\n:chapter-parent: guide\n\n= Taken\n");
         Path fresh = write("new.adoc", "= New\n");
