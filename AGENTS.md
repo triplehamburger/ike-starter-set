@@ -51,11 +51,6 @@ inherits `ike-platform`'s so it compiles and tests against exactly what
 `asciidoctor-maven-plugin` runs it on. Do not re-add a local pin; that is what let a 2.5-only
 `PreprocessorReader` call compile clean and throw `NoSuchMethodError` in the real guide build.
 
-Any lifecycle build of `ike-doc` now fails at `validate` unless `ike-changeset/target/ike-koncepts.yml`
-exists (`require-koncept-definitions` in `ike-doc/pom.xml`), because the koncept extension
-silently renders empty pattern tables without it. Direct goal invocations (`…:index`, above)
-skip lifecycle phases and are unaffected; `-Denforcer.skip=true` bypasses the gate.
-
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.
