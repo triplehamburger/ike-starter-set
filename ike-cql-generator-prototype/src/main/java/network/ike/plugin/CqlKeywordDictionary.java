@@ -243,9 +243,10 @@ final class CqlKeywordDictionary {
 
     /**
      * Reads the trailing {@code Komet concept:} line, which appears on exactly the entries that
-     * are not generatable. Its presence and the status must agree: a status claiming a Komet
-     * counterpart with no concept named, or a concept named on an entry claiming none exists,
-     * is a contradiction the generator cannot resolve.
+     * are not generatable, and on those exactly once. Its presence and the status must agree: a
+     * status claiming a Komet counterpart with no concept named, a concept named on an entry
+     * claiming none exists, or a second counterpart that would displace the first, is a
+     * contradiction the generator cannot resolve.
      *
      * <p>This is the scan a missing line would carry into the following entry, so it relies on
      * {@link Cursor} refusing to cross an anchor. Only the last entry ends at end of file; every
@@ -256,6 +257,13 @@ final class CqlKeywordDictionary {
         while (c.hasNext() && !c.peek().equals(ENTRY_SEPARATOR)) {
             Matcher m = KOMET_CONCEPTS.matcher(c.next());
             if (m.matches()) {
+                if (found != null) {
+                    throw new MalformedEntryException(c.line(), "entry " + quote(keyword)
+                            + " names a second Komet concept " + quote(m.group(1).strip())
+                            + " after " + quote(found) + " — an entry names one counterpart, and"
+                            + " keeping only the last would drop the other from the identity"
+                            + " report");
+                }
                 found = m.group(1).strip();
             }
         }

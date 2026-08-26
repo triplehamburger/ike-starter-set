@@ -371,6 +371,22 @@ class CqlKeywordGeneratorTest {
         assertThatRunsIntoTheNextEntry(lines);
     }
 
+    /**
+     * The withheld entries' counterparts are a deliverable of the identity report, so a second
+     * counterpart line has to fail rather than quietly displace the first.
+     */
+    @Test
+    void rejectsAnEntryNamingTwoKometConcepts() {
+        List<String> lines = twoWithheldEntries();
+        lines.add(lines.indexOf("Related Komet concept(s): *Clause Less or equal*"),
+                "Komet concept: *And*");
+
+        assertThatThrownBy(() -> CqlKeywordDictionary.parse(lines))
+                .isInstanceOf(MalformedEntryException.class)
+                .hasMessageContaining(
+                        "names a second Komet concept \"*Clause Less or equal*\" after \"*And*\"");
+    }
+
     private static void assertThatRunsIntoTheNextEntry(List<String> lines) {
         assertThatThrownBy(() -> CqlKeywordDictionary.parse(lines))
                 .isInstanceOf(MalformedEntryException.class)

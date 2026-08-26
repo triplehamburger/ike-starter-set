@@ -57,10 +57,14 @@ never from prose that an editor may reword.
 
 Two DSL forms coexist and are not interchangeable. `foundation/Section*.java` spells out every
 `PublicIds.of(UUID.fromString(...))` because it is generator output reproducing already-published
-identities (IKE-Network/ike-issues#869). New content uses the short form —
-`set.concept(fqn).at(stamp).synonym(...).definition(...).statedAxioms(leb -> ...)`, as in
-`CoordinateModelSet` — and lets identity derive. `leb.And(...)` is varargs, so a multi-role axiom
-is just more `leb.SomeRole(type, leb.ConceptAxiom(target))` arguments to the same `And`.
+identities (IKE-Network/ike-issues#869); new content omits them and lets identity derive from the
+fqn. The axiom clause splits the same way: `.isA(parent)` is the single-parent form and
+`statedAxioms(leb -> ...)` the multi-role one — `CoordinateModelSet` uses
+`.isA(IkeTerm.MODEL_CONCEPT)` for its plain parent and reserves `statedAxioms` for its `SomeRole`
+chains. Each is the convention in a different place: 100 `.isA` to 4 `statedAxioms` across the
+top-level `*Set.java`, 0 to 375 across `foundation/Section*.java`, whose long form is what pinning
+pre-existing semantic identities requires. `leb.And(...)` is varargs, so a multi-role axiom is
+just more `leb.SomeRole(type, leb.ConceptAxiom(target))` arguments to the same `And`.
 
 `ike-terms` does not build in every environment, with or without network:
 `dev.ikm.tinkar:entity:1.127.2-SNAPSHOT` and `network.ike.knowledge:ike-knowledge-provider:1-SNAPSHOT`
