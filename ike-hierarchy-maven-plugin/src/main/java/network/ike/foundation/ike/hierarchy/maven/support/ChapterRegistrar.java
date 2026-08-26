@@ -196,6 +196,12 @@ public final class ChapterRegistrar {
                                          Path target, Path base, GoalReport report) {
 
         ScanOutcome scan = ChapterScanner.scan(roots.scanRoots(), limits);
+        if (!scan.violations().isEmpty()) {
+            report.fail("Could not check whether chapter id '" + id + "' is already taken; the "
+                    + "scan did not complete:");
+            scan.violations().forEach(violation -> report.fail("  " + violation.message()));
+            return false;
+        }
         String targetRelative = SafePath.relativise(base, target);
 
         for (Chapter existing : scan.chapters()) {

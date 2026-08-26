@@ -130,7 +130,9 @@ Any of these, reported all at once with the file that caused each:
 - A chapter with neither a parent nor `:chapter-root:`.
 - Nesting deeper than `maxDepth`.
 - A malformed header — a chapter that meant to be one and got it wrong, including a file that sets
-  some `:chapter-…:` attribute but no `:chapter-id:` (a misspelled id line).
+  some `:chapter-…:` attribute but no `:chapter-id:` (a misspelled id line) — except
+  Asciidoctor's own book-doctype built-ins `:chapter-signifier:` and `:chapter-refsig:`, which
+  leave a file an ordinary one.
 - A chapter whose path contains `[`, `]`, `{`, `}`, or a line break, which would corrupt the
   generated `include::` directive — braces because Asciidoctor substitutes attribute references in
   an include target, so `{empty}intro.adoc` is included as `intro.adoc`.
