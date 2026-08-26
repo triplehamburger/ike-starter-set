@@ -77,6 +77,7 @@
         <subproject>ike-bindings</subproject>
         <subproject>ike-changeset</subproject>
         <subproject>ike-hierarchy-model</subproject>
+        <subproject>ike-hierarchy-maven-plugin</subproject>
         <subproject>ike-doc</subproject>
         <subproject>ike-kb</subproject>
     </subprojects>
