@@ -1,12 +1,17 @@
-== Types & Literals
+:chapter-id: types-and-literals
+:chapter-parent: cql
+:chapter-order: 400
+:chapter-status: published
 
-=== Type Name (5)
+= Types & Literals
+
+== Type Name (5)
 
 The five built-in data types CQL's operators work with.
 
 Members: xref:cql-dictionary.html#term-Code[`Code`], xref:cql-dictionary.html#term-Concept[`Concept`], xref:cql-dictionary.html#term-Interval[`Interval`], xref:cql-dictionary.html#term-List[`List`], xref:cql-dictionary.html#term-Tuple[`Tuple`]
 
-=== Literal (3)
+== Literal (3)
 
 The three fixed values CQL expressions can carry directly.
 

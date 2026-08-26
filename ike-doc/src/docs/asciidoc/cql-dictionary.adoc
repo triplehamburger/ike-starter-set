@@ -10,4 +10,4 @@
 
 This reference dictionary documents all 122 keywords of the Clinical Quality Language (CQL), with formal syntax, typing rules, clinical examples, and execution semantics.
 
-include::cql/09-keyword-dictionary.adoc[]
+include::hierarchy:cql-dictionary[]
