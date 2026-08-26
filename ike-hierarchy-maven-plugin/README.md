@@ -129,8 +129,15 @@ Any of these, reported all at once with the file that caused each:
 - A cycle in the parent pointers.
 - A chapter with neither a parent nor `:chapter-root:`.
 - Nesting deeper than `maxDepth`.
-- A malformed header — a chapter that meant to be one and got it wrong.
+- A malformed header — a chapter that meant to be one and got it wrong, including a file that sets
+  some `:chapter-…:` attribute but no `:chapter-id:` (a misspelled id line).
+- A chapter whose path contains `[`, `]`, or a line break, which would corrupt the generated
+  `include::` directive.
 - A file that resolves outside the project, including through a symbolic link.
+
+Rendering fails too, not just indexing: a document that asks for `include::hierarchy:…[]` when no
+index can be loaded at all raises rather than publishing a book of warning admonitions. A single
+unresolvable id stays a warning in the output.
 
 A chapter that cannot be placed does not quietly vanish from the book.
 

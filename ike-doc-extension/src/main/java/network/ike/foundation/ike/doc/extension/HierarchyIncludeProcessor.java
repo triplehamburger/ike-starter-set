@@ -54,7 +54,7 @@ public class HierarchyIncludeProcessor extends IncludeProcessor {
 
     private ResolvedIndex resolved;
     private String loadProblem;
-    private boolean loadAttempted;
+    private String loadedFor;
 
     /** Creates a processor with no configuration. */
     public HierarchyIncludeProcessor() {
@@ -88,8 +88,8 @@ public class HierarchyIncludeProcessor extends IncludeProcessor {
 
         Optional<ResolvedIndex> index = index(document);
         if (index.isEmpty()) {
-            push(reader, warning("cannot resolve '" + target + "': " + loadProblem), attributes);
-            return;
+            throw new IllegalStateException(
+                    "ike-hierarchy: cannot resolve '" + target + "': " + loadProblem);
         }
         Optional<ChapterId> id = ChapterId.parse(rawId);
         if (id.isEmpty()) {
@@ -165,16 +165,23 @@ public class HierarchyIncludeProcessor extends IncludeProcessor {
     }
 
     /**
-     * Loads the index on first use and caches the outcome, success or failure.
+     * Loads the index and caches the outcome against the attributes it was loaded for.
+     *
+     * <p>Keyed rather than loaded once, because one processor instance serves every document an
+     * Asciidoctor instance renders. A bare "already tried" flag makes the second document silently
+     * inherit the first one's index — its chapters, or its failure — however its own attributes
+     * are set.
      */
     private Optional<ResolvedIndex> index(Document document) {
-        if (loadAttempted) {
-            return Optional.ofNullable(resolved);
-        }
-        loadAttempted = true;
-
         String indexPath = attribute(document, INDEX_ATTRIBUTE);
         String basePath = attribute(document, BASE_ATTRIBUTE);
+
+        String key = indexPath + "\u0000" + basePath;
+        if (key.equals(loadedFor)) {
+            return Optional.ofNullable(resolved);
+        }
+        loadedFor = key;
+        resolved = null;
 
         if (indexPath == null || basePath == null) {
             loadProblem = "the '" + INDEX_ATTRIBUTE + "' and '" + BASE_ATTRIBUTE
@@ -200,9 +207,10 @@ public class HierarchyIncludeProcessor extends IncludeProcessor {
     /**
      * Renders a problem as both an AsciiDoc comment and a visible warning admonition.
      *
-     * <p>Visible on purpose. A missing chapter that only produces a comment is invisible in the
-     * rendered book, and the whole reason the build fails on a broken hierarchy is that silently
-     * absent content is the failure mode worth engineering against.
+     * <p>Visible on purpose, for the cases where one identifier out of many does not resolve: a
+     * missing chapter that only produces a comment is invisible in the rendered book. Visible in
+     * the output is not the same as visible in CI, though, so the failure that costs the document
+     * everything — no loadable index — is raised instead of rendered.
      */
     private static String warning(String detail) {
         return "// [ike-hierarchy] " + detail + "\n"

@@ -1,6 +1,7 @@
 package network.ike.foundation.ike.hierarchy.scan;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -133,5 +134,29 @@ class ChapterScannerTest {
 
         assertThat(outcome.chapters()).isEmpty();
         assertThat(outcome.violations()).isEmpty();
+    }
+
+    /** S6: a bracket in the name used to break the generated include and drop the chapter. */
+    @Test
+    void shouldRefuseAChapterWhoseNameWouldCorruptTheIncludeDirective() throws IOException {
+        write("weird[opts=x].adoc", ":chapter-id: weird\n:chapter-parent: guide\n");
+
+        ScanOutcome outcome = scan();
+
+        assertThat(outcome.chapters()).isEmpty();
+        assertThat(outcome.violations()).hasSize(1);
+    }
+
+    /** S5: an unreadable directory used to abort the whole scan with a raw stack trace. */
+    @Test
+    void shouldReportAnUnreadableDirectoryRatherThanCrashing() throws IOException {
+        write("chapter.adoc", ":chapter-id: real\n:chapter-parent: guide\n");
+        Path locked = Files.createDirectory(temp.resolve("locked"));
+        assumeTrue(locked.toFile().setReadable(false), "cannot make a directory unreadable here");
+        try {
+            assertThat(scan().violations()).hasSize(1);
+        } finally {
+            locked.toFile().setReadable(true);
+        }
     }
 }

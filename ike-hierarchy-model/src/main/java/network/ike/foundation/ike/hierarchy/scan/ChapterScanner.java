@@ -1,6 +1,7 @@
 package network.ike.foundation.ike.hierarchy.scan;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.charset.MalformedInputException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -11,6 +12,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import network.ike.foundation.ike.hierarchy.model.Chapter;
@@ -33,6 +35,9 @@ import network.ike.foundation.ike.hierarchy.model.Violation;
  * machine produced it is an index that cannot be diffed or cached.
  */
 public final class ChapterScanner {
+
+    /** Characters that would corrupt the generated {@code include::} directive for a chapter. */
+    private static final Pattern UNINCLUDABLE = Pattern.compile("[\\[\\]\\r\\n]");
 
     private static final String ADOC = ".adoc";
     private static final String ASCIIDOC = ".asciidoc";
@@ -82,7 +87,9 @@ public final class ChapterScanner {
             walk.filter(path -> !isExcluded(realRoot, path, limits))
                     .filter(ChapterScanner::hasAsciiDocSuffix)
                     .forEach(candidates::add);
-        } catch (IOException e) {
+            // Files.walk reports a directory it cannot enter as an UncheckedIOException mid-stream,
+            // not as the IOException the try-with-resources suggests.
+        } catch (IOException | UncheckedIOException e) {
             violations.add(new Violation.ScanLimitExceeded(
                     "could not walk scan root '" + root.id() + "': " + e.getMessage()));
             return examined;
@@ -155,8 +162,14 @@ public final class ChapterScanner {
             }
             case HeaderParseResult.Malformed malformed ->
                     violations.add(new Violation.MalformedHeader(relative, malformed.detail()));
-            case HeaderParseResult.Parsed parsed ->
+            case HeaderParseResult.Parsed parsed -> {
+                if (UNINCLUDABLE.matcher(relative).find()) {
+                    violations.add(new Violation.MalformedHeader(relative,
+                            "cannot be included: its path contains '[', ']', or a line break"));
+                } else {
                     chapters.add(new Chapter(parsed.header(), relative, root.id()));
+                }
+            }
         }
     }
 

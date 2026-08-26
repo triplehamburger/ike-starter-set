@@ -16,7 +16,8 @@ import network.ike.foundation.ike.hierarchy.index.JsonException;
 import network.ike.foundation.ike.hierarchy.scan.SafePath;
 
 /**
- * The index, loaded once per document and re-anchored beneath a base directory this build supplied.
+ * The index, loaded per set of hierarchy attributes and re-anchored beneath a base directory this
+ * build supplied.
  *
  * <p>The re-anchoring is the point. The index records every path relative to a root, and every root
  * relative to the project base — it contains no absolute path and no way to express one. The base
@@ -24,9 +25,10 @@ import network.ike.foundation.ike.hierarchy.scan.SafePath;
  * another machine can only ever name files inside this project, and every path it names is checked
  * again here before anything is read.
  *
- * <p>Loading is done once and cached, because an include processor is invoked for every directive
- * in the document and re-reading the index each time would make a large guide quadratic for no
- * reason.
+ * <p>Loading is cached, because an include processor is invoked for every directive in the document
+ * and re-reading the index each time would make a large guide quadratic for no reason. The cache is
+ * keyed on the attributes it was loaded for, so a second document rendered by the same Asciidoctor
+ * instance cannot inherit the first one's index.
  */
 final class ResolvedIndex {
 

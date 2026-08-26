@@ -153,4 +153,13 @@ class HeaderParserTest {
         assertThat(header.id()).isEqualTo(new ChapterId("cql"));
         assertThat(Optional.of(header.status())).contains(ChapterStatus.PUBLISHED);
     }
+
+    /** S3: a typo'd id line used to make the file silently not a chapter at all. */
+    @Test
+    void shouldFlagAFileThatMeantToBeAChapterAndMisspelledItsId() {
+        HeaderParseResult result = HeaderParser.parse(
+                List.of(":chapterid: intro", ":chapter-parent: guide", ":chapter-order: 10"), LIMITS);
+
+        assertThat(result).isInstanceOf(HeaderParseResult.Malformed.class);
+    }
 }

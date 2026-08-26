@@ -53,6 +53,7 @@ public final class HeaderParser {
         Map<HeaderAttribute, String> attributes = new EnumMap<>(HeaderAttribute.class);
         String firstHeading = null;
         boolean headingSeen = false;
+        boolean hierarchyAttributeSeen = false;
 
         int examined = Math.min(lines.size(), limits.maxHeaderLines());
         for (int i = 0; i < examined; i++) {
@@ -78,6 +79,8 @@ public final class HeaderParser {
             }
             Matcher attribute = ATTRIBUTE_ENTRY.matcher(line);
             if (attribute.matches()) {
+                hierarchyAttributeSeen |= attribute.group(1).regionMatches(
+                        true, 0, HeaderAttribute.PREFIX, 0, HeaderAttribute.PREFIX.length());
                 Optional<HeaderAttribute> known = HeaderAttribute.fromAttributeName(attribute.group(1));
                 if (known.isPresent()) {
                     String value = attribute.group(2) == null ? "" : attribute.group(2).trim();
@@ -92,7 +95,7 @@ public final class HeaderParser {
             }
             break;
         }
-        return toResult(attributes, firstHeading);
+        return toResult(attributes, firstHeading, hierarchyAttributeSeen);
     }
 
     /**
@@ -101,11 +104,19 @@ public final class HeaderParser {
      * <p>The heading is the title fallback, which is what lets an author drop an existing
      * {@code = Some Chapter} file into the tree, add one {@code :chapter-id:} line, and have it
      * render with the title it already had.
+     *
+     * <p>A file carrying some other {@code chapter-} attribute but no id meant to be a chapter and
+     * misspelled the one line that makes it one. Treating that as an ordinary AsciiDoc file is how
+     * a chapter disappears from the guide with nothing to show for it, so it is malformed instead.
      */
-    private static HeaderParseResult toResult(Map<HeaderAttribute, String> attributes, String firstHeading) {
+    private static HeaderParseResult toResult(Map<HeaderAttribute, String> attributes,
+                                              String firstHeading, boolean hierarchyAttributeSeen) {
         String rawId = attributes.get(HeaderAttribute.CHAPTER_ID);
         if (rawId == null) {
-            return new HeaderParseResult.NotAChapter();
+            return hierarchyAttributeSeen
+                    ? new HeaderParseResult.Malformed("declares a ':" + HeaderAttribute.PREFIX
+                            + "…:' attribute but no ':chapter-id:'; check the spelling of the id line")
+                    : new HeaderParseResult.NotAChapter();
         }
         Optional<ChapterId> id = ChapterId.parse(rawId);
         if (id.isEmpty()) {
