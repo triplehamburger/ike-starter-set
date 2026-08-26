@@ -1,6 +1,7 @@
 package network.ike.foundation.ike.cql.maven.support;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 import java.net.URI;
@@ -64,6 +65,25 @@ class CqlKnowledgeGeneratorTest {
                 .isNotEqualTo(once);
         assertThat(CqlKnowledgeGenerator.identityFor(UUID.nameUUIDFromBytes(new byte[] {1}),
                 "after (CQL)")).isNotEqualTo(once);
+    }
+
+    @Test
+    void refusesToWriteATaxonomyRootWithNoKeywordUnderIt() {
+        assertThatThrownBy(() -> CqlKnowledgeGenerator.generate(List.of(), TARGET))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("No keyword to mint");
+    }
+
+    @Test
+    void refusesADictionaryWhoseEveryKeywordIsDeferred() throws Exception {
+        assumeTrue(Files.exists(CHAPTER), "the ike-doc chapter is not beside this module");
+        List<Entry> deferred = parseChapter().stream()
+                .filter(entry -> entry.status() != KeywordDictionary.KometStatus.NOT_YET)
+                .toList();
+        assertThat(deferred).hasSize(7);
+        assertThatThrownBy(() -> CqlKnowledgeGenerator.generate(deferred, TARGET))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("No keyword to mint");
     }
 
     @Test

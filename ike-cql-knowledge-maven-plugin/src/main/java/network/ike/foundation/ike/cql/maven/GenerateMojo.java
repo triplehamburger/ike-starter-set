@@ -121,11 +121,16 @@ public class GenerateMojo implements org.apache.maven.api.plugin.Mojo {
             throw new MojoException("Could not read the keyword dictionary at " + source, e);
         } catch (KeywordDictionary.MalformedEntryException | IllegalArgumentException
                 | IllegalStateException e) {
-            throw new MojoException(e.getMessage(), e);
+            throw new MojoException(e.getMessage() + " (dictionary: " + source + ")", e);
         }
 
         log.info("Read " + entries.size() + " keyword entries from " + source + ".");
         result.deferrals().forEach(deferral -> log.info("  deferred: " + deferral));
+        if (!result.deferrals().isEmpty()) {
+            log.info("  each deferred entry names its Komet counterpart in a trailing note in the"
+                    + " chapter ('Komet concept:' when implemented, 'Related Komet concept(s):'"
+                    + " when related); this goal does not extract them.");
+        }
         log.info("Composing " + result.concepts().size() + " concepts under namespace "
                 + namespace + ".");
 

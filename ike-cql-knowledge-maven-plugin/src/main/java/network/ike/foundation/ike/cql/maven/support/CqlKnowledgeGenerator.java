@@ -80,8 +80,12 @@ public final class CqlKnowledgeGenerator {
      * What one run produced.
      *
      * @param source    the generated Java source
-     * @param concepts  the fully qualified name of every concept the source authors, in emission
-     *                  order
+     * @param concepts  the fully qualified name of every concept the source authors, in the order
+     *                  they were generated in: root, then each family followed immediately by its
+     *                  categories and their keywords. That deliberately differs from the order the
+     *                  generated source authors them in, where {@code composeTaxonomy} emits the
+     *                  root and every family and category first and the per-family methods emit
+     *                  the keywords afterwards
      * @param deferrals the entries deliberately not minted, one human-readable line each
      */
     public record Result(String source, List<String> concepts, List<String> deferrals) {
@@ -134,8 +138,9 @@ public final class CqlKnowledgeGenerator {
      * @param entries the dictionary entries
      * @param target  where the concepts are being authored
      * @return the generated source, the concepts it authors, and what was deferred
-     * @throws IllegalStateException if two concepts would claim the same fully qualified name, or
-     *         if a family would produce a method name the generated class already uses
+     * @throws IllegalStateException if the dictionary yields no keyword to mint, if two concepts
+     *         would claim the same fully qualified name, or if a family would produce a method name
+     *         the generated class already uses
      */
     public static Result generate(List<Entry> entries, Target target) {
         List<String> deferrals = new ArrayList<>();
@@ -153,6 +158,12 @@ public final class CqlKnowledgeGenerator {
         }
         byFamily.values().forEach(byCategory ->
                 byCategory.values().forEach(list -> list.sort(Comparator.comparing(Entry::name))));
+        if (byFamily.isEmpty()) {
+            throw new IllegalStateException("No keyword to mint: of " + entries.size()
+                    + " entries read, " + deferrals.size() + " were deferred and none was marked '"
+                    + KometStatus.NOT_YET.text() + "'. Writing a taxonomy root with nothing under"
+                    + " it would be wrong content on a green build");
+        }
 
         Set<String> concepts = new LinkedHashSet<>();
         StringBuilder taxonomy = new StringBuilder();

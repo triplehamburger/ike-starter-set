@@ -51,6 +51,15 @@ The dictionary's Komet status decides:
 | `Implemented in Komet`      | 2     | Deferred — a Komet concept exists; minting again duplicates it.     |
 | `Related concept in Komet`  | 5     | Deferred — the relationship is an editorial call, not a guess.      |
 
+Each deferred entry names its Komet counterpart in a trailing note the parser does not read:
+`Komet concept:` for the 2 implemented keywords (chapter lines 74 and 1326) and
+`Related Komet concept(s):` for the 5 related ones (lines 931, 984, 1379, 1398 and 1434). Those
+notes are knowingly dropped rather than silently lost — the goal says so in its log, and whoever
+takes up the editorial call for the 5 reads them from the chapter.
+
+A dictionary that yields nothing to mint fails the goal rather than writing a taxonomy root with
+nothing under it, so pointing `dictionary` at the wrong chapter is an error and not a green build.
+
 Deferrals are reported by name, never silently dropped. The 115 minted keywords sit under a
 generated taxonomy of 1 root, 5 families and 16 categories, all read out of the dictionary's own
 metadata lines: 137 concepts in total.

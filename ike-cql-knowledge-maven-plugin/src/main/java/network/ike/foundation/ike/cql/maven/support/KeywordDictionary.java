@@ -40,9 +40,14 @@ public final class KeywordDictionary {
         NOT_YET("Not yet in Komet"),
 
         /**
-         * Komet has something adjacent, named in the entry's trailing note. Whether the new
-         * concept should be linked to it, or not minted at all, is an editorial call — so the
-         * generator defers these rather than guessing at a relationship.
+         * Komet has something adjacent. Whether the new concept should be linked to it, or not
+         * minted at all, is an editorial call — so the generator defers these rather than guessing
+         * at a relationship.
+         *
+         * <p>The chapter names those counterparts in a {@code Related Komet concept(s):} note after
+         * the entry's example block, and this parser does <em>not</em> read it: parsing stops at
+         * the closing example delimiter and the note is knowingly dropped. Whoever takes up the
+         * editorial call reads it from the chapter.
          */
         RELATED("Related concept in Komet"),
 
