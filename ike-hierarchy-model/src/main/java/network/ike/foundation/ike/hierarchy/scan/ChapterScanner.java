@@ -36,8 +36,15 @@ import network.ike.foundation.ike.hierarchy.model.Violation;
  */
 public final class ChapterScanner {
 
-    /** Characters that would corrupt the generated {@code include::} directive for a chapter. */
-    private static final Pattern UNINCLUDABLE = Pattern.compile("[\\[\\]\\r\\n]");
+    /**
+     * Characters that would corrupt the generated {@code include::} directive for a chapter.
+     *
+     * <p>Brackets and line breaks end the target early or inject AsciiDoc. Braces are just as
+     * fatal: Asciidoctor applies attribute-reference substitution to an include target, so a
+     * chapter named {@code {empty}intro.adoc} is included as {@code intro.adoc} and silently
+     * disappears from the guide.
+     */
+    private static final Pattern UNINCLUDABLE = Pattern.compile("[\\[\\]{}\\r\\n]");
 
     private static final String ADOC = ".adoc";
     private static final String ASCIIDOC = ".asciidoc";
@@ -165,7 +172,8 @@ public final class ChapterScanner {
             case HeaderParseResult.Parsed parsed -> {
                 if (UNINCLUDABLE.matcher(relative).find()) {
                     violations.add(new Violation.MalformedHeader(relative,
-                            "cannot be included: its path contains '[', ']', or a line break"));
+                            "cannot be included: its path contains '[', ']', an "
+                                    + "attribute-reference brace ('{' or '}'), or a line break"));
                 } else {
                     chapters.add(new Chapter(parsed.header(), relative, root.id()));
                 }

@@ -131,8 +131,9 @@ Any of these, reported all at once with the file that caused each:
 - Nesting deeper than `maxDepth`.
 - A malformed header — a chapter that meant to be one and got it wrong, including a file that sets
   some `:chapter-…:` attribute but no `:chapter-id:` (a misspelled id line).
-- A chapter whose path contains `[`, `]`, or a line break, which would corrupt the generated
-  `include::` directive.
+- A chapter whose path contains `[`, `]`, `{`, `}`, or a line break, which would corrupt the
+  generated `include::` directive — braces because Asciidoctor substitutes attribute references in
+  an include target, so `{empty}intro.adoc` is included as `intro.adoc`.
 - A file that resolves outside the project, including through a symbolic link.
 
 Rendering fails too, not just indexing: a document that asks for `include::hierarchy:…[]` when no

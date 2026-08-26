@@ -147,12 +147,24 @@ class ChapterScannerTest {
         assertThat(outcome.violations()).hasSize(1);
     }
 
+    /** S6: a brace in the name is substituted away by Asciidoctor and drops the chapter too. */
+    @Test
+    void shouldRefuseAChapterWhoseNameContainsAnAttributeReference() throws IOException {
+        write("{empty}intro.adoc", ":chapter-id: intro\n:chapter-parent: guide\n");
+
+        ScanOutcome outcome = scan();
+
+        assertThat(outcome.chapters()).isEmpty();
+        assertThat(outcome.violations()).hasSize(1);
+    }
+
     /** S5: an unreadable directory used to abort the whole scan with a raw stack trace. */
     @Test
     void shouldReportAnUnreadableDirectoryRatherThanCrashing() throws IOException {
         write("chapter.adoc", ":chapter-id: real\n:chapter-parent: guide\n");
         Path locked = Files.createDirectory(temp.resolve("locked"));
-        assumeTrue(locked.toFile().setReadable(false), "cannot make a directory unreadable here");
+        assumeTrue(locked.toFile().setReadable(false) && !Files.isReadable(locked),
+                "cannot make a directory unreadable here");
         try {
             assertThat(scan().violations()).hasSize(1);
         } finally {
