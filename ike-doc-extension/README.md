@@ -52,11 +52,18 @@ chapter cannot appear or vanish depending on what happens to be on disk at rende
 
 ## Troubleshooting
 
-A `WARNING: ike-hierarchy: ...` in the rendered output names the problem. The common ones:
+No index at all is a build failure, not a warning: a document containing a hierarchy directive when
+the index cannot be loaded raises rather than rendering a book of admonitions. AsciidoctorJ reports
+it as `Failed to load AsciiDoc document` with the real reason as the cause. Either the
+`ike-hierarchy-index` / `ike-hierarchy-base` attributes are missing from the POM, or
+`ike-hierarchy:index` has not run — or is bound after rendering.
+
+A single directive that does not resolve stays a `WARNING: ike-hierarchy: ...` in the rendered
+output, which names the problem. The common ones:
 
 | Warning mentions                         | Cause                                                          |
 |------------------------------------------|----------------------------------------------------------------|
-| the document attributes are not set       | `ike-hierarchy-index` / `ike-hierarchy-base` missing from the POM |
-| the index was not found inside the project| `ike-hierarchy:index` has not run, or is bound after rendering  |
+| is not a valid chapter id                 | The identifier in the directive is not lowercase kebab-case     |
 | no chapters are placed beneath '...'      | Nothing declares `:chapter-parent:` pointing at that root       |
+| no chapter with id '...' is in the index  | Nothing declares that `:chapter-id:`, or the index is stale     |
 | its file could not be read                | The index is stale — re-run the build                           |

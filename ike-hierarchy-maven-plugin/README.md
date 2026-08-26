@@ -142,6 +142,10 @@ Rendering fails too, not just indexing: a document that asks for `include::hiera
 index can be loaded at all raises rather than publishing a book of warning admonitions. A single
 unresolvable id stays a warning in the output.
 
+`add-chapter` refuses when the scan it uses to check the id could not complete, because it cannot
+then tell whether the id is already taken. A file that merely could not be read as a chapter is a
+warning naming that file — otherwise the goal could not repair the very file it was pointed at.
+
 A chapter that cannot be placed does not quietly vanish from the book.
 
 ## Security notes
