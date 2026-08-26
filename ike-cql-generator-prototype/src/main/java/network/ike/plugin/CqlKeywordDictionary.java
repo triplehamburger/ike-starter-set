@@ -64,8 +64,13 @@ import java.util.regex.Pattern;
  *   <li><b>The heading is prose, the anchor is the identifier.</b> Bold markers do not reliably
  *       wrap the whole keyword ({@code === *include*d in}, {@code === *or* after},
  *       {@code === such that}), so the keyword is the heading with markers stripped — and that
- *       result is cross-checked against the anchor. The check holds for all 122 entries and is
- *       what makes the keyword safe to feed into identity.
+ *       result is cross-checked against the anchor. Because an anchor renders every run of
+ *       non-alphanumerics as one {@code -}, agreement alone would still admit rewordings the
+ *       anchor cannot tell apart ({@code or after} and {@code or-after} both derive
+ *       {@code term-or-after}, yet mint different concepts). So the keyword must also be
+ *       alphanumeric words separated by single spaces, which makes the anchor pin the keyword
+ *       exactly. All 122 entries satisfy both halves, and together they are what makes the
+ *       keyword safe to feed into identity.
  * </ul>
  */
 final class CqlKeywordDictionary {
@@ -133,6 +138,9 @@ final class CqlKeywordDictionary {
     /** Category, then an optional {@code (Family > Subcategory)} path, then the status. */
     private static final Pattern METADATA =
             Pattern.compile("`([^`]+)` -- (?:\\(([^>)]+) > ([^>)]+)\\) )?(\\S.*)");
+    /** Alphanumeric words separated by single spaces — the shape an anchor can pin exactly. */
+    private static final Pattern PINNABLE_KEYWORD =
+            Pattern.compile("[A-Za-z0-9]+( [A-Za-z0-9]+)*");
     private static final Pattern KOMET_CONCEPTS =
             Pattern.compile("(?:Related Komet concept\\(s\\)|Komet concept): (\\S.*)");
     private static final String ENTRY_SEPARATOR = "* * *";
@@ -260,7 +268,15 @@ final class CqlKeywordDictionary {
     }
 
     private static void requireAnchorAgrees(String anchor, String keyword, int line) {
-        String derived = keyword.replaceAll("[^A-Za-z0-9]+", "-").replaceAll("^-|-$", "");
+        if (!PINNABLE_KEYWORD.matcher(keyword).matches()) {
+            throw new MalformedEntryException(line, "keyword " + quote(keyword) + " cannot be"
+                    + " pinned by anchor term-" + anchor + " — an anchor renders every run of"
+                    + " non-alphanumerics as a single \"-\", so a doubled space, a hyphen or any"
+                    + " other punctuation leaves the anchor agreeing with names that differ, while"
+                    + " identity is minted from the name. A keyword must be alphanumeric words"
+                    + " separated by single spaces; all 122 entries are");
+        }
+        String derived = keyword.replace(' ', '-');
         if (!derived.equals(anchor)) {
             throw new MalformedEntryException(line, "anchor term-" + anchor + " does not agree with"
                     + " keyword " + quote(keyword) + " (which derives term-" + derived + ") — the"

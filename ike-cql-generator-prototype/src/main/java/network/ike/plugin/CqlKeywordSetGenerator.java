@@ -21,8 +21,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.UUID;
@@ -158,6 +160,19 @@ final class CqlKeywordSetGenerator {
 
         List<Composed> all = Stream.of(List.of(root), families, categories, keywords)
                 .flatMap(List::stream).toList();
+        // Identity is UUIDv5(namespace, fqn), so a name repeated across any two tiers is one
+        // concept, not two: it would be authored twice, counted twice, and — where the tiers are
+        // adjacent — stated is-a itself. All four tiers meet here, so this is the one place the
+        // invariant the naming scheme actually requires can be checked once.
+        Set<String> names = new HashSet<>();
+        for (Composed c : all) {
+            if (!names.add(c.fqn())) {
+                throw new IllegalArgumentException("two concepts share the fully qualified name \""
+                        + c.fqn() + "\" — identity derives from that name, so they would collapse"
+                        + " into one concept; the root, family, category and keyword names must"
+                        + " all differ");
+            }
+        }
         String java = renderJava(options, root, families, categories, keywords);
         String report = renderReport(options, all, deferred);
         return new Generated(java, report, all.size(), deferred.size());

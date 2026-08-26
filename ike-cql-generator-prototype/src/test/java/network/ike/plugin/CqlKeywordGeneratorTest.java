@@ -308,6 +308,41 @@ class CqlKeywordGeneratorTest {
                 .hasMessageContaining("Data & Timing Operators");
     }
 
+    /**
+     * An anchor renders every run of non-alphanumerics as one {@code -}, so anchor agreement on
+     * its own admits rewordings that mint a different concept: {@code or after} and
+     * {@code or-after} both derive {@code term-or-after}. The keyword shape is what closes that.
+     */
+    @Test
+    void rejectsAKeywordWhoseSpacingTheAnchorCannotPin() {
+        assertThatAnchorCannotPin("=== *or*  after")
+                .hasMessageContaining("keyword \"or  after\" cannot be pinned");
+    }
+
+    @Test
+    void rejectsAKeywordWhosePunctuationTheAnchorCannotPin() {
+        assertThatAnchorCannotPin("=== *or*-after")
+                .hasMessageContaining("keyword \"or-after\" cannot be pinned");
+    }
+
+    /**
+     * Names are only unique per tier; across tiers nothing stopped a family and a category sharing
+     * one name, which under {@code UUIDv5(namespace, fqn)} is one concept authored twice and
+     * stated is-a itself.
+     */
+    @Test
+    void rejectsAFamilyAndACategorySharingOneName() {
+        List<String> lines = twoEntries();
+        lines.set(lines.indexOf(METADATA_LINE),
+                "`Declarations` -- (Declarations > Declarations) Not yet in Komet");
+
+        assertThatThrownBy(() -> CqlKeywordSetGenerator.generate(
+                CqlKeywordDictionary.parse(lines), OPTIONS))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("two concepts share the fully qualified name")
+                .hasMessageContaining("Declarations (IkeCql)");
+    }
+
     @Test
     void rejectsAFileWithNoEntries() {
         assertThatThrownBy(() -> CqlKeywordDictionary.parse(List.of("= Keyword Dictionary", "")))
@@ -345,6 +380,20 @@ class CqlKeywordGeneratorTest {
     /** Two well-formed entries — "after" and the same entry reworded to "before". */
     private static List<String> twoEntries() {
         return new ArrayList<>(entry(ENTRY + "\n" + ENTRY.replace("after", "before")));
+    }
+
+    /**
+     * Rewrites the fixture to the given heading under anchor {@code term-or-after} — an anchor the
+     * old derivation agreed with — then asserts the parse refuses it anyway.
+     */
+    private static org.assertj.core.api.AbstractThrowableAssert<?, ?> assertThatAnchorCannotPin(
+            String heading) {
+        List<String> lines = new ArrayList<>(entry(ENTRY));
+        lines.set(lines.indexOf("[[term-after]]"), "[[term-or-after]]");
+        lines.set(lines.indexOf("=== *after*"), heading);
+
+        return assertThatThrownBy(() -> CqlKeywordDictionary.parse(lines))
+                .isInstanceOf(MalformedEntryException.class);
     }
 
     /** Corrupts the first entry's anchor line, then asserts the short parse is refused. */
