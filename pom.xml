@@ -76,6 +76,7 @@
         <subproject>ike-terms</subproject>
         <subproject>ike-bindings</subproject>
         <subproject>ike-changeset</subproject>
+        <subproject>ike-hierarchy-model</subproject>
         <subproject>ike-doc</subproject>
         <subproject>ike-kb</subproject>
     </subprojects>
