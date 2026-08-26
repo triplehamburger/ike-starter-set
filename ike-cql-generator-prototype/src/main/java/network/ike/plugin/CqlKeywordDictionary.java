@@ -247,20 +247,13 @@ final class CqlKeywordDictionary {
      * counterpart with no concept named, or a concept named on an entry claiming none exists,
      * is a contradiction the generator cannot resolve.
      *
-     * <p>The scan is bounded by the next entry's anchor as well as by the separator. A missing
-     * {@code * * *} would otherwise let one entry read on into the next and adopt its counterpart
-     * — a wrong value in the identity report, reached without anything erroring. Only the last
-     * entry ends at end of file; every other one ends at its separator.
+     * <p>This is the scan a missing line would carry into the following entry, so it relies on
+     * {@link Cursor} refusing to cross an anchor. Only the last entry ends at end of file; every
+     * other one ends at its separator.
      */
     private static String readKometConcepts(Cursor c, String keyword, Status status) {
         String found = null;
         while (c.hasNext() && !c.peek().equals(ENTRY_SEPARATOR)) {
-            if (ANCHOR.matcher(c.peek()).matches()) {
-                throw new MalformedEntryException(c.line() + 1, "entry " + quote(keyword)
-                        + " reaches the next entry's anchor with no " + quote(ENTRY_SEPARATOR)
-                        + " between them — the separator is what ends an entry, and reading past"
-                        + " it would take the next entry's Komet concept as this one's");
-            }
             Matcher m = KOMET_CONCEPTS.matcher(c.next());
             if (m.matches()) {
                 found = m.group(1).strip();
@@ -300,7 +293,17 @@ final class CqlKeywordDictionary {
         return "\"" + s + "\"";
     }
 
-    /** A forward-only line reader that fails loudly, with a line number, on any surprise. */
+    /**
+     * A forward-only line reader that fails loudly, with a line number, on any surprise.
+     *
+     * <p>It is also what keeps an entry inside its own bounds. Every scan runs through
+     * {@link #next()}, which refuses to consume a {@code [[term-...]]} anchor, so no read within
+     * an entry — a literal, a pattern match, or a skip looking for a delimiter — can run past the
+     * end of that entry and into the next. A cursor starts just after its own anchor, so in a
+     * well-formed file it never meets another one. Without that bound a single missing line, such
+     * as an example block's closing {@code ----}, would let one entry swallow the next and adopt
+     * its Komet counterpart: a wrong row in the identity report with nothing erroring.
+     */
     private static final class Cursor {
 
         private final List<String> lines;
@@ -322,6 +325,13 @@ final class CqlKeywordDictionary {
         String next() {
             if (!hasNext()) {
                 throw new MalformedEntryException(line(), "entry ends mid-way through the file");
+            }
+            String line = lines.get(index);
+            if (ANCHOR.matcher(line).matches()) {
+                throw new MalformedEntryException(index + 1, "reached the next entry's anchor "
+                        + quote(line) + " before this entry ended — a line this entry needs is"
+                        + " missing, and reading on would take the next entry's content as this"
+                        + " one's");
             }
             return lines.get(index++);
         }

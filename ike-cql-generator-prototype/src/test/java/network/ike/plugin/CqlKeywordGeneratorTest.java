@@ -354,9 +354,27 @@ class CqlKeywordGeneratorTest {
         List<String> lines = twoWithheldEntries();
         lines.remove(lines.indexOf("* * *"));
 
+        assertThatRunsIntoTheNextEntry(lines);
+    }
+
+    /**
+     * The same misattribution, one line earlier: with the example block left unclosed the scan
+     * looking for {@code ----} is what crosses the boundary, and it lands inside the next entry's
+     * example — past the anchor, so a check further down could no longer see it.
+     */
+    @Test
+    void rejectsAnEntryWhoseExampleBlockIsNeverClosed() {
+        List<String> lines = twoWithheldEntries();
+        lines.remove(lines.indexOf(
+                "\"FollowUpDateTime\" 3 days or less after \"DischargeDateTime\"") + 1);
+
+        assertThatRunsIntoTheNextEntry(lines);
+    }
+
+    private static void assertThatRunsIntoTheNextEntry(List<String> lines) {
         assertThatThrownBy(() -> CqlKeywordDictionary.parse(lines))
                 .isInstanceOf(MalformedEntryException.class)
-                .hasMessageContaining("reaches the next entry's anchor with no \"* * *\"");
+                .hasMessageContaining("reached the next entry's anchor \"[[term-or-more]]\"");
     }
 
     /** With the separator in place the same two entries keep their own counterparts. */
