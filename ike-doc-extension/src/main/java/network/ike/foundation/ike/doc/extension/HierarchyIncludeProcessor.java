@@ -213,6 +213,6 @@ public class HierarchyIncludeProcessor extends IncludeProcessor {
                              Map<String, Object> attributes) {
         Map<String, Object> cleanAttributes = new HashMap<>(attributes != null ? attributes : Map.of());
         cleanAttributes.remove("leveloffset");
-        reader.push_include(content, null, null, 1, cleanAttributes);
+        reader.pushInclude(content, null, null, 1, cleanAttributes);
     }
 }

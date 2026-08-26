@@ -43,6 +43,18 @@ whenever `ike-doc/target/ike-hierarchy-index.json` exists (run the `index` goal 
 silently no-op). Diffing that HTML across a change is the way to prove a doc edit is render-neutral.
 A chapter's location on disk carries no meaning (see the plugin README) — a pure `git mv` of a
 chapter file changes only its `path` in the index.
+A *stale* index is worse than none: the render tests do run, but every chapter resolves to a
+path that no longer exists and the assertions fail on missing content. Re-run `index` first.
+
+`ike-doc-extension` deliberately does not pin its own `asciidoctorj`/`jruby` versions — it
+inherits `ike-platform`'s so it compiles and tests against exactly what
+`asciidoctor-maven-plugin` runs it on. Do not re-add a local pin; that is what let a 2.5-only
+`PreprocessorReader` call compile clean and throw `NoSuchMethodError` in the real guide build.
+
+Any lifecycle build of `ike-doc` now fails at `validate` unless `ike-changeset/target/ike-koncepts.yml`
+exists (`require-koncept-definitions` in `ike-doc/pom.xml`), because the koncept extension
+silently renders empty pattern tables without it. Direct goal invocations (`…:index`, above)
+skip lifecycle phases and are unaffected; `-Denforcer.skip=true` bypasses the gate.
 
 ## Maintaining this file
 

@@ -38,7 +38,10 @@
     <properties>
         <pdf.source.document>ike-guide</pdf.source.document>
         <koncept-asciidoc-extension.version>94</koncept-asciidoc-extension.version>
-        <koncepts.yml>${project.basedir}/../ike-changeset/target/ike-koncepts.yml</koncepts.yml>
+        <!-- Absolute from the reactor root, not ${project.basedir}/../: enforcer's
+             requireFilesExist below does not resolve '..' segments and reports a file
+             that exists as missing. -->
+        <koncepts.yml>${session.rootDirectory}/ike-changeset/target/ike-koncepts.yml</koncepts.yml>
     </properties>
 
     <dependencies>
@@ -73,6 +76,35 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <!-- Without this gate a missing definitions file is silent: the koncept
+                 extension logs one WARN, every pattern table renders "No pattern shape"
+                 with no anchor, every xref to one dangles, and the build says SUCCESS. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>require-koncept-definitions</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireFilesExist>
+                                    <files>
+                                        <file>${koncepts.yml}</file>
+                                    </files>
+                                    <message>Koncept definitions not found: ${koncepts.yml}
+Every koncept-pattern-table:: would render "No pattern shape" with no anchor, dangling
+every xref to it. Run mvn -pl ike-changeset install first, or build the full reactor.
+Use -Denforcer.skip=true only for a knowingly incomplete guide.</message>
+                                </requireFilesExist>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <!-- Discovers every chapter declared anywhere in the reactor, validates the
                  hierarchy they form, and writes target/ike-hierarchy-index.json. Must run before
