@@ -73,6 +73,9 @@
     </properties>
 
     <subprojects>
+        <!-- Generates the CQL keyword vocabulary as ledger source; ike-terms compiles its
+             output, so it builds first. -->
+        <subproject>ike-cql-knowledge-maven-plugin</subproject>
         <subproject>ike-terms</subproject>
         <subproject>ike-bindings</subproject>
         <subproject>ike-changeset</subproject>

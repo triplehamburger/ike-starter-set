@@ -44,6 +44,22 @@ silently no-op). Diffing that HTML across a change is the way to prove a doc edi
 A chapter's location on disk carries no meaning (see the plugin README) — a pure `git mv` of a
 chapter file changes only its `path` in the index.
 
+## Generated CQL terms (`ike-cql-knowledge-maven-plugin`)
+
+`ike-terms` compiles a generated `CqlSet` (144 concepts: one CQL root, 5 families, 16 subfamilies,
+122 keywords) that `ike-cql-knowledge:generate` writes into
+`ike-terms/target/generated-sources/ike-cql-knowledge/` from
+`ike-doc/src/docs/asciidoc/cql/keyword-dictionary.adoc`. The goal registers that directory as a
+compile source root itself, so `ike-terms/pom.xml` needs only the execution.
+
+**`CqlSet` is compiled but not composed.** `IkeSource.compose()` does not call it — adding 144
+concepts to the released IkeFoundation ledger is a content decision with identity and change-set
+consequences. Activating it is one line in `IkeSource`.
+
+The goal fails the build on any dictionary entry it cannot parse, deliberately: a keyword's name
+derives its concept identity, so a name read even slightly wrong mints a concept no later edit can
+correct. Each entry's `[[term-...]]` anchor is the independent check on the reading.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.

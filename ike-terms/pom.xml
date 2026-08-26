@@ -66,6 +66,27 @@
 
     <build>
         <plugins>
+            <!-- The CQL keyword vocabulary is generated, not hand-authored: the goal reads
+                 ike-doc's keyword dictionary chapter and writes CqlSet into this module's
+                 generated-sources, registering that directory as a compile source root. The
+                 chapter is static input, so reading it across modules imposes no build order.
+                 CqlSet is compiled but NOT yet composed — see IkeSource. -->
+            <plugin>
+                <groupId>network.ike.foundation</groupId>
+                <artifactId>ike-cql-knowledge-maven-plugin</artifactId>
+                <version>${project.version}</version>
+                <configuration>
+                    <dictionary>${session.rootDirectory}/ike-doc/src/docs/asciidoc/cql/keyword-dictionary.adoc</dictionary>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-cql-terms</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
