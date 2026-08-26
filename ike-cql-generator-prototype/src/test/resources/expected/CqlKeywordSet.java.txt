@@ -33,696 +33,559 @@ public final class CqlKeywordSet {
         set.concept("CQL keyword (IkeCql)").at(inception)
                 .synonym("CQL keyword")
                 .definition("A keyword of Clinical Quality Language, as catalogued by the CQL keyword dictionary.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(network.ike.foundation.ike.terms.IkeTerm.MODEL_CONCEPT))));
+                .isA(network.ike.foundation.ike.terms.IkeTerm.MODEL_CONCEPT);
     }
 
     private static void composeFamilies(KnowledgeSet set, ActiveStamp inception) {
         set.concept("Core Operators (IkeCql)").at(inception)
                 .synonym("Core Operators")
                 .definition("A family of CQL keywords, as grouped by the CQL keyword dictionary: Core Operators.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("CQL keyword (IkeCql)")))));
+                .isA(set.conceptRef("CQL keyword (IkeCql)"));
         set.concept("Data & Timing Operators (IkeCql)").at(inception)
                 .synonym("Data & Timing Operators")
                 .definition("A family of CQL keywords, as grouped by the CQL keyword dictionary: Data & Timing Operators.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("CQL keyword (IkeCql)")))));
+                .isA(set.conceptRef("CQL keyword (IkeCql)"));
         set.concept("Declarations (IkeCql)").at(inception)
                 .synonym("Declarations")
                 .definition("A family of CQL keywords, as grouped by the CQL keyword dictionary: Declarations.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("CQL keyword (IkeCql)")))));
+                .isA(set.conceptRef("CQL keyword (IkeCql)"));
         set.concept("Query & Control Flow (IkeCql)").at(inception)
                 .synonym("Query & Control Flow")
                 .definition("A family of CQL keywords, as grouped by the CQL keyword dictionary: Query & Control Flow.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("CQL keyword (IkeCql)")))));
+                .isA(set.conceptRef("CQL keyword (IkeCql)"));
         set.concept("Types & Literals (IkeCql)").at(inception)
                 .synonym("Types & Literals")
                 .definition("A family of CQL keywords, as grouped by the CQL keyword dictionary: Types & Literals.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("CQL keyword (IkeCql)")))));
+                .isA(set.conceptRef("CQL keyword (IkeCql)"));
     }
 
     private static void composeCategories(KnowledgeSet set, ActiveStamp inception) {
         set.concept("Access Modifier (IkeCql)").at(inception)
                 .synonym("Access Modifier")
                 .definition("A category of CQL keywords within the Declarations family, as grouped by the CQL keyword dictionary: Access Modifier.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declarations (IkeCql)")))));
+                .isA(set.conceptRef("Declarations (IkeCql)"));
         set.concept("Arithmetic Operator (IkeCql)").at(inception)
                 .synonym("Arithmetic Operator")
                 .definition("A category of CQL keywords within the Core Operators family, as grouped by the CQL keyword dictionary: Arithmetic Operator.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Core Operators (IkeCql)")))));
+                .isA(set.conceptRef("Core Operators (IkeCql)"));
         set.concept("Comparison Operator (IkeCql)").at(inception)
                 .synonym("Comparison Operator")
                 .definition("A category of CQL keywords within the Core Operators family, as grouped by the CQL keyword dictionary: Comparison Operator.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Core Operators (IkeCql)")))));
+                .isA(set.conceptRef("Core Operators (IkeCql)"));
         set.concept("Conditional Expression (IkeCql)").at(inception)
                 .synonym("Conditional Expression")
                 .definition("A category of CQL keywords within the Query & Control Flow family, as grouped by the CQL keyword dictionary: Conditional Expression.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query & Control Flow (IkeCql)")))));
+                .isA(set.conceptRef("Query & Control Flow (IkeCql)"));
         set.concept("Declaration (IkeCql)").at(inception)
                 .synonym("Declaration")
                 .definition("A category of CQL keywords within the Declarations family, as grouped by the CQL keyword dictionary: Declaration.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declarations (IkeCql)")))));
+                .isA(set.conceptRef("Declarations (IkeCql)"));
         set.concept("Declaration Modifier (IkeCql)").at(inception)
                 .synonym("Declaration Modifier")
                 .definition("A category of CQL keywords within the Declarations family, as grouped by the CQL keyword dictionary: Declaration Modifier.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declarations (IkeCql)")))));
+                .isA(set.conceptRef("Declarations (IkeCql)"));
         set.concept("Extraction Operator (IkeCql)").at(inception)
                 .synonym("Extraction Operator")
                 .definition("A category of CQL keywords within the Data & Timing Operators family, as grouped by the CQL keyword dictionary: Extraction Operator.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Data & Timing Operators (IkeCql)")))));
+                .isA(set.conceptRef("Data & Timing Operators (IkeCql)"));
         set.concept("List/Interval Operator (IkeCql)").at(inception)
                 .synonym("List/Interval Operator")
                 .definition("A category of CQL keywords within the Data & Timing Operators family, as grouped by the CQL keyword dictionary: List/Interval Operator.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Data & Timing Operators (IkeCql)")))));
+                .isA(set.conceptRef("Data & Timing Operators (IkeCql)"));
         set.concept("Literal (IkeCql)").at(inception)
                 .synonym("Literal")
                 .definition("A category of CQL keywords within the Types & Literals family, as grouped by the CQL keyword dictionary: Literal.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Types & Literals (IkeCql)")))));
+                .isA(set.conceptRef("Types & Literals (IkeCql)"));
         set.concept("Logical Operator (IkeCql)").at(inception)
                 .synonym("Logical Operator")
                 .definition("A category of CQL keywords within the Core Operators family, as grouped by the CQL keyword dictionary: Logical Operator.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Core Operators (IkeCql)")))));
+                .isA(set.conceptRef("Core Operators (IkeCql)"));
         set.concept("Query Clause (IkeCql)").at(inception)
                 .synonym("Query Clause")
                 .definition("A category of CQL keywords within the Query & Control Flow family, as grouped by the CQL keyword dictionary: Query Clause.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query & Control Flow (IkeCql)")))));
+                .isA(set.conceptRef("Query & Control Flow (IkeCql)"));
         set.concept("Sort Modifier (IkeCql)").at(inception)
                 .synonym("Sort Modifier")
                 .definition("A category of CQL keywords within the Query & Control Flow family, as grouped by the CQL keyword dictionary: Sort Modifier.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query & Control Flow (IkeCql)")))));
+                .isA(set.conceptRef("Query & Control Flow (IkeCql)"));
         set.concept("Time-Precision Unit (IkeCql)").at(inception)
                 .synonym("Time-Precision Unit")
                 .definition("A category of CQL keywords within the Data & Timing Operators family, as grouped by the CQL keyword dictionary: Time-Precision Unit.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Data & Timing Operators (IkeCql)")))));
+                .isA(set.conceptRef("Data & Timing Operators (IkeCql)"));
         set.concept("Timing Operator (IkeCql)").at(inception)
                 .synonym("Timing Operator")
                 .definition("A category of CQL keywords within the Data & Timing Operators family, as grouped by the CQL keyword dictionary: Timing Operator.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Data & Timing Operators (IkeCql)")))));
+                .isA(set.conceptRef("Data & Timing Operators (IkeCql)"));
         set.concept("Type Name (IkeCql)").at(inception)
                 .synonym("Type Name")
                 .definition("A category of CQL keywords within the Types & Literals family, as grouped by the CQL keyword dictionary: Type Name.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Types & Literals (IkeCql)")))));
+                .isA(set.conceptRef("Types & Literals (IkeCql)"));
         set.concept("Type Operator (IkeCql)").at(inception)
                 .synonym("Type Operator")
                 .definition("A category of CQL keywords within the Core Operators family, as grouped by the CQL keyword dictionary: Type Operator.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Core Operators (IkeCql)")))));
+                .isA(set.conceptRef("Core Operators (IkeCql)"));
     }
 
     private static void composeKeywords(KnowledgeSet set, ActiveStamp inception) {
         set.concept("Code (IkeCql)").at(inception)
                 .synonym("Code")
                 .definition("Built-in structured type representing one terminology code (elements: code, display, system, version).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Type Name (IkeCql)")))));
+                .isA(set.conceptRef("Type Name (IkeCql)"));
         set.concept("Concept (IkeCql)").at(inception)
                 .synonym("Concept")
                 .definition("Built-in structured type representing a clinical concept as a list of semantically equivalent Codes plus a display string.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Type Name (IkeCql)")))));
+                .isA(set.conceptRef("Type Name (IkeCql)"));
         set.concept("List (IkeCql)").at(inception)
                 .synonym("List")
                 .definition("Built-in type representing an ordered, zero-indexed collection of values of the same type.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Type Name (IkeCql)")))));
+                .isA(set.conceptRef("Type Name (IkeCql)"));
         set.concept("Tuple (IkeCql)").at(inception)
                 .synonym("Tuple")
                 .definition("Built-in type representing a structured value made of named elements, each with its own type.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Type Name (IkeCql)")))));
+                .isA(set.conceptRef("Type Name (IkeCql)"));
         set.concept("after (IkeCql)").at(inception)
                 .synonym("after")
                 .definition("Relational operator testing whether one date, time, or interval occurs later than another (e.g. ‘X after Y’).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("aggregate (IkeCql)").at(inception)
                 .synonym("aggregate")
                 .definition("Introduces the aggregate clause of a query, reducing a list to one accumulated value, similar to a ‘reduce’ function (e.g. ‘aggregate Result starting 0: ...’).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("all (IkeCql)").at(inception)
                 .synonym("all")
                 .definition("Modifier that keeps duplicate values instead of the default distinct behavior, used in a return or aggregate clause.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("as (IkeCql)").at(inception)
                 .synonym("as")
                 .definition("Casts a value to a specified type at compile time (null at run time if the value isn’t that type); also declares a parameter’s or argument’s type.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Type Operator (IkeCql)")))));
+                .isA(set.conceptRef("Type Operator (IkeCql)"));
         set.concept("asc (IkeCql)").at(inception)
                 .synonym("asc")
                 .definition("Short form of ‘ascending’ — orders sort-clause results from lowest to highest (the default order).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Sort Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Sort Modifier (IkeCql)"));
         set.concept("ascending (IkeCql)").at(inception)
                 .synonym("ascending")
                 .definition("Full form of ‘asc’ — orders sort-clause results from lowest to highest.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Sort Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Sort Modifier (IkeCql)"));
         set.concept("before (IkeCql)").at(inception)
                 .synonym("before")
                 .definition("Relational operator testing whether one date, time, or interval occurs earlier than another.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("between (IkeCql)").at(inception)
                 .synonym("between")
                 .definition("Tests whether a value falls within an inclusive range (e.g. ‘4 between 2 and 8’); also used in ‘duration/difference in <precision> between X and Y’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Comparison Operator (IkeCql)")))));
+                .isA(set.conceptRef("Comparison Operator (IkeCql)"));
         set.concept("by (IkeCql)").at(inception)
                 .synonym("by")
                 .definition("Connector introducing the ordering expression in a sort clause (‘sort by ...’) or the grouping used in an aggregate clause.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("called (IkeCql)").at(inception)
                 .synonym("called")
                 .definition("Assigns a local alias to an included library or data model, e.g. ‘include Common called Common’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Declaration Modifier (IkeCql)"));
         set.concept("case (IkeCql)").at(inception)
                 .synonym("case")
                 .definition("Begins a case expression, which evaluates when/then branches (or compares a value against candidates) and returns the first match.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Conditional Expression (IkeCql)")))));
+                .isA(set.conceptRef("Conditional Expression (IkeCql)"));
         set.concept("cast (IkeCql)").at(inception)
                 .synonym("cast")
                 .definition("Performs a strict type cast that raises a run-time error if the value isn’t the target type — compare to the more permissive ‘as’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Type Operator (IkeCql)")))));
+                .isA(set.conceptRef("Type Operator (IkeCql)"));
         set.concept("code (IkeCql)").at(inception)
                 .synonym("code")
                 .definition("Declares a named, reusable reference to a single terminology code, e.g. ‘code “Foo”: ‘123’ from “SNOMED”’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("codesystem (IkeCql)").at(inception)
                 .synonym("codesystem")
                 .definition("Declares a named, local reference to an external code system, e.g. ‘codesystem “SNOMED”: ‘http://snomed.info/sct’’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("codesystems (IkeCql)").at(inception)
                 .synonym("codesystems")
                 .definition("Plural form used in a value set’s static binding to pin the specific code systems (and versions) its expansion should use.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Declaration Modifier (IkeCql)"));
         set.concept("collapse (IkeCql)").at(inception)
                 .synonym("collapse")
                 .definition("Merges a list of overlapping or adjacent intervals into the smallest possible set of disjoint intervals.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("concept (IkeCql)").at(inception)
                 .synonym("concept")
                 .definition("Declares a named, reusable reference to a Concept literal — a set of equivalent codes with a display string.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("contains (IkeCql)").at(inception)
                 .synonym("contains")
                 .definition("Membership operator testing whether an interval or list contains a given point or element — the inverse of ‘in’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("context (IkeCql)").at(inception)
                 .synonym("context")
                 .definition("Declares the evaluation scope for the statements that follow, e.g. Patient, Practitioner, or Unfiltered.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("convert (IkeCql)").at(inception)
                 .synonym("convert")
                 .definition("Explicitly converts a value or quantity unit from one type/unit to another, e.g. ‘convert X to DateTime’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Type Operator (IkeCql)")))));
+                .isA(set.conceptRef("Type Operator (IkeCql)"));
         set.concept("date (IkeCql)").at(inception)
                 .synonym("date")
                 .definition("Extracts the date-only portion of a DateTime value: ‘date from X’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Extraction Operator (IkeCql)")))));
+                .isA(set.conceptRef("Extraction Operator (IkeCql)"));
         set.concept("day (IkeCql)").at(inception)
                 .synonym("day")
                 .definition("Singular calendar-duration unit of one day, used in quantities and date/time arithmetic.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("days (IkeCql)").at(inception)
                 .synonym("days")
                 .definition("Plural calendar-duration unit of days.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("default (IkeCql)").at(inception)
                 .synonym("default")
                 .definition("Specifies a compile-time default value for a parameter, used when the evaluating environment supplies none.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Declaration Modifier (IkeCql)"));
         set.concept("define (IkeCql)").at(inception)
                 .synonym("define")
                 .definition("Introduces a named expression — the basic unit of logic in a CQL library.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("desc (IkeCql)").at(inception)
                 .synonym("desc")
                 .definition("Short form of ‘descending’ — orders sort-clause results from highest to lowest.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Sort Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Sort Modifier (IkeCql)"));
         set.concept("descending (IkeCql)").at(inception)
                 .synonym("descending")
                 .definition("Full form of ‘desc’ — orders sort-clause results from highest to lowest.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Sort Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Sort Modifier (IkeCql)"));
         set.concept("difference (IkeCql)").at(inception)
                 .synonym("difference")
                 .definition("Counts the number of precision boundaries crossed between two date/time values: ‘difference in months between X and Y’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Extraction Operator (IkeCql)")))));
+                .isA(set.conceptRef("Extraction Operator (IkeCql)"));
         set.concept("display (IkeCql)").at(inception)
                 .synonym("display")
                 .definition("Supplies the human-readable display string on a Code or Concept declaration or literal.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Declaration Modifier (IkeCql)"));
         set.concept("distinct (IkeCql)").at(inception)
                 .synonym("distinct")
                 .definition("Removes duplicate elements from a list; also the default (implicit) behavior of a query’s return clause.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("div (IkeCql)").at(inception)
                 .synonym("div")
                 .definition("Truncated (integer-style) division, discarding any remainder — e.g. ‘4 div 2’ = 2.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Arithmetic Operator (IkeCql)")))));
+                .isA(set.conceptRef("Arithmetic Operator (IkeCql)"));
         set.concept("duration (IkeCql)").at(inception)
                 .synonym("duration")
                 .definition("Computes the number of whole calendar periods of a given precision between two date/time values: ‘duration in months between X and Y’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Extraction Operator (IkeCql)")))));
+                .isA(set.conceptRef("Extraction Operator (IkeCql)"));
         set.concept("during (IkeCql)").at(inception)
                 .synonym("during")
                 .definition("Tests whether a point or interval falls entirely within another interval.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("else (IkeCql)").at(inception)
                 .synonym("else")
                 .definition("Introduces the fallback branch of an if or case expression, used when no condition evaluates to true.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Conditional Expression (IkeCql)")))));
+                .isA(set.conceptRef("Conditional Expression (IkeCql)"));
         set.concept("end (IkeCql)").at(inception)
                 .synonym("end")
                 .definition("Returns the ending boundary point of an interval: ‘end of Interval[3, 5)’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("ends (IkeCql)").at(inception)
                 .synonym("ends")
                 .definition("Tests whether one interval finishes at the same point as another (a ‘suffix’ relationship, from Allen’s interval algebra).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("except (IkeCql)").at(inception)
                 .synonym("except")
                 .definition("Set-difference operator — returns the elements or range in the left operand that are not in the right operand.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("exists (IkeCql)").at(inception)
                 .synonym("exists")
                 .definition("Existential quantifier that returns true if a list or query has at least one non-null element.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Logical Operator (IkeCql)")))));
+                .isA(set.conceptRef("Logical Operator (IkeCql)"));
         set.concept("expand (IkeCql)").at(inception)
                 .synonym("expand")
                 .definition("Expands an interval into a list of unit-length sub-intervals at a given precision, or expands a value set reference into its member codes.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("false (IkeCql)").at(inception)
                 .synonym("false")
                 .definition("The boolean literal representing logical falsity.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Literal (IkeCql)")))));
+                .isA(set.conceptRef("Literal (IkeCql)"));
         set.concept("flatten (IkeCql)").at(inception)
                 .synonym("flatten")
                 .definition("Flattens a list of lists into a single, single-level list.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("fluent (IkeCql)").at(inception)
                 .synonym("fluent")
                 .definition("Marks a function so it can be invoked with dot-notation, with the left-hand value supplied as its first argument.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Declaration Modifier (IkeCql)"));
         set.concept("from (IkeCql)").at(inception)
                 .synonym("from")
                 .definition("Introduces the source of a query, a code declaration’s originating code system, or an extraction operator (e.g. ‘date from X’, ‘singleton from X’).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("function (IkeCql)").at(inception)
                 .synonym("function")
                 .definition("Declares a named, reusable function that accepts typed arguments and returns a value.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("hour (IkeCql)").at(inception)
                 .synonym("hour")
                 .definition("Singular calendar-duration unit of one hour.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("hours (IkeCql)").at(inception)
                 .synonym("hours")
                 .definition("Plural calendar-duration unit of hours.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("if (IkeCql)").at(inception)
                 .synonym("if")
                 .definition("Begins an if/then/else expression that selects between two results based on one boolean condition.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Conditional Expression (IkeCql)")))));
+                .isA(set.conceptRef("Conditional Expression (IkeCql)"));
         set.concept("implies (IkeCql)").at(inception)
                 .synonym("implies")
                 .definition("Logical implication — false only when the left operand is true and the right is false.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Logical Operator (IkeCql)")))));
+                .isA(set.conceptRef("Logical Operator (IkeCql)"));
         set.concept("in (IkeCql)").at(inception)
                 .synonym("in")
                 .definition("Tests whether a value is a member of a list, interval, or terminology set — the inverse of ‘contains’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("include (IkeCql)").at(inception)
                 .synonym("include")
                 .definition("Adds a reference to another CQL library so its public components can be used here.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("includes (IkeCql)").at(inception)
                 .synonym("includes")
                 .definition("Tests whether one interval or list entirely contains another — the inverse of ‘included in’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("intersect (IkeCql)").at(inception)
                 .synonym("intersect")
                 .definition("Returns the elements, or overlapping range, common to both operands.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("is (IkeCql)").at(inception)
                 .synonym("is")
                 .definition("Tests the run-time type of a value (e.g. ‘5 is Integer’), or tests for null/true/false (e.g. ‘X is null’).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Type Operator (IkeCql)")))));
+                .isA(set.conceptRef("Type Operator (IkeCql)"));
         set.concept("let (IkeCql)").at(inception)
                 .synonym("let")
                 .definition("Defines a named, reusable intermediate expression scoped to a single query.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("library (IkeCql)").at(inception)
                 .synonym("library")
                 .definition("Names the current CQL library and, optionally, its version.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("maximum (IkeCql)").at(inception)
                 .synonym("maximum")
                 .definition("Returns the maximum representable value for a given type, e.g. ‘maximum Integer’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Arithmetic Operator (IkeCql)")))));
+                .isA(set.conceptRef("Arithmetic Operator (IkeCql)"));
         set.concept("meets (IkeCql)").at(inception)
                 .synonym("meets")
                 .definition("Tests whether two intervals are adjacent — one ends exactly where the other begins.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("millisecond (IkeCql)").at(inception)
                 .synonym("millisecond")
                 .definition("Singular calendar-duration unit of one millisecond — the finest date/time precision.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("milliseconds (IkeCql)").at(inception)
                 .synonym("milliseconds")
                 .definition("Plural calendar-duration unit of milliseconds.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("minimum (IkeCql)").at(inception)
                 .synonym("minimum")
                 .definition("Returns the minimum representable value for a given type, e.g. ‘minimum Integer’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Arithmetic Operator (IkeCql)")))));
+                .isA(set.conceptRef("Arithmetic Operator (IkeCql)"));
         set.concept("minute (IkeCql)").at(inception)
                 .synonym("minute")
                 .definition("Singular calendar-duration unit of one minute.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("minutes (IkeCql)").at(inception)
                 .synonym("minutes")
                 .definition("Plural calendar-duration unit of minutes.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("mod (IkeCql)").at(inception)
                 .synonym("mod")
                 .definition("Modulo operator — returns the remainder of dividing the left operand by the right.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Arithmetic Operator (IkeCql)")))));
+                .isA(set.conceptRef("Arithmetic Operator (IkeCql)"));
         set.concept("month (IkeCql)").at(inception)
                 .synonym("month")
                 .definition("Singular calendar-duration unit of one month.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("months (IkeCql)").at(inception)
                 .synonym("months")
                 .definition("Plural calendar-duration unit of months.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("not (IkeCql)").at(inception)
                 .synonym("not")
                 .definition("Logical negation — true becomes false, false becomes true, null stays null.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Logical Operator (IkeCql)")))));
+                .isA(set.conceptRef("Logical Operator (IkeCql)"));
         set.concept("null (IkeCql)").at(inception)
                 .synonym("null")
                 .definition("The literal representing an unknown or missing value.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Literal (IkeCql)")))));
+                .isA(set.conceptRef("Literal (IkeCql)"));
         set.concept("occurs (IkeCql)").at(inception)
                 .synonym("occurs")
                 .definition("Optional word that may appear anywhere ‘starts’ or ‘ends’ can appear in a timing phrase, purely to make it read more naturally.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("of (IkeCql)").at(inception)
                 .synonym("of")
                 .definition("Connector used in boundary-extraction phrases (‘start of X’, ‘end of X’) and qualified date comparisons (‘after year of X’).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Extraction Operator (IkeCql)")))));
+                .isA(set.conceptRef("Extraction Operator (IkeCql)"));
         set.concept("on (IkeCql)").at(inception)
                 .synonym("on")
                 .definition("Timing keyword combined with ‘or before’ / ‘or after’ to build the inclusive-boundary On Or Before / On Or After operators.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("or after (IkeCql)").at(inception)
                 .synonym("or after")
                 .definition("Qualifies a precision- or quantity-based timing comparison to include the boundary case in the ‘after’ direction, e.g. ‘same year or after’, ‘3 days or after’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("or before (IkeCql)").at(inception)
                 .synonym("or before")
                 .definition("Qualifies a precision- or quantity-based timing comparison to include the boundary case in the ‘before’ direction, e.g. ‘same year or before’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("or on (IkeCql)").at(inception)
                 .synonym("or on")
                 .definition("Qualifies a timing comparison to include the exact-boundary case, used to build the On Or Before / On Or After operators.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("parameter (IkeCql)").at(inception)
                 .synonym("parameter")
                 .definition("Declares a named, typed input the evaluating environment supplies to the library at run time.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("per (IkeCql)").at(inception)
                 .synonym("per")
                 .definition("Reserved keyword associated with rate- or frequency-style expressions.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("point (IkeCql)").at(inception)
                 .synonym("point")
                 .definition("Extracts the single value from a unit interval — an interval whose start and end are the same point: ‘point from Interval[1,1]’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("predecessor (IkeCql)").at(inception)
                 .synonym("predecessor")
                 .definition("Returns the value immediately preceding the argument for its type, e.g. ‘predecessor of 100’ = 99 (steps back by the value’s finest specified precision for Date/DateTime/Time).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Arithmetic Operator (IkeCql)")))));
+                .isA(set.conceptRef("Arithmetic Operator (IkeCql)"));
         set.concept("private (IkeCql)").at(inception)
                 .synonym("private")
                 .definition("Marks a library component as accessible only within the library where it’s declared.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Access Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Access Modifier (IkeCql)"));
         set.concept("properly (IkeCql)").at(inception)
                 .synonym("properly")
                 .definition("Strengthens ‘includes’ / ‘included in’ so an exactly-equal value no longer counts — i.e., a true proper superset/subset.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("public (IkeCql)").at(inception)
                 .synonym("public")
                 .definition("Marks a library component as accessible to other libraries that include this one — the default when no modifier is given.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Access Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Access Modifier (IkeCql)"));
         set.concept("return (IkeCql)").at(inception)
                 .synonym("return")
                 .definition("Shapes or projects a query’s result, optionally computing new values; defaults to distinct results unless ‘all’ is specified.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("same (IkeCql)").at(inception)
                 .synonym("same")
                 .definition("Precision-based equality comparison for date/time values: ‘same as’, ‘same year as’, etc.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("second (IkeCql)").at(inception)
                 .synonym("second")
                 .definition("Singular calendar-duration unit of one second.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("seconds (IkeCql)").at(inception)
                 .synonym("seconds")
                 .definition("Plural calendar-duration unit of seconds.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("singleton (IkeCql)").at(inception)
                 .synonym("singleton")
                 .definition("Extracts the single element from a one-element list: ‘singleton from X’ — used for list-to-scalar demotion.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("sort (IkeCql)").at(inception)
                 .synonym("sort")
                 .definition("Introduces the sort clause that orders a query’s results; must be the last clause in a query.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("start (IkeCql)").at(inception)
                 .synonym("start")
                 .definition("Returns the starting boundary point of an interval: ‘start of Interval[3, 5)’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("starting (IkeCql)").at(inception)
                 .synonym("starting")
                 .definition("Supplies the initial accumulator value for an aggregate clause, e.g. ‘aggregate Result starting 0: ...’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("starts (IkeCql)").at(inception)
                 .synonym("starts")
                 .definition("Tests whether one interval begins at the same point as another (a ‘prefix’ relationship, from Allen’s interval algebra).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("successor (IkeCql)").at(inception)
                 .synonym("successor")
                 .definition("Returns the value immediately following the argument for its type, e.g. ‘successor of 1’ = 2.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Arithmetic Operator (IkeCql)")))));
+                .isA(set.conceptRef("Arithmetic Operator (IkeCql)"));
         set.concept("such that (IkeCql)").at(inception)
                 .synonym("such that")
                 .definition("Attaches the filtering condition to a with/without relationship clause.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("then (IkeCql)").at(inception)
                 .synonym("then")
                 .definition("Introduces the result returned when the preceding if/when condition evaluates to true.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Conditional Expression (IkeCql)")))));
+                .isA(set.conceptRef("Conditional Expression (IkeCql)"));
         set.concept("time (IkeCql)").at(inception)
                 .synonym("time")
                 .definition("Extracts the time-of-day portion of a DateTime value: ‘time from X’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Extraction Operator (IkeCql)")))));
+                .isA(set.conceptRef("Extraction Operator (IkeCql)"));
         set.concept("timezoneoffset (IkeCql)").at(inception)
                 .synonym("timezoneoffset")
                 .definition("Extracts the timezone-offset component of a Date/DateTime/Time value: ‘timezoneoffset from X’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Extraction Operator (IkeCql)")))));
+                .isA(set.conceptRef("Extraction Operator (IkeCql)"));
         set.concept("to (IkeCql)").at(inception)
                 .synonym("to")
                 .definition("Connector used with ‘convert’ to name the target type or unit: ‘convert X to Y’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Type Operator (IkeCql)")))));
+                .isA(set.conceptRef("Type Operator (IkeCql)"));
         set.concept("true (IkeCql)").at(inception)
                 .synonym("true")
                 .definition("The boolean literal representing logical truth.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Literal (IkeCql)")))));
+                .isA(set.conceptRef("Literal (IkeCql)"));
         set.concept("union (IkeCql)").at(inception)
                 .synonym("union")
                 .definition("Combines two lists or intervals into one (duplicates removed for lists; for intervals, only defined when they overlap or meet).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("using (IkeCql)").at(inception)
                 .synonym("using")
                 .definition("Declares which external data model (e.g. FHIR, QUICK) the library’s retrieve expressions are written against.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("valueset (IkeCql)").at(inception)
                 .synonym("valueset")
                 .definition("Declares a named, local reference to an external value set.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration (IkeCql)")))));
+                .isA(set.conceptRef("Declaration (IkeCql)"));
         set.concept("version (IkeCql)").at(inception)
                 .synonym("version")
                 .definition("Specifies a version identifier on a library, codesystem, valueset, or include declaration.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Declaration Modifier (IkeCql)")))));
+                .isA(set.conceptRef("Declaration Modifier (IkeCql)"));
         set.concept("week (IkeCql)").at(inception)
                 .synonym("week")
                 .definition("Singular calendar-duration unit of one week (always treated as 7 days).")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("weeks (IkeCql)").at(inception)
                 .synonym("weeks")
                 .definition("Plural calendar-duration unit of weeks.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("when (IkeCql)").at(inception)
                 .synonym("when")
                 .definition("Introduces a condition (or a candidate value) inside a case expression.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Conditional Expression (IkeCql)")))));
+                .isA(set.conceptRef("Conditional Expression (IkeCql)"));
         set.concept("where (IkeCql)").at(inception)
                 .synonym("where")
                 .definition("Filters a query’s results to only the elements for which a boolean condition evaluates to true.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("width (IkeCql)").at(inception)
                 .synonym("width")
                 .definition("Returns the size of an interval — its high boundary minus its low boundary.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("List/Interval Operator (IkeCql)")))));
+                .isA(set.conceptRef("List/Interval Operator (IkeCql)"));
         set.concept("with (IkeCql)").at(inception)
                 .synonym("with")
                 .definition("Filters a query’s primary source to elements that have a specified relationship to another source, paired with ‘such that’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("within (IkeCql)").at(inception)
                 .synonym("within")
                 .definition("Tests whether a point or interval falls within a specified proximity or range of another.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Timing Operator (IkeCql)")))));
+                .isA(set.conceptRef("Timing Operator (IkeCql)"));
         set.concept("without (IkeCql)").at(inception)
                 .synonym("without")
                 .definition("Filters a query’s primary source to elements that do NOT have a specified relationship to another source — the negated form of ‘with’.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Query Clause (IkeCql)")))));
+                .isA(set.conceptRef("Query Clause (IkeCql)"));
         set.concept("xor (IkeCql)").at(inception)
                 .synonym("xor")
                 .definition("Boolean exclusive-or — true only when exactly one operand is true.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Logical Operator (IkeCql)")))));
+                .isA(set.conceptRef("Logical Operator (IkeCql)"));
         set.concept("year (IkeCql)").at(inception)
                 .synonym("year")
                 .definition("Singular calendar-duration unit of one year.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
         set.concept("years (IkeCql)").at(inception)
                 .synonym("years")
                 .definition("Plural calendar-duration unit of years.")
-                .statedAxioms(leb -> leb.NecessarySet(leb.And(
-                        leb.ConceptAxiom(set.conceptRef("Time-Precision Unit (IkeCql)")))));
+                .isA(set.conceptRef("Time-Precision Unit (IkeCql)"));
     }
 }

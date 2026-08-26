@@ -287,9 +287,8 @@ final class CqlKeywordSetGenerator {
                     .append("                .synonym(").append(literal(c.synonym())).append(")\n")
                     .append("                .definition(").append(literal(c.definition()))
                     .append(")\n")
-                    .append("                .statedAxioms(leb -> leb.NecessarySet(leb.And(\n")
-                    .append("                        leb.ConceptAxiom(")
-                    .append(c.parentAxiomTarget()).append("))));\n");
+                    .append("                .isA(").append(c.parentAxiomTarget())
+                    .append(");\n");
         }
         out.append("    }\n");
     }

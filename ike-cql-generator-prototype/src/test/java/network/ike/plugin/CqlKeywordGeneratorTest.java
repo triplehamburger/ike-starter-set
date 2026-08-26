@@ -34,6 +34,7 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.tuple;
 
 /** Covers the dictionary reader's strictness, the generator's output, and identity determinism. */
 class CqlKeywordGeneratorTest {
@@ -134,10 +135,10 @@ class CqlKeywordGeneratorTest {
                 .contains("public static void compose(KnowledgeSet set)")
                 .contains("set.concept(\"after (IkeCql)\").at(inception)")
                 .contains(".synonym(\"after\")")
-                .contains("leb.ConceptAxiom(set.conceptRef(\"Timing Operator (IkeCql)\"))")
+                .contains(".isA(set.conceptRef(\"Timing Operator (IkeCql)\"))")
                 // the root is authored, not merely referenced, and hangs off an external term
                 .contains("set.concept(\"CQL keyword (IkeCql)\").at(inception)")
-                .contains("leb.ConceptAxiom(network.ike.foundation.ike.terms.IkeTerm.MODEL_CONCEPT)")
+                .contains(".isA(network.ike.foundation.ike.terms.IkeTerm.MODEL_CONCEPT)")
                 .doesNotContain("\"and (IkeCql)\"");   // Implemented in Komet — not re-minted
         assertThat(generated.identityReport())
                 .contains("IMPLEMENTED_IN_KOMET  and  -> *And*")
@@ -145,10 +146,10 @@ class CqlKeywordGeneratorTest {
     }
 
     /**
-     * The emitted fluent chain nests four calls deep, so its closing parentheses are counted by
-     * hand in the emitter and a miscount produces a file that will not compile. Checked outside
-     * the string literals, since definitions carry prose parentheses of their own — two entries
-     * quote half-open interval notation like {@code Interval[3, 5)}.
+     * The emitted fluent chain's closing parentheses are counted by hand in the emitter and a
+     * miscount produces a file that will not compile. Checked outside the string literals, since
+     * definitions carry prose parentheses of their own — two entries quote half-open interval
+     * notation like {@code Interval[3, 5)}.
      */
     @Test
     void emitsStructurallyBalancedJava() {
@@ -343,6 +344,31 @@ class CqlKeywordGeneratorTest {
                 .hasMessageContaining("Declarations (IkeCql)");
     }
 
+    /**
+     * The trailing {@code Komet concept:} line is scanned forward from the example block, so
+     * without the separator an entry would run into the next one and report its counterpart as
+     * its own — a wrong row in the identity report, reached with nothing erroring.
+     */
+    @Test
+    void rejectsAnEntryRunningIntoTheNextWithNoSeparator() {
+        List<String> lines = twoWithheldEntries();
+        lines.remove(lines.indexOf("* * *"));
+
+        assertThatThrownBy(() -> CqlKeywordDictionary.parse(lines))
+                .isInstanceOf(MalformedEntryException.class)
+                .hasMessageContaining("reaches the next entry's anchor with no \"* * *\"");
+    }
+
+    /** With the separator in place the same two entries keep their own counterparts. */
+    @Test
+    void readsAdjacentWithheldEntriesWithoutCrossingTheirBoundary() {
+        List<Entry> entries = CqlKeywordDictionary.parse(twoWithheldEntries());
+
+        assertThat(entries).extracting(Entry::keyword, Entry::kometConcepts)
+                .containsExactly(tuple("or less", "*Clause Less or equal*"),
+                        tuple("or more", "*Clause Greater or equal*"));
+    }
+
     @Test
     void rejectsAFileWithNoEntries() {
         assertThatThrownBy(() -> CqlKeywordDictionary.parse(List.of("= Keyword Dictionary", "")))
@@ -375,6 +401,47 @@ class CqlKeywordGeneratorTest {
 
     private static List<String> entry(String text) {
         return List.of(text.split("\n", -1));
+    }
+
+    /**
+     * The shipped dictionary's two adjacent withheld entries, the pair whose counterparts a scan
+     * crossing the boundary would swap.
+     */
+    private static final String WITHHELD_PAIR = """
+            [[term-or-less]]
+            [discrete]
+            === *or* less
+
+            `Timing Operator` -- _Related concept in Komet_
+
+            Qualifies a quantity offset to mean that amount or a smaller amount.
+
+            [source,cql]
+            ----
+            "FollowUpDateTime" 3 days or less after "DischargeDateTime"
+            ----
+
+            Related Komet concept(s): *Clause Less or equal*
+
+            * * *
+
+            [[term-or-more]]
+            [discrete]
+            === *or* more
+
+            `Timing Operator` -- _Related concept in Komet_
+
+            Qualifies a quantity offset to mean that amount or a larger amount.
+
+            [source,cql]
+            ----
+            "ReadmissionDateTime" 30 days or more after "DischargeDateTime"
+            ----
+
+            Related Komet concept(s): *Clause Greater or equal*""";
+
+    private static List<String> twoWithheldEntries() {
+        return new ArrayList<>(entry(WITHHELD_PAIR));
     }
 
     /** Two well-formed entries — "after" and the same entry reworded to "before". */

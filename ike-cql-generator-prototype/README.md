@@ -16,6 +16,28 @@ From 122 dictionary entries: 137 concepts — the root, 5 keyword families, 16 c
 115 keywords — plus an identity report. Both committed under `src/test/resources/expected/` as the reviewable
 output, and asserted byte-for-byte by `CqlKeywordGeneratorTest`.
 
+### Why the axiom clause is `.isA(...)`
+
+Each concept's single parent is emitted as `.isA(<target>)` rather than
+`.statedAxioms(leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(<target>))))`. Not because one is
+"the" hand-authored idiom — ike-terms is split almost perfectly, 100 `.isA` and 4 `statedAxioms`
+across the top-level `*Set.java`, 0 and 375 across `foundation/Section*.java`, so each form *is*
+the convention, in a different place. The reasons here are:
+
+- **It is identity-neutral.** `ConceptBuilder.isA(ConceptFacade...)` and `statedAxioms(Consumer)`
+  both call `ledger.addAxiomVersion(stamp, ...)` and neither declares an identity; for a single
+  parent `isA` composes literally `NecessarySet(And(ConceptAxiom(parent)))`. Same axiom, same
+  semantic, same stamp — and all 137 UUIDs are unchanged, which the committed identity report
+  proves byte for byte.
+- **It is materially smaller** — 137 fewer lines of a 728-line file. Generated output is read and
+  reviewed by humans, so the noise it does not carry is real value.
+- **Matching `FoundationSet` means matching the concept *shape*** — identity, descriptions,
+  identifier, axiom, membership, dialect — not which equivalent API expresses the axiom clause.
+
+Worth knowing alongside: every one of those 375 `Section*.java` calls pins an explicit
+`PublicIds.of(...)` and no hand-authored one does. The long form is what *reproducing pre-existing
+semantic identities* requires — a constraint this generator does not have, since it mints new ones.
+
 ## Determinism
 
 A concept's identity is `UUIDv5(set namespace, fully qualified name)`. Re-wording a concept
@@ -116,4 +138,6 @@ Deliberately out of scope for this first step:
 - **The generated source is not compile-verified here.** `dev.ikm.tinkar:entity` at the version
   this reactor pins does not resolve in this environment, so the emitted chain is checked by the
   committed golden file, a structural balance test, and comparison against the hand-authored
-  idiom in `ike-terms`' `CoordinateModelSet` — not by compiling it.
+  chains in `ike-terms`' `CoordinateModelSet` and `PatternShapeRefinementSet` — which is also
+  where `.isA(IkeTerm.MODEL_CONCEPT)` and `.isA(set.conceptRef("..."))`, the two target forms
+  emitted here, are shown to be accepted — not by compiling it.

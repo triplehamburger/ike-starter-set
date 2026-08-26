@@ -246,10 +246,21 @@ final class CqlKeywordDictionary {
      * are not generatable. Its presence and the status must agree: a status claiming a Komet
      * counterpart with no concept named, or a concept named on an entry claiming none exists,
      * is a contradiction the generator cannot resolve.
+     *
+     * <p>The scan is bounded by the next entry's anchor as well as by the separator. A missing
+     * {@code * * *} would otherwise let one entry read on into the next and adopt its counterpart
+     * — a wrong value in the identity report, reached without anything erroring. Only the last
+     * entry ends at end of file; every other one ends at its separator.
      */
     private static String readKometConcepts(Cursor c, String keyword, Status status) {
         String found = null;
         while (c.hasNext() && !c.peek().equals(ENTRY_SEPARATOR)) {
+            if (ANCHOR.matcher(c.peek()).matches()) {
+                throw new MalformedEntryException(c.line() + 1, "entry " + quote(keyword)
+                        + " reaches the next entry's anchor with no " + quote(ENTRY_SEPARATOR)
+                        + " between them — the separator is what ends an entry, and reading past"
+                        + " it would take the next entry's Komet concept as this one's");
+            }
             Matcher m = KOMET_CONCEPTS.matcher(c.next());
             if (m.matches()) {
                 found = m.group(1).strip();
