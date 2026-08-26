@@ -74,9 +74,10 @@ Two traps in the real chapter are worth knowing about, because both look like no
 
 - **The metadata line has two forms.** 115 entries carry `` `Category` -- (Family > Subcategory)
   Status ``; 7 carry `` `Category` -- Status `` with no family path. Both parse; a third form
-  fails. The status is read from its wording, not from the AsciiDoc emphasis that distinguishes the
-  three values in rendered output.
-- **The title is not the bolded run inside it.** Seven titles bold only part of the keyword
+  fails, and so does the short form on an entry marked `Not yet in Komet`, since a keyword to be
+  minted has nothing to hang from without its family path. The status is read from its wording, not
+  from the AsciiDoc emphasis that distinguishes the three values in rendered output.
+- **The title is not the bolded run inside it.** Six titles bold only part of the keyword
   (`=== *include*d in`, `=== *or* after`) and one bolds none of it (`=== such that`). Reading the
   bolded run would name five different keywords `or` — five concepts collapsing onto one identity.
   The keyword is the whole title with markup stripped, and every entry's anchor is checked against

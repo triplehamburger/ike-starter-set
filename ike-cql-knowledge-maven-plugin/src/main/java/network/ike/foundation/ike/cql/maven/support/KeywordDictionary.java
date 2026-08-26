@@ -16,7 +16,7 @@ import java.util.Set;
  * carry only a status — so both forms are parsed explicitly and any third form fails.
  *
  * <p>The keyword name is the section title with AsciiDoc bold markup removed, not the bolded run
- * inside it. Seven titles bold only part of the name ({@code === *include*d in},
+ * inside it. Six titles bold only part of the name ({@code === *include*d in},
  * {@code === *or* after}) and one bolds none of it ({@code === such that}); taking the bolded run
  * would name five different keywords {@code or}, and five concepts sharing a name share an
  * identity. The anchor is the independent check on that reading: every entry declares
