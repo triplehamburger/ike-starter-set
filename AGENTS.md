@@ -41,9 +41,8 @@ To actually *render* the real guide without that full build, run `ike-doc-extens
 convert the real `ike-guide.adoc`/`cql-dictionary.adoc` into `ike-doc/target/generated-docs/`
 whenever `ike-doc/target/ike-hierarchy-index.json` exists (run the `index` goal first, else they
 silently no-op). Diffing that HTML across a change is the way to prove a doc edit is render-neutral.
-Chapter files may sit in any directory — the scanner walks the whole project and assembles purely
-from the `:chapter-*:` headers, so moving or renaming a chapter file changes only its `path` in
-the index.
+A chapter's location on disk carries no meaning (see the plugin README) — a pure `git mv` of a
+chapter file changes only its `path` in the index.
 
 ## Maintaining this file
 
