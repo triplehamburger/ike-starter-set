@@ -113,8 +113,8 @@ public final class KeywordDictionary {
      *
      * @param lines the chapter's lines, in order
      * @return the entries, in the order the dictionary lists them
-     * @throws MalformedEntryException if any block deviates from the expected shape, or if two
-     *         entries claim the same keyword
+     * @throws MalformedEntryException if any block deviates from the expected shape, if a keyword
+     *         section carries no anchor of its own, or if two entries claim the same keyword
      */
     public static List<Entry> parse(List<String> lines) {
         List<Integer> starts = new ArrayList<>();
@@ -134,6 +134,15 @@ public final class KeywordDictionary {
                         "keyword '" + entry.name() + "' is already defined by an earlier entry");
             }
             entries.add(entry);
+        }
+        Set<Integer> titled = new LinkedHashSet<>();
+        starts.forEach(start -> titled.add(start + 2));
+        for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).startsWith(TITLE_PREFIX) && !titled.contains(i)) {
+                throw new MalformedEntryException(lines.get(i).trim(),
+                        "the section carries no '" + ANCHOR_PREFIX + "...]]' anchor of its own, so"
+                                + " it would be read as part of another entry");
+            }
         }
         return entries;
     }

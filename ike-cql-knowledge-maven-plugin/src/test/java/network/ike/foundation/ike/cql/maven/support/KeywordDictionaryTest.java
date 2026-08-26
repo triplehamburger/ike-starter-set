@@ -205,6 +205,52 @@ class KeywordDictionaryTest {
     }
 
     @Test
+    void refusesAKeywordSectionWithNoAnchorOfItsOwn() {
+        String valid = entry("`Timing Operator` -- (Data & Timing Operators > Timing Operator)"
+                + " Not yet in Komet");
+        String unanchored = """
+                [discrete]
+                === *zip*
+
+                `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
+
+                Interleaves two lists.
+
+                [source,cql]
+                ----
+                X zip Y
+                ----
+                """;
+        assertThatThrownBy(() -> KeywordDictionary.parse(lines(valid + "\n" + unanchored)))
+                .isInstanceOf(KeywordDictionary.MalformedEntryException.class)
+                .hasMessageContaining("=== *zip*")
+                .hasMessageContaining("carries no '[[term-...]]' anchor of its own");
+    }
+
+    @Test
+    void refusesAKeywordSectionWhoseAnchorIsNotATermAnchor() {
+        String valid = entry("`Timing Operator` -- (Data & Timing Operators > Timing Operator)"
+                + " Not yet in Komet");
+        String mistyped = """
+                [[zip]]
+                [discrete]
+                === *zip*
+
+                `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
+
+                Interleaves two lists.
+
+                [source,cql]
+                ----
+                X zip Y
+                ----
+                """;
+        assertThatThrownBy(() -> KeywordDictionary.parse(lines(valid + "\n" + mistyped)))
+                .isInstanceOf(KeywordDictionary.MalformedEntryException.class)
+                .hasMessageContaining("=== *zip*");
+    }
+
+    @Test
     void refusesTwoEntriesClaimingTheSameKeyword() {
         String twice = entry("`Timing Operator` -- (Data & Timing Operators > Timing Operator)"
                 + " Not yet in Komet");
