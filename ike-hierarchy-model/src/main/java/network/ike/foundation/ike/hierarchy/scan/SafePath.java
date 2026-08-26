@@ -15,6 +15,13 @@ import java.util.Optional;
  * it found, which made {@code include::chapter:../../../../etc/passwd[]} a working directive in a
  * documentation build. Nothing here resolves a path it was not given a root for.
  *
+ * <p>This bounds accident, not attack. Chapter files are trusted input, on par with build scripts:
+ * the documentation render runs under {@code SafeMode.UNSAFE}, which
+ * {@code asciidoctor-maven-plugin} hardcodes with no parameter to override, so a chapter file can
+ * read any file the build user can read with one ordinary {@code include::} that never comes near
+ * this class. What the checks here are for is the mistake — a symbolic link out of the tree, a
+ * stale index naming a file that has moved, a path assembled from a root it does not belong to.
+ *
  * <p>Resolution is done with {@link Path#toRealPath} rather than {@link Path#normalize} because
  * normalising is a string operation: it collapses {@code a/../b} without ever asking the
  * filesystem, so it cannot see that {@code a} is a symbolic link pointing somewhere else

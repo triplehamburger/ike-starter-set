@@ -143,6 +143,18 @@ A chapter that cannot be placed does not quietly vanish from the book.
 
 ## Security notes
 
+**Chapter files are trusted input, on par with build scripts.** IKE does not accept guide chapters
+from parties it does not trust, and that threat model is explicitly out of scope. It has to be:
+`asciidoctor-maven-plugin` hardcodes `SafeMode.UNSAFE` and exposes no parameter to override it, so
+a chapter file can read any file the build user can read with one ordinary `include::/etc/passwd[]`
+— no hierarchy directive involved, and nothing below can see it. Anyone who can add a chapter file
+can already do anything the build can.
+
+The containment work below is correct and worth keeping. It bounds *accident*: a cross-repo pull
+through a symbolic link, a stale or hand-edited index naming a file outside the project, a `..`
+that was not meant to escape. It is not a sandbox, and no amount of scanning chapter content could
+make it one while the render is unsafe.
+
 - **Containment.** Every path resolves through `SafePath`, which uses real-path resolution — not
   string normalisation — so a symbolic link out of the tree is caught rather than followed. There is
   no absolute-path fallback: an unresolvable target produces a warning, never a read from elsewhere.
