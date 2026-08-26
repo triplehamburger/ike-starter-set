@@ -83,6 +83,10 @@
         <subproject>ike-hierarchy-maven-plugin</subproject>
         <subproject>ike-doc-extension</subproject>
         <subproject>ike-doc</subproject>
+        <!-- Reads the CQL keyword dictionary chapter and writes it out as ledger source; it
+             depends on nothing in this reactor, so its position here only has to be after the
+             module that owns the chapter it reads. -->
+        <subproject>ike-cql-knowledge-maven-plugin</subproject>
         <subproject>ike-kb</subproject>
     </subprojects>
 

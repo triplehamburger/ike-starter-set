@@ -44,6 +44,43 @@ silently no-op). Diffing that HTML across a change is the way to prove a doc edi
 A chapter's location on disk carries no meaning (see the plugin README) — a pure `git mv` of a
 chapter file changes only its `path` in the index.
 
+## Knowledge-set identity (`ike-terms`)
+
+Every identity in a knowledge set is `uuid5(setNamespace, conceptFullyQualifiedName)` — RFC 4122
+version 5, SHA-1 over the namespace's raw bytes then the name's UTF-8 bytes, which is what tinkar's
+`UuidT5Generator.get` computes and what `set.concept(name)` applies internally. The IkeFoundation
+namespace is the UUID `Ike.SET` is built from (`Ike.java`, "never change it"). Checkable vector:
+`uuid5(d890e06f-ec35-429a-b541-d0ead19695e2, "STAMP (IkeFoundation)")` is
+`3f93c9fb-48c9-53e2-a3e7-a7ae39311b97`, the value `FoundationFidelityIT` records.
+
+**Consequence:** the fully qualified name *is* the identity. Rewording an FQN does not rename a
+concept, it mints a second one. Anything that authors concepts programmatically has to be
+deterministic in its FQNs — see `ike-cql-knowledge-maven-plugin/README.md`, which does this for the
+CQL keyword dictionary and writes each derived UUID into its output so a rewording shows up in
+review as a changed identity.
+
+The 71 `foundation/SectionN.java` files are generated *retrofit* source: their explicit SOLOR
+UUIDs, their `IDENTIFIER_PATTERN` semantic and their `TINKAR_BASE_MODEL_COMPONENT_PATTERN`
+membership all carry upstream provenance. New content does not copy those — no hand-authored set in
+`ike-terms` uses base-model membership. The idiom for new concepts is the short one:
+`set.concept(fqn).at(inception).synonym(...).definition(...).isA(...)`, with
+`.statedAxioms(leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(parent), leb.SomeRole(role, ...))))`
+when roles are needed — `leb.And` is varargs, so multi-clause axioms need no special handling
+(`PatternShapeRefinementSet`, `CoordinateModelSet`).
+
+`ike-terms` and `ike-changeset` cannot be built here at all: `chronology-store.version` is
+`1.127.2-SNAPSHOT` and no configured repository serves it, nor `ike-knowledge-provider:1-SNAPSHOT`.
+Modules that must work in this environment cannot depend on the tinkar authoring tier.
+
+## Maven 4 plugin modules
+
+`ike-hierarchy-maven-plugin` and `ike-cql-knowledge-maven-plugin` are the in-repo precedent: parent
+POM, `maven-plugin` packaging, `maven.api.version`/`maven-plugin-tools.version` pinned in the module
+(they must move together), an explicit `<goalPrefix>`, and a mojo that is nothing but wiring around
+a Maven-free support class. maven-plugin-tools 4.0.0-beta-2 cannot map every `Lifecycle.Phase`
+constant to a phase — `Phase.SOURCES` fails descriptor generation with "Could not find a matching
+phase for sources", so use a Maven-3-named phase such as `Phase.INITIALIZE`.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.
