@@ -142,9 +142,10 @@ public final class ChapterScanner {
             return;
         }
         if (size > limits.maxFileBytes()) {
-            violations.add(new Violation.ScanLimitExceeded(
-                    "file '" + describe(realRoot, real) + "' is " + size + " bytes, exceeding the maximum of "
-                            + limits.maxFileBytes() + " bytes"));
+            violations.add(new Violation.MalformedHeader(
+                    SafePath.relativise(realRoot, real),
+                    "is " + size + " bytes, larger than the " + limits.maxFileBytes()
+                            + " byte limit, and was not read"));
             return;
         }
 

@@ -9,6 +9,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import network.ike.foundation.ike.hierarchy.scan.ScanLimits;
 import org.junit.jupiter.api.Test;
@@ -53,6 +54,17 @@ class ChapterRegistrarTest {
     }
 
     @Test
+    void shouldStampAnOversizedFileRatherThanTreatingTheScanAsIncomplete() throws IOException {
+        Path big = write("big.adoc", "= Big\n\n" + "x".repeat(4096) + "\n");
+        ScanLimits tight = new ScanLimits(5_000, 1_024, 200, 500, 24, Set.of());
+
+        GoalReport report = register(big, "big", tight);
+
+        assertThat(report.failed()).isFalse();
+        assertThat(Files.readString(big)).contains(":chapter-id: big");
+    }
+
+    @Test
     void shouldRefuseAnIdAlreadyDeclaredElsewhere() throws IOException {
         write("taken.adoc", ":chapter-id: cql\n:chapter-parent: guide\n\n= Taken\n");
         Path fresh = write("new.adoc", "= New\n");
@@ -81,9 +93,13 @@ class ChapterRegistrarTest {
     }
 
     private GoalReport register(Path file, String id) {
+        return register(file, id, ScanLimits.defaults());
+    }
+
+    private GoalReport register(Path file, String id, ScanLimits limits) {
         return ChapterRegistrar.run(temp, List.of(), file.toString(), Optional.of(id),
                 Optional.empty(), Optional.of("guide"), Optional.empty(), Optional.empty(),
-                false, ScanLimits.defaults(), true);
+                false, limits, true);
     }
 
     private Path write(String name, String content) throws IOException {

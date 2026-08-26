@@ -267,7 +267,13 @@ public final class ChapterRegistrar {
         return switch (violation) {
             case Violation.MalformedHeader malformed -> Optional.of(malformed.path());
             case Violation.EscapesRoot escapes -> Optional.of(escapes.path());
-            default -> Optional.empty();
+            case Violation.DuplicateId ignored -> Optional.empty();
+            case Violation.DanglingParent ignored -> Optional.empty();
+            case Violation.Orphan ignored -> Optional.empty();
+            case Violation.Cycle ignored -> Optional.empty();
+            case Violation.DepthExceeded ignored -> Optional.empty();
+            case Violation.ScanLimitExceeded ignored -> Optional.empty();
+            case Violation.MissingRoot ignored -> Optional.empty();
         };
     }
 
