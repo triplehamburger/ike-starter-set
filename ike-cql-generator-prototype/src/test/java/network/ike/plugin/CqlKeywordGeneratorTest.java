@@ -1,0 +1,327 @@
+/*
+ * Copyright © 2026 IKE Network (support@ike.network)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package network.ike.plugin;
+
+import network.ike.plugin.CqlKeywordDictionary.Entry;
+import network.ike.plugin.CqlKeywordDictionary.MalformedEntryException;
+import network.ike.plugin.CqlKeywordDictionary.Status;
+import network.ike.plugin.CqlKeywordSetGenerator.Generated;
+import network.ike.plugin.CqlKeywordSetGenerator.Options;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+/** Covers the dictionary reader's strictness, the generator's output, and identity determinism. */
+class CqlKeywordGeneratorTest {
+
+    /** The dictionary this prototype generates from. */
+    private static final Path DICTIONARY =
+            Path.of("..", "ike-doc", "src", "docs", "asciidoc", "cql", "keyword-dictionary.adoc");
+
+    /** The IkeFoundation set's namespace, as declared in ike-terms' {@code Ike.SET}. */
+    private static final UUID IKE_FOUNDATION =
+            UUID.fromString("d890e06f-ec35-429a-b541-d0ead19695e2");
+
+    private static final Options OPTIONS = new Options(
+            "network.ike.cql.terms", "CqlKeywordSet", IKE_FOUNDATION, "IkeCql",
+            "CQL keyword (IkeCql)", "network.ike.foundation.ike.terms.IkeTerm.MODEL_CONCEPT",
+            "network.ike.cql.terms.IkeCql.INCEPTION");
+
+    // ── Identity ────────────────────────────────────────────────────────────
+
+    /**
+     * Pins the generator's UUID derivation to tinkar's. {@code Ike.SET} declares the IkeFoundation
+     * namespace and {@code CoordinateModelSet} authors "Stamp coordinate properties
+     * (IkeFoundation)" with no explicit identity, so the UUID the shipped ledger resolves that
+     * name to — quoted in FoundationFidelityIT — is exactly what
+     * {@code UuidT5Generator.get(namespace, fqn)} returns. Matching it proves this generator
+     * reports the identities the DSL will actually author, without depending on a store runtime.
+     */
+    @Test
+    void mintsTheSameUuidTinkarDoes() {
+        assertThat(CqlKeywordSetGenerator.nameUuid(
+                IKE_FOUNDATION, "Stamp coordinate properties (IkeFoundation)"))
+                .hasToString("0edae285-236b-5e13-90a1-2eb7db9d2879");
+    }
+
+    /** Identity follows the name, and only the name — the trap this generator has to avoid. */
+    @Test
+    void rewordingANameMintsADifferentConcept() {
+        assertThat(CqlKeywordSetGenerator.nameUuid(IKE_FOUNDATION, "after (IkeCql)"))
+                .isEqualTo(CqlKeywordSetGenerator.nameUuid(IKE_FOUNDATION, "after (IkeCql)"))
+                .isNotEqualTo(CqlKeywordSetGenerator.nameUuid(IKE_FOUNDATION, "after (IkeCQL)"));
+    }
+
+    // ── The real dictionary ─────────────────────────────────────────────────
+
+    @Test
+    void readsEveryEntryInTheShippedDictionary() {
+        List<Entry> entries = CqlKeywordDictionary.parse(DICTIONARY);
+
+        assertThat(entries).hasSize(122);
+        assertThat(entries).filteredOn(e -> e.status() == Status.NOT_YET_IN_KOMET).hasSize(115);
+        assertThat(entries).filteredOn(e -> e.status() == Status.RELATED_CONCEPT_IN_KOMET)
+                .hasSize(5);
+        assertThat(entries).filteredOn(e -> e.status() == Status.IMPLEMENTED_IN_KOMET).hasSize(2);
+        assertThat(entries).extracting(Entry::anchor).doesNotHaveDuplicates();
+        // null for the 7 entries carrying no taxonomy path — all of them withheld from minting.
+        assertThat(entries).extracting(Entry::family)
+                .containsOnly("Core Operators", "Data & Timing Operators", "Declarations",
+                        "Query & Control Flow", "Types & Literals", null);
+    }
+
+    /**
+     * The metadata line's two forms, and the fact that the seven entries using the bare form are
+     * exactly the seven a naive reader would mangle.
+     */
+    @Test
+    void readsBothMetadataLineForms() {
+        List<Entry> entries = CqlKeywordDictionary.parse(DICTIONARY);
+
+        assertThat(entries).filteredOn(e -> e.family() != null).hasSize(115);
+        assertThat(entries).filteredOn(e -> e.family() == null).hasSize(7)
+                .allMatch(e -> !e.generatable())
+                .extracting(Entry::keyword)
+                .containsExactlyInAnyOrder("and", "or", "included in", "Interval",
+                        "or less", "or more", "overlaps");
+    }
+
+    /** Headings carry bold markup inconsistently; the anchor is what the keyword is checked against. */
+    @Test
+    void takesTheKeywordFromHeadingsWhoseMarkupIsNotUniform() {
+        List<Entry> entries = CqlKeywordDictionary.parse(DICTIONARY);
+
+        assertThat(entries).extracting(Entry::keyword)
+                .contains("included in", "or after", "such that", "after", "Interval");
+    }
+
+    @Test
+    void generatesTheTaxonomyFromTheShippedDictionary() {
+        Generated generated = generateFromDictionary();
+
+        // 1 root + 5 families + 16 categories + 115 generatable keywords.
+        assertThat(generated.mintedConcepts()).isEqualTo(137);
+        assertThat(generated.deferredEntries()).isEqualTo(7);
+        assertThat(generated.javaSource())
+                .contains("public static void compose(KnowledgeSet set)")
+                .contains("set.concept(\"after (IkeCql)\").at(inception)")
+                .contains(".synonym(\"after\")")
+                .contains("leb.ConceptAxiom(set.conceptRef(\"Timing Operator (IkeCql)\"))")
+                // the root is authored, not merely referenced, and hangs off an external term
+                .contains("set.concept(\"CQL keyword (IkeCql)\").at(inception)")
+                .contains("leb.ConceptAxiom(network.ike.foundation.ike.terms.IkeTerm.MODEL_CONCEPT)")
+                .doesNotContain("\"and (IkeCql)\"");   // Implemented in Komet — not re-minted
+        assertThat(generated.identityReport())
+                .contains("IMPLEMENTED_IN_KOMET  and  -> *And*")
+                .contains("RELATED_CONCEPT_IN_KOMET  included in  -> *Clause Included in*");
+    }
+
+    /**
+     * The emitted fluent chain nests four calls deep, so its closing parentheses are counted by
+     * hand in the emitter and a miscount produces a file that will not compile. Checked outside
+     * the string literals, since definitions carry prose parentheses of their own — two entries
+     * quote half-open interval notation like {@code Interval[3, 5)}.
+     */
+    @Test
+    void emitsStructurallyBalancedJava() {
+        String code = generateFromDictionary().javaSource()
+                .replaceAll("\"(?:\\\\.|[^\"\\\\])*\"", "\"\"");
+
+        assertThat(count(code, '(')).as("parentheses").isEqualTo(count(code, ')'));
+        assertThat(count(code, '{')).as("braces").isEqualTo(count(code, '}'));
+    }
+
+    private static long count(String text, char c) {
+        return text.chars().filter(ch -> ch == c).count();
+    }
+
+    /**
+     * The committed generated output is the deliverable, and this is the gate on it: any change
+     * to the dictionary, the naming scheme, or the emitter shows up as a diff to review rather
+     * than as a silently different set of identities.
+     */
+    @Test
+    void reproducesTheCommittedOutput() throws IOException {
+        Generated generated = generateFromDictionary();
+
+        assertThat(generated.javaSource()).isEqualTo(expected("CqlKeywordSet.java.txt"));
+        assertThat(generated.identityReport())
+                .isEqualTo(expected("cql-keyword-identities.txt"));
+    }
+
+    /** Output is a function of content, not of the order the dictionary happens to be in. */
+    @Test
+    void isIndifferentToDictionaryOrder() {
+        List<Entry> entries = new ArrayList<>(CqlKeywordDictionary.parse(DICTIONARY));
+        Generated inOrder = CqlKeywordSetGenerator.generate(entries, OPTIONS);
+        Collections.shuffle(entries, new Random(20260826L));
+
+        assertThat(CqlKeywordSetGenerator.generate(entries, OPTIONS)).isEqualTo(inOrder);
+    }
+
+    /**
+     * Definitions are free prose that ends up inside a Java string literal. Today none of the 122
+     * carries a quote or a backslash; the day one does, an unescaped emitter would produce a file
+     * that either fails to compile or, worse, compiles to different text than the dictionary says.
+     */
+    @Test
+    void escapesDefinitionsThatWouldBreakTheEmittedLiteral() {
+        List<String> lines = new ArrayList<>(entry(ENTRY));
+        lines.set(lines.indexOf("Relational operator testing whether one date, time,"
+                + " or interval occurs later than another."),
+                "Tests a \\ backslash and a \"quoted\" phrase.");
+
+        Generated generated = CqlKeywordSetGenerator.generate(
+                CqlKeywordDictionary.parse(lines), OPTIONS);
+
+        assertThat(generated.javaSource())
+                .contains(".definition(\"Tests a \\\\ backslash and a \\\"quoted\\\" phrase.\")");
+    }
+
+    // ── Strictness ──────────────────────────────────────────────────────────
+
+    @Test
+    void acceptsAWellFormedEntry() {
+        List<Entry> entries = CqlKeywordDictionary.parse(entry(ENTRY));
+
+        assertThat(entries).singleElement().satisfies(e -> {
+            assertThat(e.keyword()).isEqualTo("after");
+            assertThat(e.anchor()).isEqualTo("after");
+            assertThat(e.family()).isEqualTo("Data & Timing Operators");
+            assertThat(e.category()).isEqualTo("Timing Operator");
+            assertThat(e.status()).isEqualTo(Status.NOT_YET_IN_KOMET);
+            assertThat(e.definition()).startsWith("Relational operator");
+            assertThat(e.kometConcepts()).isNull();
+            assertThat(e.generatable()).isTrue();
+        });
+    }
+
+    @Test
+    void rejectsAnUnknownKometStatus() {
+        assertThatFails("`", "`Timing Operator` -- (Data & Timing Operators > Timing Operator) Partly in Komet")
+                .hasMessageContaining("unknown Komet status");
+    }
+
+    @Test
+    void rejectsAKeywordThatDisagreesWithItsAnchor() {
+        assertThatFails("=== ", "=== *before*").hasMessageContaining("does not agree with keyword");
+    }
+
+    @Test
+    void rejectsAGeneratableEntryWithNoTaxonomyPath() {
+        assertThatFails("`", "`Timing Operator` -- Not yet in Komet")
+                .hasMessageContaining("carries no (Family > Subcategory) path");
+    }
+
+    @Test
+    void rejectsACategoryThatDisagreesWithItsSubcategory() {
+        assertThatFails("`", "`Timing Operator` -- (Data & Timing Operators > Sorting) Not yet in Komet")
+                .hasMessageContaining("disagree");
+    }
+
+    @Test
+    void rejectsAMissingKometConceptOnAnEntryClaimingOne() {
+        assertThatFails("`", "`Timing Operator` -- *Implemented in Komet*")
+                .hasMessageContaining("names no Komet concept");
+    }
+
+    @Test
+    void rejectsAMetadataLineItCannotRead() {
+        assertThatFails("`", "Timing Operator, not yet in Komet")
+                .hasMessageContaining("expected a `Category` -- ... metadata line");
+    }
+
+    @Test
+    void rejectsAnEntryMissingItsExample() {
+        assertThatFails("[source,cql]", "[source,sql]")
+                .hasMessageContaining("expected \"[source,cql]\"");
+    }
+
+    @Test
+    void rejectsADuplicateAnchor() {
+        assertThatThrownBy(() -> CqlKeywordDictionary.parse(entry(ENTRY + "\n" + ENTRY)))
+                .isInstanceOf(MalformedEntryException.class)
+                .hasMessageContaining("duplicate anchor term-after");
+    }
+
+    @Test
+    void rejectsAFileWithNoEntries() {
+        assertThatThrownBy(() -> CqlKeywordDictionary.parse(List.of("= Keyword Dictionary", "")))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("No [[term-...]] entries found");
+    }
+
+    // ── Fixtures ────────────────────────────────────────────────────────────
+
+    private static final String ENTRY = """
+            [[term-after]]
+            [discrete]
+            === *after*
+
+            `Timing Operator` -- (Data & Timing Operators > Timing Operator) Not yet in Komet
+
+            Relational operator testing whether one date, time, or interval occurs later than another.
+
+            [source,cql]
+            ----
+            "DischargeDateTime" after "AdmissionDateTime"
+            ----
+
+
+
+            * * *""";
+
+    private static List<String> entry(String text) {
+        return List.of(text.split("\n", -1));
+    }
+
+    /** Replaces the one fixture line starting with {@code prefix}, then asserts the parse fails. */
+    private static org.assertj.core.api.AbstractThrowableAssert<?, ?> assertThatFails(
+            String prefix, String replacement) {
+        List<String> lines = new ArrayList<>(entry(ENTRY));
+        int index = -1;
+        for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).startsWith(prefix)) {
+                index = i;
+                break;
+            }
+        }
+        assertThat(index).as("fixture line starting with \"%s\"", prefix).isNotNegative();
+        lines.set(index, replacement);
+        return assertThatThrownBy(() -> CqlKeywordDictionary.parse(lines))
+                .isInstanceOf(MalformedEntryException.class);
+    }
+
+    private static Generated generateFromDictionary() {
+        return CqlKeywordSetGenerator.generate(CqlKeywordDictionary.parse(DICTIONARY), OPTIONS);
+    }
+
+    private static String expected(String name) throws IOException {
+        return Files.readString(Path.of("src", "test", "resources", "expected", name),
+                StandardCharsets.UTF_8);
+    }
+}

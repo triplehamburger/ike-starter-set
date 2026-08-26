@@ -84,6 +84,9 @@
         <subproject>ike-doc-extension</subproject>
         <subproject>ike-doc</subproject>
         <subproject>ike-kb</subproject>
+        <!-- Prototype of the inbound knowledge-pipeline goal, staged here for review before it
+             lifts into network.ike.tooling:ike-maven-plugin. -->
+        <subproject>ike-cql-generator-prototype</subproject>
     </subprojects>
 
     <build>

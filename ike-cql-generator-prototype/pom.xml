@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.1.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.1.0 https://maven.apache.org/xsd/maven-4.1.0.xsd">
+    <modelVersion>4.1.0</modelVersion>
+
+    <parent>
+        <groupId>network.ike.foundation</groupId>
+        <artifactId>ike-starter-set</artifactId>
+        <version>1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ike-cql-generator-prototype</artifactId>
+    <packaging>maven-plugin</packaging>
+
+    <name>Ike CQL Generator Prototype</name>
+    <description>
+        Prototype of ike:knowledge-generate — the inbound half of the knowledge-pipeline goal
+        family, generating ledger-form Java from the CQL keyword dictionary. Staged here in
+        package network.ike.plugin so it lifts into network.ike.tooling:ike-maven-plugin as a
+        file copy plus one IkeGoal constant; see the module README.
+    </description>
+
+    <!-- Dual licensed (IKE-Network/ike-issues#952); identical in every POM of this reactor. -->
+    <licenses>
+        <license>
+            <name>Creative Commons Attribution 4.0 International</name>
+            <url>https://creativecommons.org/licenses/by/4.0/</url>
+            <distribution>repo</distribution>
+        </license>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <properties>
+        <maven.compiler.release>25</maven.compiler.release>
+
+        <!-- Same pinning rationale as ike-hierarchy-maven-plugin: the Maven 4 plugin API is
+             @Experimental and must match the runtime; plugin-tools must be 4.x to understand
+             the v4 annotations. Kept identical to that module so both move together. -->
+        <maven.api.version>4.0.0-rc-5</maven.api.version>
+        <maven-plugin-tools.version>4.0.0-beta-2</maven-plugin-tools.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-api-core</artifactId>
+            <version>${maven.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-api-di</artifactId>
+            <version>${maven.api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>${maven-plugin-tools.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>3.27.3</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <release>25</release>
+                    <compilerArgs combine.self="override"/>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <argLine combine.self="override"/>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${maven-plugin-tools.version}</version>
+                <configuration>
+                    <!-- Prototype prefix. After the lift the goal resolves as ike:knowledge-generate
+                         under ike-maven-plugin's own prefix. -->
+                    <goalPrefix>ike-cql-proto</goalPrefix>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

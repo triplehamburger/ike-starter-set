@@ -44,6 +44,30 @@ silently no-op). Diffing that HTML across a change is the way to prove a doc edi
 A chapter's location on disk carries no meaning (see the plugin README) — a pure `git mv` of a
 chapter file changes only its `path` in the index.
 
+## Authoring knowledge (`ike-terms`)
+
+**Identity is the fully qualified name.** A concept's UUID is
+`UUIDv5(<KnowledgeSet namespace>, <fqn>)` — plain RFC 4122 type 5 over UTF-8, which is what
+`set.concept(fqn)` derives and what tinkar's `UuidT5Generator.get` computes. The namespace is the
+UUID passed to `KnowledgeSet.of(...)` in `Ike.SET`. Verify against
+`"Stamp coordinate properties (IkeFoundation)"` → `0edae285-236b-5e13-90a1-2eb7db9d2879`; that
+pair is a live check on any tool that mints identities. **Re-wording a concept renames it into a
+different concept**, so anything generating content must derive names from stable identifiers,
+never from prose that an editor may reword.
+
+Two DSL forms coexist and are not interchangeable. `foundation/Section*.java` spells out every
+`PublicIds.of(UUID.fromString(...))` because it is generator output reproducing already-published
+identities (IKE-Network/ike-issues#869). New content uses the short form —
+`set.concept(fqn).at(stamp).synonym(...).definition(...).statedAxioms(leb -> ...)`, as in
+`CoordinateModelSet` — and lets identity derive. `leb.And(...)` is varargs, so a multi-role axiom
+is just more `leb.SomeRole(type, leb.ConceptAxiom(target))` arguments to the same `And`.
+
+`ike-terms` does not build in every environment, with or without network:
+`dev.ikm.tinkar:entity:1.127.2-SNAPSHOT` and `network.ike.knowledge:ike-knowledge-provider:1-SNAPSHOT`
+are unpublished, so `dependency:resolve` on that module fails outright. Work that only needs to
+*emit* ledger source (see `ike-cql-generator-prototype`) should carry no tinkar dependency at all;
+it stays buildable, and the module it generates into is what compiles against the builders.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.
