@@ -149,3 +149,37 @@ A chapter that cannot be placed does not quietly vanish from the book.
   are all capped, and reaching a cap is reported rather than silently truncating the scan.
 - **Atomic writes.** Files are written to a temporary file in the same directory and moved into
   place, so an interrupted run never leaves a half-written chapter.
+
+## Lifting this into `ike-maven-plugin`
+
+These goals are staged here in the shape upstream `network.ike.tooling:ike-maven-plugin`
+(repo `IKE-Network/ike-tooling`) already uses, so absorbing them is a file copy rather than a
+rewrite:
+
+- **Mojos are flat in `network.ike.plugin`, named `<Goal>Mojo`** — the same package and naming as
+  `GenerateBomMojo`, `IkeEnvMojo`, `CentralStageMojo` and the rest.
+- **Goal-family support classes sit one level down, in `network.ike.plugin.hierarchy`** — upstream
+  does this for its own families (`network.ike.plugin.{reconcile,release,scaffold}`); only Mojos
+  live flat.
+- **The model stays a sibling library.** Upstream's `ike-workspace-model` is the precedent, and the
+  reason applies harder here: `ike-hierarchy-model` has a consumer that is not a Maven plugin at
+  all. `ike-doc-extension` is an AsciidoctorJ extension loaded into a JRuby classloader, and
+  `ike-doc` puts the model jar directly on `asciidoctor-maven-plugin`'s classpath. Collapsing the
+  model into the plugin would make both of those depend on a `maven-plugin`-packaged artifact that
+  drags in `maven-api-core`, `asciidoctorj`, `jruby`, and `rewrite-xml`. The model deliberately has
+  zero compile-scope dependencies so it can be shared by two classloaders that already contain a
+  lot; that property is the whole point and only a separate module preserves it.
+
+Two edits are still required at lift time, and neither can be made here:
+
+1. **Register the four goals in `IkeGoal`.** Upstream centralises goal identity in
+   `network.ike.plugin.IkeGoal` (`ConstantBackedEnum`, one `NAME_*` constant mirror per goal) and
+   writes `@Mojo(name = IkeGoal.NAME_X)`. That enum lives in `ike-maven-plugin` and is not
+   available here, so these Mojos still carry `@Mojo(name = "index")` string literals. Note that
+   `index` and `validate` are generic names in a plugin already carrying 39 goals; renaming them
+   would change the CLI contract and is a decision for the absorbing change, not this one.
+2. **Reconcile the report type.** `HierarchyReport` (here) collects a goal's info/warn/fail lines
+   for the caller to log. Upstream's `network.ike.plugin.support.GoalReport`, from the
+   `ike-maven-plugin-support` sibling, is a different thing — it writes a per-goal report *file*.
+   The names collided, so this one was renamed; whoever absorbs these goals should decide whether
+   they route through `AbstractGoalMojo`/`GoalReportBuilder` instead.

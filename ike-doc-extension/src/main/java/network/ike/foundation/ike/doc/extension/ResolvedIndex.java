@@ -8,12 +8,12 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import network.ike.foundation.ike.hierarchy.index.HierarchyIndex;
-import network.ike.foundation.ike.hierarchy.index.IndexCodec;
-import network.ike.foundation.ike.hierarchy.index.IndexedChapter;
-import network.ike.foundation.ike.hierarchy.index.IndexedRoot;
-import network.ike.foundation.ike.hierarchy.index.JsonException;
-import network.ike.foundation.ike.hierarchy.scan.SafePath;
+import network.ike.hierarchy.index.HierarchyIndex;
+import network.ike.hierarchy.index.IndexCodec;
+import network.ike.hierarchy.index.IndexedChapter;
+import network.ike.hierarchy.index.IndexedRoot;
+import network.ike.hierarchy.index.JsonException;
+import network.ike.hierarchy.scan.SafePath;
 
 /**
  * The index, loaded once per document and re-anchored beneath a base directory this build supplied.

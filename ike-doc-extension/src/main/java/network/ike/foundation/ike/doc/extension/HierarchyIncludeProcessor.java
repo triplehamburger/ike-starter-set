@@ -11,8 +11,8 @@ import org.asciidoctor.ast.Document;
 import org.asciidoctor.extension.IncludeProcessor;
 import org.asciidoctor.extension.PreprocessorReader;
 
-import network.ike.foundation.ike.hierarchy.index.IndexedChapter;
-import network.ike.foundation.ike.hierarchy.model.ChapterId;
+import network.ike.hierarchy.index.IndexedChapter;
+import network.ike.hierarchy.model.ChapterId;
 
 /**
  * Resolves {@code hierarchy:} and {@code chapter:} include targets from the generated index.

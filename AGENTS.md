@@ -44,6 +44,15 @@ silently no-op). Diffing that HTML across a change is the way to prove a doc edi
 A chapter's location on disk carries no meaning (see the plugin README) — a pure `git mv` of a
 chapter file changes only its `path` in the index.
 
+The hierarchy code is staged in the package layout upstream `network.ike.tooling:ike-maven-plugin`
+uses, so it can be lifted into that plugin later. The layout, why the model stays its own module,
+and the two edits that still need upstream types are in `ike-hierarchy-maven-plugin/README.md`
+under "Lifting this into `ike-maven-plugin`".
+
+When rebuilding the plugin after moving a Mojo, `mvn clean` is not optional: Maven 4 generates a
+`<Goal>MojoFactory` and a sisu index entry per Mojo, and stale ones left in `target/classes` load
+ahead of the new descriptor, failing the next run with `ClassNotFoundException` on the old name.
+
 ## Maintaining this file
 
 Keep this file for knowledge useful to almost every future agent session in this project.

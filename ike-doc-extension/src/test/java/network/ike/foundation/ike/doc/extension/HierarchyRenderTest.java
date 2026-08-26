@@ -1,11 +1,11 @@
 package network.ike.foundation.ike.doc.extension;
 
-import network.ike.foundation.ike.hierarchy.index.HierarchyIndex;
-import network.ike.foundation.ike.hierarchy.index.IndexCodec;
-import network.ike.foundation.ike.hierarchy.index.IndexedChapter;
-import network.ike.foundation.ike.hierarchy.index.IndexedRoot;
-import network.ike.foundation.ike.hierarchy.model.ChapterId;
-import network.ike.foundation.ike.hierarchy.model.ChapterStatus;
+import network.ike.hierarchy.index.HierarchyIndex;
+import network.ike.hierarchy.index.IndexCodec;
+import network.ike.hierarchy.index.IndexedChapter;
+import network.ike.hierarchy.index.IndexedRoot;
+import network.ike.hierarchy.model.ChapterId;
+import network.ike.hierarchy.model.ChapterStatus;
 import org.asciidoctor.Asciidoctor;
 import org.asciidoctor.Attributes;
 import org.asciidoctor.Options;
