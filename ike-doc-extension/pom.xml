@@ -37,7 +37,6 @@
 
     <properties>
         <maven.compiler.release>25</maven.compiler.release>
-        <asciidoctorj.version>2.5.13</asciidoctorj.version>
     </properties>
 
     <build>
@@ -67,10 +66,26 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!-- Unpinned on purpose: inherit ike-platform's versions so this extension is
+             compiled and tested on exactly what asciidoctor-maven-plugin runs it on. A
+             local pin let 2.5's push_include compile here and throw NoSuchMethodError in
+             the real guide build. The jruby wiring mirrors that plugin's own. -->
         <dependency>
             <groupId>org.asciidoctor</groupId>
             <artifactId>asciidoctorj</artifactId>
             <version>${asciidoctorj.version}</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jruby</groupId>
+                    <artifactId>jruby-base</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jruby</groupId>
+            <artifactId>jruby</artifactId>
+            <version>${jruby.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
