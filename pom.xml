@@ -104,5 +104,31 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <!-- ike-platform's inherited rules only require Java 21, so a JDK 24 build
+                 passed the enforcer and then died inside ike-doc-maven-plugin. Same
+                 execution, tighter rules, so the prerequisite is reported once, up front. -->
+            <plugin>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>enforce-prerequisites</id>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>[25,)</version>
+                                    <message>ike-starter-set requires Java 25+: network.ike.docs:ike-doc-maven-plugin (bound by ike-parent as a build extension) declares requiredJavaVersion 25.</message>
+                                </requireJavaVersion>
+                                <requireMavenVersion>
+                                    <version>[4.0.0-rc-5,)</version>
+                                    <message>ike-starter-set requires Maven 4.0.0-rc-5+: network.ike.docs:ike-doc-maven-plugin declares requiredMavenVersion 4.0.0-rc-5.</message>
+                                </requireMavenVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
 </project>
