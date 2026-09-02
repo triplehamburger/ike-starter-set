@@ -9,76 +9,76 @@ public final class FoundationSet {
     }
 
     public static void compose(KnowledgeSet set) {
-        Section1.compose(set);
-        Section2.compose(set);
-        Section3.compose(set);
-        Section4.compose(set);
-        Section5.compose(set);
-        Section6.compose(set);
-        Section7.compose(set);
-        Section8.compose(set);
-        Section9.compose(set);
-        Section10.compose(set);
-        Section11.compose(set);
-        Section12.compose(set);
-        Section13.compose(set);
-        Section14.compose(set);
-        Section15.compose(set);
-        Section16.compose(set);
-        Section17.compose(set);
-        Section18.compose(set);
-        Section19.compose(set);
-        Section20.compose(set);
-        Section21.compose(set);
-        Section22.compose(set);
-        Section23.compose(set);
-        Section24.compose(set);
-        Section25.compose(set);
-        Section26.compose(set);
-        Section27.compose(set);
-        Section28.compose(set);
-        Section29.compose(set);
-        Section30.compose(set);
-        Section31.compose(set);
-        Section32.compose(set);
-        Section33.compose(set);
-        Section34.compose(set);
-        Section35.compose(set);
-        Section36.compose(set);
-        Section37.compose(set);
-        Section38.compose(set);
-        Section39.compose(set);
-        Section40.compose(set);
-        Section41.compose(set);
-        Section42.compose(set);
-        Section43.compose(set);
-        Section44.compose(set);
-        Section45.compose(set);
-        Section46.compose(set);
-        Section47.compose(set);
-        Section48.compose(set);
-        Section49.compose(set);
-        Section50.compose(set);
-        Section51.compose(set);
-        Section52.compose(set);
-        Section53.compose(set);
-        Section54.compose(set);
-        Section55.compose(set);
-        Section56.compose(set);
-        Section57.compose(set);
-        Section58.compose(set);
-        Section59.compose(set);
-        Section60.compose(set);
-        Section61.compose(set);
-        Section62.compose(set);
-        Section63.compose(set);
-        Section64.compose(set);
-        Section65.compose(set);
-        Section66.compose(set);
-        Section67.compose(set);
-        Section68.compose(set);
-        Section69.compose(set);
-        Section70.compose(set);
-        Section71.compose(set);
+        Section1.compose(set); // Uninitialized
+        Section2.compose(set); // Language
+        Section3.compose(set); // ImmutableCoordinate properties
+        Section4.compose(set); // Has Active Ingredient
+        Section5.compose(set); // Object
+        Section6.compose(set); // Author
+        Section7.compose(set); // Tinkar Model concept
+        Section8.compose(set); // Identifier Value
+        Section9.compose(set); // Concept type
+        Section10.compose(set); // EL++ terminological axioms
+        Section11.compose(set); // Concept details tree table
+        Section12.compose(set); // Description-logic profile
+        Section13.compose(set); // Language coordinate properties
+        Section14.compose(set); // Concrete value operator
+        Section15.compose(set); // Stated Definition
+        Section16.compose(set); // Status
+        Section17.compose(set); // Laterality
+        Section18.compose(set); // Description type
+        Section19.compose(set); // Display fields
+        Section20.compose(set); // Chronicle properties
+        Section21.compose(set); // Axiom Syntax
+        Section22.compose(set); // Logic coordinate properties
+        Section23.compose(set); // Sandbox component
+        Section24.compose(set); // Semantic properties
+        Section25.compose(set); // Value Constraint Source
+        Section26.compose(set); // Path
+        Section27.compose(set); // Path coordinate properties
+        Section28.compose(set); // Feature Type
+        Section29.compose(set); // Object properties
+        Section30.compose(set); // Action properties
+        Section31.compose(set); // Version properties
+        Section32.compose(set); // Property sequence implication
+        Section33.compose(set); // Value Range
+        Section34.compose(set); // Value Constraint
+        Section35.compose(set); // Component type focus
+        Section36.compose(set); // Correlation properties
+        Section37.compose(set); // Description
+        Section38.compose(set); // Grouping
+        Section39.compose(set); // Axiom origin
+        Section40.compose(set); // Description acceptability
+        Section41.compose(set); // Meaning
+        Section42.compose(set); // Dialect
+        Section43.compose(set); // Reflexive Feature
+        Section44.compose(set); // Version
+        Section45.compose(set); // Description case significance
+        Section46.compose(set); // Annotation type
+        Section47.compose(set); // Tree amalgam properties
+        Section48.compose(set); // Transitive Feature
+        Section49.compose(set); // Annotation property set
+        Section50.compose(set); // Data property set
+        Section51.compose(set); // Text
+        Section52.compose(set); // Is a
+        Section53.compose(set); // Inferred Definition
+        Section54.compose(set); // Description semantic
+        Section55.compose(set); // Model concept
+        Section56.compose(set); // Module
+        Section57.compose(set); // Any component
+        Section58.compose(set); // Native Identifier
+        Section59.compose(set); // Has Dose Form
+        Section60.compose(set); // Logical Definition
+        Section61.compose(set); // Identifier source
+        Section62.compose(set); // Description list for concept
+        Section63.compose(set); // Creative Commons BY license
+        Section64.compose(set); // Purpose
+        Section65.compose(set); // Property Sequence
+        Section66.compose(set); // Directed graph
+        Section67.compose(set); // Phenomenon
+        Section68.compose(set); // Relationship destination
+        Section69.compose(set); // Relationship origin
+        Section70.compose(set); // Tinkar root concept (part 1)
+        Section71.compose(set); // Tinkar root concept (part 2)
     }
 }
