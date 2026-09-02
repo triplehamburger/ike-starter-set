@@ -8,20 +8,20 @@
 
 A practical reference to the Clinical Quality Language (CQL) keyword set, organized the way they're being modeled in Komet -- with a definition, a worked example, and current Komet-authoring status for all 122 keywords.
 
-include::cql/01-overview-and-reading-guide.adoc[]
+include::cql/overview-and-reading-guide.adoc[]
 
-include::cql/02-running-cql-queries.adoc[]
+include::cql/running-cql-queries.adoc[]
 
-include::cql/03-family-summaries.adoc[]
+include::cql/family-summaries.adoc[]
 
-include::cql/04-types-and-literals.adoc[]
+include::cql/types-and-literals.adoc[]
 
-include::cql/05-declarations.adoc[]
+include::cql/declarations.adoc[]
 
-include::cql/06-core-operators.adoc[]
+include::cql/core-operators.adoc[]
 
-include::cql/07-data-and-timing-operators.adoc[]
+include::cql/data-and-timing-operators.adoc[]
 
-include::cql/08-query-and-control-flow.adoc[]
+include::cql/query-and-control-flow.adoc[]
 
-include::cql/09-keyword-dictionary.adoc[]
+include::cql/keyword-dictionary.adoc[]
