@@ -202,21 +202,21 @@ class FoundationFidelityIT {
      * held to. This registry is the durable record of the baseline divergence.
      */
     private static final Map<UUID, String> DELIBERATELY_RENAMED_FQNS = Map.ofEntries(
-            // foundation.Section3/13/18: retiring "assemblage" from this set's own
+            // foundation.ImmutableCoordinateProperties/LanguageCoordinateProperties/DescriptionType: retiring "assemblage" from this set's own
             // terminology (IKE-Network/ike-issues#880).
             Map.entry(UUID.fromString("16486419-5d1c-574f-bde6-21910ad66f44"), "Concept pattern for logic coordinate"),
             Map.entry(UUID.fromString("cfd2a47e-8169-5e71-9122-d5b73efd990a"), "Stated pattern for logic coordinate"),
             Map.entry(UUID.fromString("9ecf4d76-4346-5e5d-8316-bdff48a5c154"), "Inferred pattern for logic coordinate"),
             Map.entry(UUID.fromString("c060ffbf-e95f-5960-b296-8a3255c820ac"),
                     "Dialect pattern preference list for language coordinate"),
-            // foundation.Section19: dropping misleading "display field" wording from the
+            // foundation.DisplayFields: dropping misleading "display field" wording from the
             // five ConceptToDataType-confirmed concepts (#880 follow-up).
             Map.entry(UUID.fromString("a46aaf11-b37a-32d6-abdc-707f084ec8f5"), "String data type"),
             Map.entry(UUID.fromString("fb00d132-fcc3-5cbf-881d-4bcc4b4c91b3"), "Component data type"),
             Map.entry(UUID.fromString("ac8f1f54-c7c6-5fc7-b1a8-ebb04b918557"), "Concept data type"),
             Map.entry(UUID.fromString("32f64fc6-5371-11eb-ae93-0242ac130002"), "DiTree data type"),
             Map.entry(UUID.fromString("6efe7087-3e3c-5b45-8109-90d7652b1506"), "Float data type"),
-            // foundation.Section19: the seven more "display field" FQNs the Data Type
+            // foundation.DisplayFields: the seven more "display field" FQNs the Data Type
             // Defaults Pattern's field declarations anchor by UUID (IKE-Network/ike-issues#885).
             Map.entry(UUID.fromString("d6b9e2cc-31c6-5e80-91b7-7537690aae32"), "Boolean data type"),
             Map.entry(UUID.fromString("ff59c300-9c4e-5e77-a35d-6a133eb3440f"), "Integer data type"),
@@ -229,18 +229,18 @@ class FoundationFidelityIT {
             // the textual "display field" rule on grammar, not merit (IKE-Network/ike-issues#885).
             Map.entry(UUID.fromString("e553d3f1-63e1-4292-a3a9-af646fe44292"), "Component Id list data type"),
             Map.entry(UUID.fromString("e283af51-2e8f-44fa-9bf1-89a99a7c7631"), "Component Id set data type"),
-            // foundation.Section71: the "Sementic version field pattern" FQN typo fix
+            // foundation.TinkarRootConceptPart2: the "Sementic version field pattern" FQN typo fix
             // (IKE-Network/ike-issues#892). A pattern, not a concept — fqnTextUnchanged's
             // snapshot covers concepts only, so this entry records the deliberate rename
             // for the registry's own completeness (and gates it, should pattern FQNs ever
             // join the snapshot).
             Map.entry(UUID.fromString("82f93e84-cee1-44bc-bb6d-4cc2a722048b"), "Semantic version field pattern"),
-            // foundation.Section66: the fused "NavigationCoordinate/Directed graph" entry
+            // foundation.DirectedGraph: the fused "NavigationCoordinate/Directed graph" entry
             // split (IKE-Network/ike-issues#950) — the structure meaning keeps this birth
             // identity under the plain name; the coordinate meaning is a fresh concept
             // (Navigation coordinate properties, CoordinateModelSet).
             Map.entry(UUID.fromString("47a787a7-bdce-528d-bfcc-fde1add8d599"), "Directed graph"),
-            // foundation.Section6: the baseline's unbalanced-paren birth FQN
+            // foundation.Author: the baseline's unbalanced-paren birth FQN
             // "KOMET user list (SOLOR" corrected in place (IKE-Network/ike-issues#950).
             Map.entry(UUID.fromString("5e77558d-97d0-52b6-adf0-d54beb97b3a6"), "KOMET user list (SOLOR)")
     );

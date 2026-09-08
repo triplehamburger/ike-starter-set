@@ -24,7 +24,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * Apache 2.0 alongside it — and the licenses themselves are model concepts, so both
  * belong in the set. {@code License} is the family root under {@code Model concept};
  * the baseline's {@code Creative Commons BY license} re-parents under it at its own
- * section declaration ({@code foundation.Section63}, registered in
+ * section declaration ({@code foundation.CreativeCommonsByLicense}, registered in
  * {@code DELIBERATELY_REPARENTED_ISA}), and {@code Apache 2.0 license} is minted here
  * beside it. The same dual licensing is declared in every POM of the reactor.
  */

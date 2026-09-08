@@ -24,7 +24,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * {@code NavigationCoordinate/Directed graph} — conflating a coordinate-model notion
  * with a mathematical structure, and left the structure family without its kinds. This
  * file contributes the missing kinds; the fused entry's repair is written in place at
- * its section declaration ({@code foundation.Section66}), which re-parents
+ * its section declaration ({@code foundation.DirectedGraph}), which re-parents
  * {@code Directed graph} under the {@code Graph} minted here (registered in
  * {@code DELIBERATELY_REPARENTED_ISA}) and drops the coordinate half of the name. The
  * coordinate half becomes {@code Navigation coordinate properties} in

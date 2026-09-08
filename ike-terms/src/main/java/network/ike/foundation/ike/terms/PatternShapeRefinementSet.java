@@ -20,7 +20,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 
 /**
  * Mints the meaning/purpose concepts the corrected pattern shapes in
- * {@code foundation.Section71} reference: the SOLOR/Tinkar-inherited baseline collapsed
+ * {@code foundation.TinkarRootConceptPart2} reference: the SOLOR/Tinkar-inherited baseline collapsed
  * meaning and purpose into one concept for many patterns — a real modeling weakness KEC
  * flagged reviewing the rendered pattern-shape table (IKE-Network/ike-issues#880):
  * meaning names what kind of thing this is, purpose names why it is captured. Under the

@@ -67,17 +67,17 @@ public final class IkeSource implements KnowledgeSetSource {
         // AssemblageTerminologySet mints Set membership and the Solor Concepts Pattern —
         // the modern membership-pattern terminology (IKE-Network/ike-issues#880).
         AssemblageTerminologySet.compose(Ike.SET);
-        // LegacyTerminologySet mints the Legacy branch the Section41 reparent targets by
+        // LegacyTerminologySet mints the Legacy branch the Meaning reparent targets by
         // derived identity (IKE-Network/ike-issues#880 follow-up; the #950 sweep adds
         // eight more occupants, each reparented at its own section declaration).
         LegacyTerminologySet.compose(Ike.SET);
         // GraphModelSet mints the graph-structure family (Graph/Tree/Directed tree/EL++
-        // ditree) the repaired Section66 "Directed graph" cites by derived identity
+        // ditree) the repaired DirectedGraph "Directed graph" cites by derived identity
         // (IKE-Network/ike-issues#950).
         GraphModelSet.compose(Ike.SET);
         // CoordinateModelSet mints the view-coordinate-model family roots the
         // redistributed coordinate-dimension sections cite by derived identity; Part of
-        // is seated as a transitive role type at foundation.Section41
+        // is seated as a transitive role type at foundation.Meaning
         // (IKE-Network/ike-issues#950).
         CoordinateModelSet.compose(Ike.SET);
         // StampModelSet mints the STAMP whole the five dimension families

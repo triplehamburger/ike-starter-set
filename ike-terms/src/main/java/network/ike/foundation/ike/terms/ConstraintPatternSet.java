@@ -417,7 +417,7 @@ final class ConstraintPatternSet {
 
         // ── Worked examples: taxonomy constraints on real STAMP-pattern ──
         // and Description-pattern fields (each field's own meaning concept per
-        // Section71.java's actual .field(...) declarations, verified against
+        // TinkarRootConceptPart2.java's actual .field(...) declarations, verified against
         // ike-koncepts.yml before writing).
         set.pattern("STAMP pattern").at(inception)
                 .semantic(taxonomyConstraintPattern,

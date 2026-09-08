@@ -59,7 +59,7 @@ import java.util.UUID;
  * <p>
  * <b>The datatype-concept renames</b> the anchored {@code DisplayFields}-family
  * concepts carry ("&lt;Type&gt; data type" in place of the misleading "display field"
- * wording) live at their section declarations ({@code foundation.Section19}, registered
+ * wording) live at their section declarations ({@code foundation.DisplayFields}, registered
  * in {@code DELIBERATELY_RENAMED_FQNS}) under the inception flatten
  * (IKE-Network/ike-issues#894). Every ConceptToDataType-anchored datatype concept is
  * named "... data type"; deliberately untouched are only the unanchored
@@ -308,7 +308,7 @@ final class DataTypeDefaultsSet {
                 dataTypeDefaultsPattern.publicId(), defaultValueConcept.publicId());
 
         // The Semantic field references Uninitialized Component's own fully qualified
-        // name description — its established identity, declared in foundation.Section1
+        // name description — its established identity, declared in foundation.Uninitialized
         // (f600187f-94a9-4baf-8b44-46baba8d928a, verified there to be the FQN
         // description, not the "Uninitialized" synonym or the definition).
         EntityProxy.Semantic uninitializedFqnDescription = EntityProxy.Semantic.make(

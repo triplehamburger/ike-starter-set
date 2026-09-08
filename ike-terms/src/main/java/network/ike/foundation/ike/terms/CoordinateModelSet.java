@@ -24,7 +24,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * {@code ImmutableCoordinate Properties} while three per-coordinate families
  * (Language/Logic/Path coordinate properties) sat apart under {@code Object properties},
  * and the navigation dimensions had no family at all — their would-be home was fused
- * into the {@code NavigationCoordinate/Directed graph} entry {@code foundation.Section66}
+ * into the {@code NavigationCoordinate/Directed graph} entry {@code foundation.DirectedGraph}
  * repairs. This file contributes the missing roots: {@code View coordinate model} plus
  * the {@code Stamp}/{@code Edit}/{@code Navigation coordinate properties} families. The
  * pre-existing families and every dimension concept are re-parented in place at their
@@ -36,7 +36,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * root therefore carries, alongside its is-a placement, an existential
  * {@code Part of} restriction on {@code View coordinate model}; each dimension concept
  * carries one on its family root. {@code Part of} is seated as a transitive role type at
- * its own declaration ({@code foundation.Section41}), so the reasoner derives dimension
+ * its own declaration ({@code foundation.Meaning}), so the reasoner derives dimension
  * ∘ family → model. EL++ has no inverse roles, so part→whole is the one canonical
  * direction — {@code has-part} is never minted. Textual and logical definitions are kept
  * consistent: each definition below says what the concept is (the is-a) and what it is

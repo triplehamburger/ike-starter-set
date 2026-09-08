@@ -33,7 +33,7 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * picking from it would produce a field whose declared dataType throws
  * {@code UnsupportedOperationException} if ever resolved. Under the inception flatten
  * (IKE-Network/ike-issues#894) the reparent is written in place at the concept's section
- * declaration ({@code foundation.Section41}, registered in
+ * declaration ({@code foundation.Meaning}, registered in
  * {@code DELIBERATELY_REPARENTED_ISA}); this file contributes only the branch concept,
  * which that declaration cites by derived identity.
  * <p>

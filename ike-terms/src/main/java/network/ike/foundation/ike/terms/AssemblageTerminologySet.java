@@ -27,12 +27,12 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  * <p>
  * Under the inception flatten (IKE-Network/ike-issues#894) the four SOLOR-inherited
  * concepts that carried "assemblage" in their fully qualified names are corrected in
- * place at their section declarations ({@code foundation.Section3}/{@code Section13}/
- * {@code Section18}, registered in {@code DELIBERATELY_RENAMED_FQNS}), and the three
+ * place at their section declarations ({@code foundation.ImmutableCoordinateProperties}/{@code LanguageCoordinateProperties}/
+ * {@code DescriptionType}, registered in {@code DELIBERATELY_RENAMED_FQNS}), and the three
  * already-correctly-modeled membership patterns ({@code Tinkar base model component
  * pattern}, {@code Komet base model component pattern}, {@code Version control path
  * pattern}) carry {@code Set membership (IkeFoundation)} as the purpose of their single
- * declared version in {@code foundation.Section71}. This file mints that purpose concept
+ * declared version in {@code foundation.TinkarRootConceptPart2}. This file mints that purpose concept
  * and the fresh IKE-native {@code Solor Concepts Pattern (IkeFoundation)}.
  * <p>
  * {@code SOLORConceptAssemblage} (the pattern) is left untouched entirely — it is
