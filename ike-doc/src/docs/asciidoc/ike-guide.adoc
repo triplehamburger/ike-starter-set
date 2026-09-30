@@ -575,15 +575,13 @@ include::cql/running-cql-queries.adoc[leveloffset=1]
 
 include::cql/family-summaries.adoc[leveloffset=1]
 
-include::cql/types-and-literals.adoc[leveloffset=1]
-
 include::cql/declarations.adoc[leveloffset=1]
 
-include::cql/core-operators.adoc[leveloffset=1]
+include::cql/queries.adoc[leveloffset=1]
 
-include::cql/data-and-timing-operators.adoc[leveloffset=1]
+include::cql/values.adoc[leveloffset=1]
 
-include::cql/query-and-control-flow.adoc[leveloffset=1]
+include::cql/operations.adoc[leveloffset=1]
 
 == Tinkar Base Model
 

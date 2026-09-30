@@ -1,0 +1,19 @@
+== Values
+
+=== Simple Values (3)
+
+The literal values of CQL's three-valued logic.
+
+Members: <<term-false,`false`>>, <<term-null,`null`>>, <<term-true,`true`>>
+
+=== Type Names (5)
+
+Names of CQL's built-in clinical, structured, list, and interval types.
+
+Members: <<term-Code,`Code`>>, <<term-Concept,`Concept`>>, <<term-Interval,`Interval`>>, <<term-List,`List`>>, <<term-Tuple,`Tuple`>>
+
+=== Calendar duration keywords (16)
+
+Units of calendar time, singular or plural, used in quantities and in date and time arithmetic.
+
+Members: <<term-day,`day`>>, <<term-days,`days`>>, <<term-hour,`hour`>>, <<term-hours,`hours`>>, <<term-millisecond,`millisecond`>>, <<term-milliseconds,`milliseconds`>>, <<term-minute,`minute`>>, <<term-minutes,`minutes`>>, <<term-month,`month`>>, <<term-months,`months`>>, <<term-second,`second`>>, <<term-seconds,`seconds`>>, <<term-week,`week`>>, <<term-weeks,`weeks`>>, <<term-year,`year`>>, <<term-years,`years`>>

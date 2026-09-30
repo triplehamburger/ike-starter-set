@@ -1,0 +1,49 @@
+== Operations
+
+=== Logical Operators (5)
+
+Operators that combine or negate Boolean values using three-valued logic.
+
+Members: <<term-and,`and`>>, <<term-implies,`implies`>>, <<term-not,`not`>>, <<term-or,`or`>>, <<term-xor,`xor`>>
+
+=== Type Operators (5)
+
+Operators that test, cast, and convert values between types.
+
+Members: <<term-as,`as`>>, <<term-cast,`cast`>>, <<term-convert,`convert`>>, <<term-is,`is`>>, <<term-to,`to`>>
+
+=== Comparison Operators (1)
+
+Operators that compare values.
+
+Members: <<term-between,`between`>>
+
+=== Arithmetic Operators (6)
+
+Operators that compute numeric results and value boundaries.
+
+Members: <<term-div,`div`>>, <<term-maximum,`maximum`>>, <<term-minimum,`minimum`>>, <<term-mod,`mod`>>, <<term-predecessor,`predecessor`>>, <<term-successor,`successor`>>
+
+=== Date and Time Operators (17)
+
+Operators that compare, extract from, and compute with dates and times.
+
+Members: <<term-after,`after`>>, <<term-before,`before`>>, <<term-date,`date`>>, <<term-difference,`difference`>>, <<term-duration,`duration`>>, <<term-occurs,`occurs`>>, <<term-of,`of`>>, <<term-on,`on`>>, <<term-or-after,`or after`>>, <<term-or-before,`or before`>>, <<term-or-less,`or less`>>, <<term-or-more,`or more`>>, <<term-or-on,`or on`>>, <<term-same,`same`>>, <<term-time,`time`>>, <<term-timezoneoffset,`timezoneoffset`>>, <<term-within,`within`>>
+
+=== Interval Operators (15)
+
+Operators on intervals: boundaries, comparisons between intervals, and interval construction.
+
+Members: <<term-collapse,`collapse`>>, <<term-during,`during`>>, <<term-end,`end`>>, <<term-ends,`ends`>>, <<term-expand,`expand`>>, <<term-included-in,`included in`>>, <<term-includes,`includes`>>, <<term-meets,`meets`>>, <<term-overlaps,`overlaps`>>, <<term-per,`per`>>, <<term-point,`point`>>, <<term-properly,`properly`>>, <<term-start,`start`>>, <<term-starts,`starts`>>, <<term-width,`width`>>
+
+=== List Operators (9)
+
+Operators on lists: membership, set operations, and restructuring.
+
+Members: <<term-contains,`contains`>>, <<term-distinct,`distinct`>>, <<term-except,`except`>>, <<term-exists,`exists`>>, <<term-flatten,`flatten`>>, <<term-in,`in`>>, <<term-intersect,`intersect`>>, <<term-singleton,`singleton`>>, <<term-union,`union`>>
+
+=== Conditional Expressions (5)
+
+Keywords that choose between results based on a condition.
+
+Members: <<term-case,`case`>>, <<term-else,`else`>>, <<term-if,`if`>>, <<term-then,`then`>>, <<term-when,`when`>>

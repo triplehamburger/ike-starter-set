@@ -1,0 +1,21 @@
+== Queries
+
+Starts a query by naming its sources: <<term-from,`from`>>.
+
+=== Filtering (4)
+
+Keywords that restrict a query's results: by a condition, or by whether a related item exists.
+
+Members: <<term-such-that,`such that`>>, <<term-where,`where`>>, <<term-with,`with`>>, <<term-without,`without`>>
+
+=== Shaping (5)
+
+Keywords that shape what a query returns: projecting values, introducing definitions, and aggregating results.
+
+Members: <<term-aggregate,`aggregate`>>, <<term-all,`all`>>, <<term-let,`let`>>, <<term-return,`return`>>, <<term-starting,`starting`>>
+
+=== Sorting (6)
+
+Keywords that order a query's results.
+
+Members: <<term-asc,`asc`>>, <<term-ascending,`ascending`>>, <<term-by,`by`>>, <<term-desc,`desc`>>, <<term-descending,`descending`>>, <<term-sort,`sort`>>

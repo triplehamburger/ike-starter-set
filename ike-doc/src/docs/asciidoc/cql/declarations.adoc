@@ -1,19 +1,25 @@
 == Declarations
 
-=== Declaration (11)
+=== Library (5)
 
-The library-level statements that give a CQL file its shape.
+Keywords of a library's header: its name and version, the data models it uses, and the libraries it includes.
 
-Members: <<term-code,`code`>>, <<term-codesystem,`codesystem`>>, <<term-concept,`concept`>>, <<term-context,`context`>>, <<term-define,`define`>>, <<term-function,`function`>>, <<term-include,`include`>>, <<term-library,`library`>>, <<term-parameter,`parameter`>>, <<term-using,`using`>>, <<term-valueset,`valueset`>>
+Members: <<term-called,`called`>>, <<term-include,`include`>>, <<term-library,`library`>>, <<term-using,`using`>>, <<term-version,`version`>>
 
-=== Declaration Modifier (6)
+=== Terminology (6)
 
-Modifiers that refine a declaration -- an alias, a default, a version.
+Keywords that declare the code systems, value sets, codes, and concepts a library uses.
 
-Members: <<term-called,`called`>>, <<term-codesystems,`codesystems`>>, <<term-default,`default`>>, <<term-display,`display`>>, <<term-fluent,`fluent`>>, <<term-version,`version`>>
+Members: <<term-code,`code`>>, <<term-codesystem,`codesystem`>>, <<term-codesystems,`codesystems`>>, <<term-concept,`concept`>>, <<term-display,`display`>>, <<term-valueset,`valueset`>>
 
-=== Access Modifier (2)
+=== Parameters (2)
 
-Controls whether a definition is visible outside its own library.
+Keywords that declare a library parameter and its default value.
 
-Members: <<term-private,`private`>>, <<term-public,`public`>>
+Members: <<term-default,`default`>>, <<term-parameter,`parameter`>>
+
+=== Statements (6)
+
+Keywords that set the context statements are evaluated in, such as Patient, and define named expressions and functions with their access level.
+
+Members: <<term-context,`context`>>, <<term-define,`define`>>, <<term-fluent,`fluent`>>, <<term-function,`function`>>, <<term-private,`private`>>, <<term-public,`public`>>

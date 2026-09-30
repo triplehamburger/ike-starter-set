@@ -2,13 +2,13 @@
 
 CQL (Clinical Quality Language) is the HL7 standard expression language used to author clinical quality measures and decision-support logic -- the language behind retrieve expressions, timing phrases, and query clauses that pull structured data from a FHIR (or QUICK-based) source and evaluate it against a measure's logic. This chapter inventories every reserved keyword and lexical construct in the language and tracks how each one is being represented as a concept inside Komet, the IKE-Foundation terminology authoring platform.
 
-Keywords are grouped into five families -- Types & Literals, Declarations, Core Operators, Data & Timing Operators, and Query & Control Flow -- each a top-level section below, with its categories as subsections.
+Keywords are grouped into four families, following the CQL Author's Guide -- Declarations, Queries, Values, and Operations -- each a top-level section below, with its categories as subsections. The Operations categories are the operator categories of the CQL Reference (Appendix B). The same hierarchy files the keyword concepts in Komet, under the CQL keyword root.
 
 Every keyword entry carries a *category* (its grammatical role -- declaration, operator, type, and so on), a plain-language *definition* drawn from the CQL specification, a worked *example* showing it in realistic use, and a *Komet status* flag showing whether it already exists as an authored concept, has a related candidate concept, or has no match yet.
 
 Each entry in the <<keyword-dictionary,Keyword Dictionary>> states, in order:
 
-* Its *category* (e.g. `Timing Operator`) within its family
+* Its *category* (e.g. `Date and Time Operators`) within its family
 * Its *Komet status* -- one of:
 +
 --

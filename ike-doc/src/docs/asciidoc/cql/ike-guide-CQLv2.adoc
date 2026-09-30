@@ -14,14 +14,12 @@ include::cql/running-cql-queries.adoc[]
 
 include::cql/family-summaries.adoc[]
 
-include::cql/types-and-literals.adoc[]
-
 include::cql/declarations.adoc[]
 
-include::cql/core-operators.adoc[]
+include::cql/queries.adoc[]
 
-include::cql/data-and-timing-operators.adoc[]
+include::cql/values.adoc[]
 
-include::cql/query-and-control-flow.adoc[]
+include::cql/operations.adoc[]
 
 include::cql/keyword-dictionary.adoc[]

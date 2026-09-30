@@ -1,23 +1,47 @@
 == Family Summaries
 
-Quick-scan view of each family in this guide and what it contributes to CQL authoring.
+The keywords are grouped into four families, following the CQL Author's Guide, with the operator categories of the CQL Reference (Appendix B) as the Operations categories. The same hierarchy files the keyword concepts in Komet, under the CQL keyword root.
 
-=== Types & Literals (8)
-
-This family defines the foundational values CQL expressions operate on: built-in types (<<term-Code,`Code`>>, <<term-Concept,`Concept`>>, <<term-Interval,`Interval`>>, <<term-List,`List`>>, <<term-Tuple,`Tuple`>>) and fixed literals (<<term-true,`true`>>, <<term-false,`false`>>, <<term-null,`null`>>). These terms establish the basic data shapes and constants used throughout the language.
+[listing]
+----
+CQL keyword
+├── Declarations (19)
+│   ├── Library (5)
+│   ├── Terminology (6)
+│   ├── Parameters (2)
+│   └── Statements (6)
+├── Queries (16)
+│   ├── from
+│   ├── Filtering (4)
+│   ├── Shaping (5)
+│   └── Sorting (6)
+├── Values (24)
+│   ├── Simple Values (3)
+│   ├── Type Names (5)
+│   └── Calendar duration keywords (16)
+└── Operations (63)
+    ├── Logical Operators (5)
+    ├── Type Operators (5)
+    ├── Comparison Operators (1)
+    ├── Arithmetic Operators (6)
+    ├── Date and Time Operators (17)
+    ├── Interval Operators (15)
+    ├── List Operators (9)
+    └── Conditional Expressions (5)
+----
 
 === Declarations (19)
 
-This family contains the top-level library-building language: context, terminology, parameters, includes, and reusable definitions, plus modifiers for visibility, aliasing, defaults, fluent use, display labels, and versions. In practice, these keywords structure a CQL library and control how its logic is exposed and reused.
+Keywords that declare the parts of a CQL library: its identity, data models, included libraries, terminology, parameters, context, and named statements.
 
-=== Core Operators (18)
+=== Queries (16)
 
-This family covers general-purpose expression logic: boolean composition, arithmetic operations, type checks/conversions, and core comparison (<<term-between,`between`>>). These terms are the primary tools for computing, combining, and evaluating conditions inside definitions and queries.
+Keywords that build queries over lists of data: choosing sources, filtering, relating, shaping, and sorting results.
 
-=== Data & Timing Operators (56)
+=== Values (24)
 
-This family provides most of CQL's clinical data-shaping and temporal logic, including list/interval operations, temporal relationships, precision units, and date/time extraction (<<term-difference,`difference`>>, <<term-duration,`duration`>>, parts of dates/times). It is central for measure logic that depends on membership, boundaries, overlap, ordering, and timing windows.
+Keywords that name CQL's types and write values directly.
 
-=== Query & Control Flow (21)
+=== Operations (63)
 
-This family governs query construction and branching behavior: source and join clauses, filters, projections, sorting/aggregation, and conditional forms (`if/then/else`, `case/when`). These keywords let authors traverse data, shape result sets, and choose outcomes based on evaluated conditions.
+Keywords for CQL's operators, grouped by the operator categories of the CQL Reference.
