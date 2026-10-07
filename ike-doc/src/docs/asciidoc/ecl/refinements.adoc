@@ -1,6 +1,0 @@
-[#ecl-refinements]
-== Refinements (1)
-
-Keywords of the Refinements section: the reverse flag selecting an attribute's values rather than its sources.
-
-Members: <<ecl-term-reverseOf,`reverseOf`>>

@@ -1,6 +1,0 @@
-[#ecl-simple-expression-constraints]
-== Simple Expression Constraints (10)
-
-Keywords of the Simple Expression Constraints section: the hierarchy operators selecting descendants, ancestors, children or parents of a focus concept, and the reference set operators.
-
-Members: <<ecl-term-ancestorOf,`ancestorOf`>>, <<ecl-term-ancestorOrSelfOf,`ancestorOrSelfOf`>>, <<ecl-term-childOf,`childOf`>>, <<ecl-term-childOrSelfOf,`childOrSelfOf`>>, <<ecl-term-descendantOf,`descendantOf`>>, <<ecl-term-descendantOrSelfOf,`descendantOrSelfOf`>>, <<ecl-term-memberOf,`memberOf`>>, <<ecl-term-parentOf,`parentOf`>>, <<ecl-term-parentOrSelfOf,`parentOrSelfOf`>>, <<ecl-term-refsetContainingAny,`refsetContainingAny`>>

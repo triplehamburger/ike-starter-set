@@ -1,6 +1,0 @@
-[#ecl-conjunction-and-disjunction]
-== Conjunction and Disjunction (2)
-
-Keywords of the Conjunction and Disjunction section: the intersection and union of expression constraints or refinements.
-
-Members: <<ecl-term-and,`and`>>, <<ecl-term-or,`or`>>

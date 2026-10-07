@@ -1,6 +1,0 @@
-[#ecl-history-supplements]
-== History Supplements (4)
-
-Keywords of the History Supplements section: the history supplement and its profiles, which add inactive concepts through historical associations.
-
-Members: <<ecl-term-history,`history`>>, <<ecl-term-history-max,`history-max`>>, <<ecl-term-history-min,`history-min`>>, <<ecl-term-history-mod,`history-mod`>>

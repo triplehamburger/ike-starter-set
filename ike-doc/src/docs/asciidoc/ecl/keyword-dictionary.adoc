@@ -1,13 +1,13 @@
 [#ecl-keyword-dictionary]
 == Keyword Dictionary
 
-All 48 ECL keywords, alphabetically. Section, definition, and example for each.
+All 48 ECL keywords, alphabetically. Category, definition, and example for each.
 
 [[ecl-term-accept]]
 [discrete]
 ==== *accept*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Acceptability token: the description is acceptable in the dialect.
 
@@ -24,7 +24,7 @@ Acceptability token: the description is acceptable in the dialect.
 [discrete]
 ==== *active*
 
-`Description Filters` · `Concept Filters` · `Member Filters` -- (ECL keyword > Description Filters, Concept Filters, Member Filters)
+`Component Filter` -- (Filters > Component Filter)
 
 Filters descriptions, concepts or members by active status (true/1, false/0, or *).
 
@@ -41,7 +41,7 @@ Filters descriptions, concepts or members by active status (true/1, false/0, or 
 [discrete]
 ==== *ancestorOf*
 
-`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+`Hierarchy Operator` -- (Constraint Operators > Hierarchy Operator)
 
 Selects all ancestors of the focus concept, excluding the concept itself (brief syntax >).
 
@@ -58,7 +58,7 @@ ancestorOf 40541001 |Acute pulmonary edema|
 [discrete]
 ==== *ancestorOrSelfOf*
 
-`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+`Hierarchy Operator` -- (Constraint Operators > Hierarchy Operator)
 
 Selects the focus concept and all its ancestors (brief syntax >>).
 
@@ -75,7 +75,7 @@ ancestorOrSelfOf 40541001 |Acute pulmonary edema|
 [discrete]
 ==== *and*
 
-`Conjunction and Disjunction` -- (ECL keyword > Conjunction and Disjunction)
+`Logic & Refinement` -- (Logic & Refinement)
 
 Conjunction: the intersection of two constraints, or both of two refinements (brief syntax ,).
 
@@ -92,7 +92,7 @@ Conjunction: the intersection of two constraints, or both of two refinements (br
 [discrete]
 ==== *bottom*
 
-`Top and Bottom` -- (ECL keyword > Top and Bottom)
+`Hierarchy Operator` -- (Constraint Operators > Hierarchy Operator)
 
 Selects the concepts of a set that have no descendant in the set (brief syntax !!<).
 
@@ -109,7 +109,7 @@ bottom (descendantOrSelfOf 73211009 |Diabetes mellitus|)
 [discrete]
 ==== *C*
 
-`Concept Filters` -- (ECL keyword > Concept Filters)
+`Component Filter` -- (Filters > Component Filter)
 
 Opens a concept filter constraint.
 
@@ -126,7 +126,7 @@ Opens a concept filter constraint.
 [discrete]
 ==== *childOf*
 
-`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+`Hierarchy Operator` -- (Constraint Operators > Hierarchy Operator)
 
 Selects the immediate children of the focus concept (brief syntax <!).
 
@@ -143,7 +143,7 @@ childOf 73211009 |Diabetes mellitus|
 [discrete]
 ==== *childOrSelfOf*
 
-`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+`Hierarchy Operator` -- (Constraint Operators > Hierarchy Operator)
 
 Selects the focus concept and its immediate children (brief syntax <<!).
 
@@ -160,7 +160,7 @@ childOrSelfOf 73211009 |Diabetes mellitus|
 [discrete]
 ==== *D*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Component Filter` -- (Filters > Component Filter)
 
 Opens a description filter constraint; optional, since a filter without a letter is a description filter.
 
@@ -177,7 +177,7 @@ Opens a description filter constraint; optional, since a filter without a letter
 [discrete]
 ==== *def*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Description type token for text definition.
 
@@ -194,7 +194,7 @@ Description type token for text definition.
 [discrete]
 ==== *defined*
 
-`Concept Filters` -- (ECL keyword > Concept Filters)
+`Concept Filter` -- (Filters > Concept Filter)
 
 Definition status token: the concept is sufficiently defined.
 
@@ -211,7 +211,7 @@ Definition status token: the concept is sufficiently defined.
 [discrete]
 ==== *definitionStatus*
 
-`Concept Filters` -- (ECL keyword > Concept Filters)
+`Concept Filter` -- (Filters > Concept Filter)
 
 Filters concepts by definition status token (primitive, defined).
 
@@ -228,7 +228,7 @@ Filters concepts by definition status token (primitive, defined).
 [discrete]
 ==== *definitionStatusId*
 
-`Concept Filters` -- (ECL keyword > Concept Filters)
+`Concept Filter` -- (Filters > Concept Filter)
 
 Filters concepts by definition status concept.
 
@@ -245,7 +245,7 @@ Filters concepts by definition status concept.
 [discrete]
 ==== *descendantOf*
 
-`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+`Hierarchy Operator` -- (Constraint Operators > Hierarchy Operator)
 
 Selects all descendants of the focus concept, excluding the concept itself (brief syntax <).
 
@@ -262,7 +262,7 @@ descendantOf 404684003 |Clinical finding|
 [discrete]
 ==== *descendantOrSelfOf*
 
-`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+`Hierarchy Operator` -- (Constraint Operators > Hierarchy Operator)
 
 Selects the focus concept and all its descendants (brief syntax <<).
 
@@ -279,7 +279,7 @@ descendantOrSelfOf 73211009 |Diabetes mellitus|
 [discrete]
 ==== *dialect*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Filters descriptions by dialect alias, optionally with an acceptability.
 
@@ -296,7 +296,7 @@ Filters descriptions by dialect alias, optionally with an acceptability.
 [discrete]
 ==== *dialectId*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Filters descriptions by language reference set concept, optionally with an acceptability.
 
@@ -313,7 +313,7 @@ Filters descriptions by language reference set concept, optionally with an accep
 [discrete]
 ==== *effectiveTime*
 
-`Description Filters` · `Concept Filters` · `Member Filters` -- (ECL keyword > Description Filters, Concept Filters, Member Filters)
+`Component Filter` -- (Filters > Component Filter)
 
 Filters descriptions, concepts or members by effective time, compared as a quoted YYYYMMDD date.
 
@@ -330,7 +330,7 @@ Filters descriptions, concepts or members by effective time, compared as a quote
 [discrete]
 ==== *false*
 
-`Description Filters` · `Concept Filters` · `Member Filters` -- (ECL keyword > Description Filters, Concept Filters, Member Filters)
+`Component Filter` -- (Filters > Component Filter)
 
 Boolean value false, compared by a boolean attribute or an active filter.
 
@@ -347,7 +347,7 @@ Boolean value false, compared by a boolean attribute or an active filter.
 [discrete]
 ==== *fsn*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Description type token for fully specified name.
 
@@ -364,7 +364,7 @@ Description type token for fully specified name.
 [discrete]
 ==== *history*
 
-`History Supplements` -- (ECL keyword > History Supplements)
+`History` -- (History)
 
 History supplement: adds inactive concepts linked to the result by historical associations, all of them or those of a given subset.
 
@@ -381,7 +381,7 @@ History supplement: adds inactive concepts linked to the result by historical as
 [discrete]
 ==== *history-max*
 
-`History Supplements` -- (ECL keyword > History Supplements)
+`History` -- (History)
 
 History supplement profile that follows every historical association.
 
@@ -398,7 +398,7 @@ History supplement profile that follows every historical association.
 [discrete]
 ==== *history-min*
 
-`History Supplements` -- (ECL keyword > History Supplements)
+`History` -- (History)
 
 History supplement profile that follows only the SAME AS historical association.
 
@@ -415,7 +415,7 @@ History supplement profile that follows only the SAME AS historical association.
 [discrete]
 ==== *history-mod*
 
-`History Supplements` -- (ECL keyword > History Supplements)
+`History` -- (History)
 
 History supplement profile that follows the SAME AS, REPLACED BY, WAS A and PARTIALLY EQUIVALENT TO associations.
 
@@ -432,7 +432,7 @@ History supplement profile that follows the SAME AS, REPLACED BY, WAS A and PART
 [discrete]
 ==== *id*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Filters descriptions by description identifier.
 
@@ -449,7 +449,7 @@ Filters descriptions by description identifier.
 [discrete]
 ==== *language*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Filters descriptions by their two-letter language code.
 
@@ -466,7 +466,7 @@ Filters descriptions by their two-letter language code.
 [discrete]
 ==== *M*
 
-`Member Filters` -- (ECL keyword > Member Filters)
+`Component Filter` -- (Filters > Component Filter)
 
 Opens a member filter constraint on the members of a reference set.
 
@@ -483,7 +483,7 @@ Opens a member filter constraint on the members of a reference set.
 [discrete]
 ==== *many*
 
-`Cardinality` -- (ECL keyword > Cardinality)
+`Logic & Refinement` -- (Logic & Refinement)
 
 An unbounded maximum cardinality (brief syntax *).
 
@@ -500,7 +500,7 @@ An unbounded maximum cardinality (brief syntax *).
 [discrete]
 ==== *match*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Term search type: each word in the search string must prefix a word in the term (the default).
 
@@ -517,7 +517,7 @@ Term search type: each word in the search string must prefix a word in the term 
 [discrete]
 ==== *memberOf*
 
-`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+`Reference Set Operator` -- (Constraint Operators > Reference Set Operator)
 
 Selects the referenced components of a reference set, optionally returning named member fields instead (brief syntax ^).
 
@@ -534,7 +534,7 @@ memberOf 700043003 |Example problem list concepts reference set|
 [discrete]
 ==== *minus*
 
-`Exclusion and Not Equals` -- (ECL keyword > Exclusion and Not Equals)
+`Logic & Refinement` -- (Logic & Refinement)
 
 Exclusion: the concepts of the first constraint that are not in the second.
 
@@ -551,7 +551,7 @@ Exclusion: the concepts of the first constraint that are not in the second.
 [discrete]
 ==== *moduleId*
 
-`Description Filters` · `Concept Filters` · `Member Filters` -- (ECL keyword > Description Filters, Concept Filters, Member Filters)
+`Component Filter` -- (Filters > Component Filter)
 
 Filters descriptions, concepts or members by module concept.
 
@@ -568,7 +568,7 @@ Filters descriptions, concepts or members by module concept.
 [discrete]
 ==== *or*
 
-`Conjunction and Disjunction` -- (ECL keyword > Conjunction and Disjunction)
+`Logic & Refinement` -- (Logic & Refinement)
 
 Disjunction: the union of two constraints, or either of two refinements.
 
@@ -585,7 +585,7 @@ Disjunction: the union of two constraints, or either of two refinements.
 [discrete]
 ==== *parentOf*
 
-`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+`Hierarchy Operator` -- (Constraint Operators > Hierarchy Operator)
 
 Selects the immediate parents of the focus concept (brief syntax >!).
 
@@ -602,7 +602,7 @@ parentOf 40541001 |Acute pulmonary edema|
 [discrete]
 ==== *parentOrSelfOf*
 
-`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+`Hierarchy Operator` -- (Constraint Operators > Hierarchy Operator)
 
 Selects the focus concept and its immediate parents (brief syntax >>!).
 
@@ -619,7 +619,7 @@ parentOrSelfOf 40541001 |Acute pulmonary edema|
 [discrete]
 ==== *prefer*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Acceptability token: the description is preferred in the dialect.
 
@@ -636,7 +636,7 @@ Acceptability token: the description is preferred in the dialect.
 [discrete]
 ==== *primitive*
 
-`Concept Filters` -- (ECL keyword > Concept Filters)
+`Concept Filter` -- (Filters > Concept Filter)
 
 Definition status token: the concept is primitive (not sufficiently defined).
 
@@ -653,7 +653,7 @@ Definition status token: the concept is primitive (not sufficiently defined).
 [discrete]
 ==== *refsetContainingAny*
 
-`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+`Reference Set Operator` -- (Constraint Operators > Reference Set Operator)
 
 Selects the reference sets that contain any of the given concepts as members (brief syntax ^R).
 
@@ -670,7 +670,7 @@ refsetContainingAny 73211009 |Diabetes mellitus|
 [discrete]
 ==== *reverseOf*
 
-`Refinements` -- (ECL keyword > Refinements)
+`Logic & Refinement` -- (Logic & Refinement)
 
 Reverses an attribute: selects the attribute's values rather than its sources (brief syntax R).
 
@@ -687,7 +687,7 @@ Reverses an attribute: selects the attribute's values rather than its sources (b
 [discrete]
 ==== *syn*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Description type token for synonym.
 
@@ -704,7 +704,7 @@ Description type token for synonym.
 [discrete]
 ==== *term*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Filters on description terms, by word-prefix match or wildcard search.
 
@@ -721,7 +721,7 @@ Filters on description terms, by word-prefix match or wildcard search.
 [discrete]
 ==== *to*
 
-`Cardinality` -- (ECL keyword > Cardinality)
+`Logic & Refinement` -- (Logic & Refinement)
 
 Separates the minimum and maximum of a cardinality range (brief syntax ..).
 
@@ -738,7 +738,7 @@ Separates the minimum and maximum of a cardinality range (brief syntax ..).
 [discrete]
 ==== *top*
 
-`Top and Bottom` -- (ECL keyword > Top and Bottom)
+`Hierarchy Operator` -- (Constraint Operators > Hierarchy Operator)
 
 Selects the concepts of a set that have no ancestor in the set (brief syntax !!>).
 
@@ -755,7 +755,7 @@ top (descendantOrSelfOf 73211009 |Diabetes mellitus|)
 [discrete]
 ==== *true*
 
-`Description Filters` · `Concept Filters` · `Member Filters` -- (ECL keyword > Description Filters, Concept Filters, Member Filters)
+`Component Filter` -- (Filters > Component Filter)
 
 Boolean value true, compared by a boolean attribute or an active filter.
 
@@ -772,7 +772,7 @@ Boolean value true, compared by a boolean attribute or an active filter.
 [discrete]
 ==== *type*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Filters descriptions by description type token (syn, fsn, def).
 
@@ -789,7 +789,7 @@ Filters descriptions by description type token (syn, fsn, def).
 [discrete]
 ==== *typeId*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Filters descriptions by description type concept.
 
@@ -806,7 +806,7 @@ Filters descriptions by description type concept.
 [discrete]
 ==== *wild*
 
-`Description Filters` -- (ECL keyword > Description Filters)
+`Description Filter` -- (Filters > Description Filter)
 
 Term search type: the whole term must match a pattern in which * stands for any characters.
 

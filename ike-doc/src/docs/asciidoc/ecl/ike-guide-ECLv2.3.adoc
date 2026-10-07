@@ -12,26 +12,14 @@ include::overview-and-reading-guide.adoc[]
 
 include::running-ecl-queries.adoc[]
 
-include::section-summaries.adoc[]
+include::family-summaries.adoc[]
 
-include::simple-expression-constraints.adoc[]
+include::constraint-operators.adoc[]
 
-include::refinements.adoc[]
+include::logic-and-refinement.adoc[]
 
-include::cardinality.adoc[]
+include::filters.adoc[]
 
-include::conjunction-and-disjunction.adoc[]
-
-include::exclusion-and-not-equals.adoc[]
-
-include::description-filters.adoc[]
-
-include::concept-filters.adoc[]
-
-include::member-filters.adoc[]
-
-include::history-supplements.adoc[]
-
-include::top-and-bottom.adoc[]
+include::history.adoc[]
 
 include::keyword-dictionary.adoc[]
