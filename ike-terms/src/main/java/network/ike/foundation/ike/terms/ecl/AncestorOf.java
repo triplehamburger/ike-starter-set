@@ -8,8 +8,7 @@ import java.util.UUID;
 
 /**
  * The "ancestorOf" section — the ECL keyword {@code ancestorOf} as a concept, filed under
- * Simple expression constraints ECL keywords (ECL). See {@link EclSet} for what every section
- * here holds in common.
+ * ECL hierarchy operator keywords (ECL). See {@link EclSet} for what every section here holds in common.
  */
 final class AncestorOf {
 
@@ -39,7 +38,7 @@ final class AncestorOf {
                         + "syntax >).\nExample: ancestorOf 40541001 |Acute pulmonary edema|",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("ancestorOf ECL keyword (ECL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("ancestorOf ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Simple expression constraints ECL keywords (ECL)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("ancestorOf ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("ECL hierarchy operator keywords (ECL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("ancestorOf ECL keyword (ECL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("ancestorOf ECL keyword (ECL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("ancestorOf ECL keyword (ECL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref

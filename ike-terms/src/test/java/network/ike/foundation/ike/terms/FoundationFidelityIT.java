@@ -148,11 +148,11 @@ class FoundationFidelityIT {
      * and {@code CqlKeywordHierarchy} the categories they are filed under (22 — the CQL
      * keyword root, five families, and 16 categories).
      * <p>
-     * The ECL keyword set adds 59: {@code EclSet} mints one concept per ECL 2.3 keyword (48)
-     * and {@code EclKeywordHierarchy} the categories they are filed under (11 — the ECL
-     * keyword root and one category per ECL Core Brief Syntax section, ten).
+     * The ECL keyword set adds 58: {@code EclSet} mints one concept per ECL 2.3 keyword (48)
+     * and {@code EclKeywordHierarchy} the categories they are filed under (10 — the ECL
+     * keyword root, four families, and five categories).
      */
-    private static final int AUTHORED_CONTENT_CONCEPTS = 318;
+    private static final int AUTHORED_CONTENT_CONCEPTS = 317;
     /**
      * New patterns {@code ConstraintPatternSet} (4, IKE-Network/ike-issues#880 as
      * refactored by IKE-Network/ike-issues#890 — the never-created Concept Field

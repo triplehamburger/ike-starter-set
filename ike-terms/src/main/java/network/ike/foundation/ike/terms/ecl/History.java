@@ -7,9 +7,8 @@ import network.ike.foundation.ike.terms.IkeTerm;
 import java.util.UUID;
 
 /**
- * The "history" section — the ECL keyword {@code history} as a concept, filed under History
- * supplements ECL keywords (ECL). See {@link EclSet} for what every section here holds in
- * common.
+ * The "history" section — the ECL keyword {@code history} as a concept, filed under
+ * ECL history keyword family (ECL). See {@link EclSet} for what every section here holds in common.
  */
 final class History {
 
@@ -40,7 +39,7 @@ final class History {
                         + "|Asthma| {{ + history }}",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("history ECL keyword (ECL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("history ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("History supplements ECL keywords (ECL)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("history ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("ECL history keyword family (ECL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("history ECL keyword (ECL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("history ECL keyword (ECL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("history ECL keyword (ECL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref

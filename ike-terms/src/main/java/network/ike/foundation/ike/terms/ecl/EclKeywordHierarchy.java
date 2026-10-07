@@ -9,12 +9,12 @@ import java.util.UUID;
 
 /**
  * The ECL keyword hierarchy: the ECL keyword root, filed under Legacy (IkeFoundation), and the
- * 10 categories every keyword section is filed under, one per section of the ECL 2.3
- * specification's ECL Core Brief Syntax chapter that introduces keywords, named after it.
+ * 4 families and 5 categories every keyword section is filed under, as the ECL 2.3 grammar
+ * groups its keywords (constraint operators, logic and refinement, filters, history).
  *
  * <p>Each category is a concept of the same shape as a keyword section, with every identity
  * derived from its fully qualified name through {@code set.uuidFor(key)}. The fully qualified
- * names end in "ECL keywords" so no bindings constant collides with a CQL category's.
+ * names start with "ECL" so no bindings constant collides with a CQL category's.
  */
 final class EclKeywordHierarchy {
 
@@ -25,40 +25,40 @@ final class EclKeywordHierarchy {
     private record Category(String fullyQualifiedName, String regularName, String parent, String definition) {
     }
 
-    /** The root first, then the sections. */
+    /** The root first, then the families, then each family's categories. */
     private static final List<Category> CATEGORIES = List.of(
             new Category("ECL keyword (ECL)", "ECL keyword", "Legacy (IkeFoundation)",
-                    "A word the SNOMED CT Expression Constraint Language (ECL 2.3) parser recognizes, as "
-                    + "listed in the brief and long syntax ABNF. Grouped by the specification's ECL Core "
-                    + "Brief Syntax sections. Every textual ECL keyword is case insensitive."),
-            new Category("Simple expression constraints ECL keywords (ECL)", "Simple Expression Constraints", "ECL keyword (ECL)",
-                    "Keywords of the Simple Expression Constraints section: the hierarchy operators "
-                    + "selecting descendants, ancestors, children or parents of a focus concept, and the "
-                    + "reference set operators."),
-            new Category("Top and bottom ECL keywords (ECL)", "Top and Bottom", "ECL keyword (ECL)",
-                    "Keywords of the Top and Bottom section: the operators selecting the concepts of a "
-                    + "set that have no ancestor, or no descendant, within the set."),
-            new Category("Refinements ECL keywords (ECL)", "Refinements", "ECL keyword (ECL)",
-                    "Keywords of the Refinements section: the reverse flag selecting an attribute's "
-                    + "values rather than its sources."),
-            new Category("Cardinality ECL keywords (ECL)", "Cardinality", "ECL keyword (ECL)",
-                    "Keywords of the Cardinality section: the range separator and the unbounded maximum."),
-            new Category("Conjunction and disjunction ECL keywords (ECL)", "Conjunction and Disjunction", "ECL keyword (ECL)",
-                    "Keywords of the Conjunction and Disjunction section: the intersection and union of "
-                    + "expression constraints or refinements."),
-            new Category("Exclusion and not equals ECL keywords (ECL)", "Exclusion and Not Equals", "ECL keyword (ECL)",
-                    "Keywords of the Exclusion and Not Equals section: the difference of two expression "
-                    + "constraints."),
-            new Category("Description filters ECL keywords (ECL)", "Description Filters", "ECL keyword (ECL)",
-                    "Keywords of the Description Filters section: filters on a concept's descriptions, "
-                    + "the term search types, and the description type and acceptability tokens."),
-            new Category("Concept filters ECL keywords (ECL)", "Concept Filters", "ECL keyword (ECL)",
-                    "Keywords of the Concept Filters section: the definition status filters and tokens."),
-            new Category("Member filters ECL keywords (ECL)", "Member Filters", "ECL keyword (ECL)",
-                    "Keywords of the Member Filters section: filters on the members of a reference set."),
-            new Category("History supplements ECL keywords (ECL)", "History Supplements", "ECL keyword (ECL)",
-                    "Keywords of the History Supplements section: the history supplement and its "
-                    + "profiles, which add inactive concepts through historical associations."));
+                    "A word or symbol the SNOMED CT Expression Constraint Language (ECL 2.3) parser "
+                    + "recognizes, as listed in the brief and long syntax ABNF. Grouped by the families and"
+                    + " categories below. Every textual ECL keyword is case insensitive."),
+            new Category("ECL constraint operators keyword family (ECL)", "Constraint Operators", "ECL keyword (ECL)",
+                    "This family selects concepts by their position in the SNOMED CT hierarchy or by "
+                    + "reference set membership. Each keyword has a symbol (brief syntax) and a word (long "
+                    + "syntax) form."),
+            new Category("ECL logic and refinement keyword family (ECL)", "Logic & Refinement", "ECL keyword (ECL)",
+                    "This family combines expression constraints and refines them by attribute: the "
+                    + "boolean connectives and the modifiers of an attribute or attribute group."),
+            new Category("ECL filters keyword family (ECL)", "Filters", "ECL keyword (ECL)",
+                    "This family covers the {{ }} filter constraints that narrow a result by description,"
+                    + " concept or reference set member properties, and the fixed tokens those filters "
+                    + "compare against."),
+            new Category("ECL history keyword family (ECL)", "History", "ECL keyword (ECL)",
+                    "The history supplement keyword and its profiles, which add inactive concepts to a "
+                    + "result through historical associations, the profile choosing how many associations "
+                    + "to follow."),
+            new Category("ECL hierarchy operator keywords (ECL)", "Hierarchy Operator", "ECL constraint operators keyword family (ECL)",
+                    "Selects descendants, ancestors, children, parents, or the top or bottom of a set."),
+            new Category("ECL reference set operator keywords (ECL)", "Reference Set Operator", "ECL constraint operators keyword family (ECL)",
+                    "Selects reference set members, or the reference sets containing given concepts."),
+            new Category("ECL description filter keywords (ECL)", "Description Filter", "ECL filters keyword family (ECL)",
+                    "Filters on a concept's descriptions (term, language, type, dialect, identifier), "
+                    + "with the term search types and the description type and acceptability tokens they "
+                    + "compare against."),
+            new Category("ECL concept filter keywords (ECL)", "Concept Filter", "ECL filters keyword family (ECL)",
+                    "Filters on a concept's own definition status, with the definition status tokens."),
+            new Category("ECL component filter keywords (ECL)", "Component Filter", "ECL filters keyword family (ECL)",
+                    "Keywords shared by description, concept and member filters: the filter type letters "
+                    + "(D, C, M), module, effective time, and active with its boolean values."));
 
     /**
      * Composes the hierarchy's declarations into the session.

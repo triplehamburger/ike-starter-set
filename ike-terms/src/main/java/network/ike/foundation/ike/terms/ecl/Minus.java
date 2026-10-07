@@ -7,9 +7,8 @@ import network.ike.foundation.ike.terms.IkeTerm;
 import java.util.UUID;
 
 /**
- * The "minus" section — the ECL keyword {@code minus} as a concept, filed under Exclusion and
- * not equals ECL keywords (ECL). See {@link EclSet} for what every section here holds in
- * common.
+ * The "minus" section — the ECL keyword {@code minus} as a concept, filed under
+ * ECL logic and refinement keyword family (ECL). See {@link EclSet} for what every section here holds in common.
  */
 final class Minus {
 
@@ -39,7 +38,7 @@ final class Minus {
                         + "second.\nExample: << 19829001 |Disorder of lung| minus << 301867009 |Edema of trunk|",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("minus ECL keyword (ECL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("minus ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Exclusion and not equals ECL keywords (ECL)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("minus ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("ECL logic and refinement keyword family (ECL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("minus ECL keyword (ECL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("minus ECL keyword (ECL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("minus ECL keyword (ECL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref

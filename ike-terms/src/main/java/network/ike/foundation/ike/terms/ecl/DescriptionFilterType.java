@@ -7,8 +7,8 @@ import network.ike.foundation.ike.terms.IkeTerm;
 import java.util.UUID;
 
 /**
- * The "D" section — the ECL keyword {@code D} as a concept, filed under Description filters
- * ECL keywords (ECL). See {@link EclSet} for what every section here holds in common.
+ * The "D" section — the ECL keyword {@code D} as a concept, filed under
+ * ECL component filter keywords (ECL). See {@link EclSet} for what every section here holds in common.
  */
 final class DescriptionFilterType {
 
@@ -38,7 +38,7 @@ final class DescriptionFilterType {
                         + "a description filter.\nExample: < 64572001 |Disease| {{ D term = \"heart\" }}",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("D ECL keyword (ECL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("D ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Description filters ECL keywords (ECL)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("D ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("ECL component filter keywords (ECL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("D ECL keyword (ECL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("D ECL keyword (ECL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("D ECL keyword (ECL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref
