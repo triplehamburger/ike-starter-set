@@ -18,6 +18,7 @@ package network.ike.foundation.ike.terms;
 import dev.ikm.tinkar.entity.builder.KnowledgeSet;
 import dev.ikm.tinkar.entity.builder.KnowledgeSetSource;
 import network.ike.foundation.ike.terms.cql.CqlSet;
+import network.ike.foundation.ike.terms.ecl.EclSet;
 import network.ike.foundation.ike.terms.foundation.FoundationSet;
 
 /**
@@ -102,6 +103,9 @@ public final class IkeSource implements KnowledgeSetSource {
         // CqlSet mints the CQL keyword hierarchy, rooted under Legacy (IkeFoundation), and
         // the keyword concepts filed under it, so it composes after LegacyTerminologySet.
         CqlSet.compose(Ike.SET);
+        // EclSet mints the SNOMED CT ECL 2.3 keyword hierarchy and keywords the same way,
+        // also rooted under Legacy (IkeFoundation).
+        EclSet.compose(Ike.SET);
         // TODO: the rest of the IKE carriers section (new (IKE)-tagged content) lands
         // separately when the wave-2 coordination concludes (IKE-Network/ike-issues#867).
         return Ike.SET;
