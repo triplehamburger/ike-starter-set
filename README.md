@@ -8,6 +8,20 @@ identity in the set derives. Never change it; never reuse a birth FQN.
 
 ## Setup
 
+The build needs JDK 25 and Maven 4 (built with 4.0.0-rc-5). It must be exactly JDK 25: the
+parent POM compiles with preview features enabled, and preview class files only load on
+the JDK release that built them, so a newer JDK such as 27 fails to compile or to run the tests. With
+SDKMAN:
+
+```bash
+sdk install java 25.0.4-tem
+sdk use java 25.0.4-tem
+mvn -v                            # confirm Java version 25 and Apache Maven 4
+```
+
+If `JAVA_HOME` is set in your shell profile, point it at the JDK 25 install too, or
+`mvn` keeps using the JDK it names.
+
 The Tinkar and IKE dependencies, including the SNAPSHOT builds, resolve from the
 `ike-public` repository, which the project POMs do not declare. Add it to
 `~/.m2/settings.xml` as an active profile before the first `mvn install`:
