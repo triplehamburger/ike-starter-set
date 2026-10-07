@@ -1,0 +1,6 @@
+[#ecl-description-filters]
+== Description Filters (20)
+
+Keywords of the Description Filters section: filters on a concept's descriptions, the term search types, and the description type and acceptability tokens.
+
+Members: <<ecl-term-accept,`accept`>>, <<ecl-term-active,`active`>>, <<ecl-term-D,`D`>>, <<ecl-term-def,`def`>>, <<ecl-term-dialect,`dialect`>>, <<ecl-term-dialectId,`dialectId`>>, <<ecl-term-effectiveTime,`effectiveTime`>>, <<ecl-term-false,`false`>>, <<ecl-term-fsn,`fsn`>>, <<ecl-term-id,`id`>>, <<ecl-term-language,`language`>>, <<ecl-term-match,`match`>>, <<ecl-term-moduleId,`moduleId`>>, <<ecl-term-prefer,`prefer`>>, <<ecl-term-syn,`syn`>>, <<ecl-term-term,`term`>>, <<ecl-term-true,`true`>>, <<ecl-term-type,`type`>>, <<ecl-term-typeId,`typeId`>>, <<ecl-term-wild,`wild`>>

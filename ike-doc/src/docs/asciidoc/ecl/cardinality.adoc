@@ -1,0 +1,6 @@
+[#ecl-cardinality]
+== Cardinality (2)
+
+Keywords of the Cardinality section: the range separator and the unbounded maximum.
+
+Members: <<ecl-term-many,`many`>>, <<ecl-term-to,`to`>>

@@ -1,0 +1,6 @@
+[#ecl-top-and-bottom]
+== Top and Bottom (2)
+
+Keywords of the Top and Bottom section: the operators selecting the concepts of a set that have no ancestor, or no descendant, within the set.
+
+Members: <<ecl-term-bottom,`bottom`>>, <<ecl-term-top,`top`>>

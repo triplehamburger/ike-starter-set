@@ -1,0 +1,6 @@
+[#ecl-exclusion-and-not-equals]
+== Exclusion and Not Equals (1)
+
+Keywords of the Exclusion and Not Equals section: the difference of two expression constraints.
+
+Members: <<ecl-term-minus,`minus`>>

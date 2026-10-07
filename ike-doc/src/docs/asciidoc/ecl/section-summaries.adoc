@@ -1,0 +1,44 @@
+[#ecl-section-summaries]
+== Section Summaries
+
+Quick-scan view of each ECL Core Brief Syntax section in this guide and the keywords it contributes to ECL authoring.
+
+=== Simple Expression Constraints (10)
+
+Keywords of the Simple Expression Constraints section: the hierarchy operators selecting descendants, ancestors, children or parents of a focus concept, and the reference set operators.
+
+=== Refinements (1)
+
+Keywords of the Refinements section: the reverse flag selecting an attribute's values rather than its sources.
+
+=== Cardinality (2)
+
+Keywords of the Cardinality section: the range separator and the unbounded maximum.
+
+=== Conjunction and Disjunction (2)
+
+Keywords of the Conjunction and Disjunction section: the intersection and union of expression constraints or refinements.
+
+=== Exclusion and Not Equals (1)
+
+Keywords of the Exclusion and Not Equals section: the difference of two expression constraints.
+
+=== Description Filters (20)
+
+Keywords of the Description Filters section: filters on a concept's descriptions, the term search types, and the description type and acceptability tokens.
+
+=== Concept Filters (10)
+
+Keywords of the Concept Filters section: the definition status filters and tokens.
+
+=== Member Filters (6)
+
+Keywords of the Member Filters section: filters on the members of a reference set.
+
+=== History Supplements (4)
+
+Keywords of the History Supplements section: the history supplement and its profiles, which add inactive concepts through historical associations.
+
+=== Top and Bottom (2)
+
+Keywords of the Top and Bottom section: the operators selecting the concepts of a set that have no ancestor, or no descendant, within the set.

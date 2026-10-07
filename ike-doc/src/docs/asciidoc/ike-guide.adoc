@@ -585,6 +585,34 @@ include::cql/data-and-timing-operators.adoc[leveloffset=1]
 
 include::cql/query-and-control-flow.adoc[leveloffset=1]
 
+== ECL in Komet
+
+include::ecl/overview-and-reading-guide.adoc[leveloffset=1]
+
+include::ecl/running-ecl-queries.adoc[leveloffset=1]
+
+include::ecl/section-summaries.adoc[leveloffset=1]
+
+include::ecl/simple-expression-constraints.adoc[leveloffset=1]
+
+include::ecl/refinements.adoc[leveloffset=1]
+
+include::ecl/cardinality.adoc[leveloffset=1]
+
+include::ecl/conjunction-and-disjunction.adoc[leveloffset=1]
+
+include::ecl/exclusion-and-not-equals.adoc[leveloffset=1]
+
+include::ecl/description-filters.adoc[leveloffset=1]
+
+include::ecl/concept-filters.adoc[leveloffset=1]
+
+include::ecl/member-filters.adoc[leveloffset=1]
+
+include::ecl/history-supplements.adoc[leveloffset=1]
+
+include::ecl/top-and-bottom.adoc[leveloffset=1]
+
 == Tinkar Base Model
 
 This chapter describes the component/chronicle/pattern-of-patterns meta-model every

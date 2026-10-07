@@ -1,0 +1,6 @@
+[#ecl-concept-filters]
+== Concept Filters (10)
+
+Keywords of the Concept Filters section: the definition status filters and tokens.
+
+Members: <<ecl-term-active,`active`>>, <<ecl-term-C,`C`>>, <<ecl-term-defined,`defined`>>, <<ecl-term-definitionStatus,`definitionStatus`>>, <<ecl-term-definitionStatusId,`definitionStatusId`>>, <<ecl-term-effectiveTime,`effectiveTime`>>, <<ecl-term-false,`false`>>, <<ecl-term-moduleId,`moduleId`>>, <<ecl-term-primitive,`primitive`>>, <<ecl-term-true,`true`>>

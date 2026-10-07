@@ -1,0 +1,6 @@
+[#ecl-member-filters]
+== Member Filters (6)
+
+Keywords of the Member Filters section: filters on the members of a reference set.
+
+Members: <<ecl-term-active,`active`>>, <<ecl-term-effectiveTime,`effectiveTime`>>, <<ecl-term-false,`false`>>, <<ecl-term-M,`M`>>, <<ecl-term-moduleId,`moduleId`>>, <<ecl-term-true,`true`>>

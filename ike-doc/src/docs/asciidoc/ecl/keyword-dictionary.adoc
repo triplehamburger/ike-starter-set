@@ -1,0 +1,818 @@
+[#ecl-keyword-dictionary]
+== Keyword Dictionary
+
+All 48 ECL keywords, alphabetically. Section, definition, and example for each.
+
+[[ecl-term-accept]]
+[discrete]
+==== *accept*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Acceptability token: the description is acceptable in the dialect.
+
+[source,ecl]
+----
+< 64572001 |Disease| {{ dialect = en-gb (accept) }}
+----
+
+
+
+* * *
+
+[[ecl-term-active]]
+[discrete]
+==== *active*
+
+`Description Filters` · `Concept Filters` · `Member Filters` -- (ECL keyword > Description Filters, Concept Filters, Member Filters)
+
+Filters descriptions, concepts or members by active status (true/1, false/0, or *).
+
+[source,ecl]
+----
+< 195967001 |Asthma| {{ C active = true }}
+----
+
+
+
+* * *
+
+[[ecl-term-ancestorOf]]
+[discrete]
+==== *ancestorOf*
+
+`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+
+Selects all ancestors of the focus concept, excluding the concept itself (brief syntax >).
+
+[source,ecl]
+----
+ancestorOf 40541001 |Acute pulmonary edema|
+----
+
+
+
+* * *
+
+[[ecl-term-ancestorOrSelfOf]]
+[discrete]
+==== *ancestorOrSelfOf*
+
+`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+
+Selects the focus concept and all its ancestors (brief syntax >>).
+
+[source,ecl]
+----
+ancestorOrSelfOf 40541001 |Acute pulmonary edema|
+----
+
+
+
+* * *
+
+[[ecl-term-and]]
+[discrete]
+==== *and*
+
+`Conjunction and Disjunction` -- (ECL keyword > Conjunction and Disjunction)
+
+Conjunction: the intersection of two constraints, or both of two refinements (brief syntax ,).
+
+[source,ecl]
+----
+<< 19829001 |Disorder of lung| and << 301867009 |Edema of trunk|
+----
+
+
+
+* * *
+
+[[ecl-term-bottom]]
+[discrete]
+==== *bottom*
+
+`Top and Bottom` -- (ECL keyword > Top and Bottom)
+
+Selects the concepts of a set that have no descendant in the set (brief syntax !!<).
+
+[source,ecl]
+----
+bottom (descendantOrSelfOf 73211009 |Diabetes mellitus|)
+----
+
+
+
+* * *
+
+[[ecl-term-C]]
+[discrete]
+==== *C*
+
+`Concept Filters` -- (ECL keyword > Concept Filters)
+
+Opens a concept filter constraint.
+
+[source,ecl]
+----
+< 64572001 |Disease| {{ C definitionStatus = primitive }}
+----
+
+
+
+* * *
+
+[[ecl-term-childOf]]
+[discrete]
+==== *childOf*
+
+`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+
+Selects the immediate children of the focus concept (brief syntax <!).
+
+[source,ecl]
+----
+childOf 73211009 |Diabetes mellitus|
+----
+
+
+
+* * *
+
+[[ecl-term-childOrSelfOf]]
+[discrete]
+==== *childOrSelfOf*
+
+`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+
+Selects the focus concept and its immediate children (brief syntax <<!).
+
+[source,ecl]
+----
+childOrSelfOf 73211009 |Diabetes mellitus|
+----
+
+
+
+* * *
+
+[[ecl-term-D]]
+[discrete]
+==== *D*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Opens a description filter constraint; optional, since a filter without a letter is a description filter.
+
+[source,ecl]
+----
+< 64572001 |Disease| {{ D term = "heart" }}
+----
+
+
+
+* * *
+
+[[ecl-term-def]]
+[discrete]
+==== *def*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Description type token for text definition.
+
+[source,ecl]
+----
+< 56265001 |Heart disease| {{ type = def }}
+----
+
+
+
+* * *
+
+[[ecl-term-defined]]
+[discrete]
+==== *defined*
+
+`Concept Filters` -- (ECL keyword > Concept Filters)
+
+Definition status token: the concept is sufficiently defined.
+
+[source,ecl]
+----
+< 56265001 |Heart disease| {{ C definitionStatus = defined }}
+----
+
+
+
+* * *
+
+[[ecl-term-definitionStatus]]
+[discrete]
+==== *definitionStatus*
+
+`Concept Filters` -- (ECL keyword > Concept Filters)
+
+Filters concepts by definition status token (primitive, defined).
+
+[source,ecl]
+----
+< 56265001 |Heart disease| {{ C definitionStatus = defined }}
+----
+
+
+
+* * *
+
+[[ecl-term-definitionStatusId]]
+[discrete]
+==== *definitionStatusId*
+
+`Concept Filters` -- (ECL keyword > Concept Filters)
+
+Filters concepts by definition status concept.
+
+[source,ecl]
+----
+< 56265001 |Heart disease| {{ C definitionStatusId = 900000000000074008 |Primitive| }}
+----
+
+
+
+* * *
+
+[[ecl-term-descendantOf]]
+[discrete]
+==== *descendantOf*
+
+`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+
+Selects all descendants of the focus concept, excluding the concept itself (brief syntax <).
+
+[source,ecl]
+----
+descendantOf 404684003 |Clinical finding|
+----
+
+
+
+* * *
+
+[[ecl-term-descendantOrSelfOf]]
+[discrete]
+==== *descendantOrSelfOf*
+
+`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+
+Selects the focus concept and all its descendants (brief syntax <<).
+
+[source,ecl]
+----
+descendantOrSelfOf 73211009 |Diabetes mellitus|
+----
+
+
+
+* * *
+
+[[ecl-term-dialect]]
+[discrete]
+==== *dialect*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Filters descriptions by dialect alias, optionally with an acceptability.
+
+[source,ecl]
+----
+< 64572001 |Disease| {{ dialect = en-gb (accept) }}
+----
+
+
+
+* * *
+
+[[ecl-term-dialectId]]
+[discrete]
+==== *dialectId*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Filters descriptions by language reference set concept, optionally with an acceptability.
+
+[source,ecl]
+----
+< 64572001 |Disease| {{ dialectId = 999001261000000100 |National Health Service realm language reference set (clinical part)| }}
+----
+
+
+
+* * *
+
+[[ecl-term-effectiveTime]]
+[discrete]
+==== *effectiveTime*
+
+`Description Filters` · `Concept Filters` · `Member Filters` -- (ECL keyword > Description Filters, Concept Filters, Member Filters)
+
+Filters descriptions, concepts or members by effective time, compared as a quoted YYYYMMDD date.
+
+[source,ecl]
+----
+< 125605004 |Fracture of bone| {{ C effectiveTime >= "20190731" }}
+----
+
+
+
+* * *
+
+[[ecl-term-false]]
+[discrete]
+==== *false*
+
+`Description Filters` · `Concept Filters` · `Member Filters` -- (ECL keyword > Description Filters, Concept Filters, Member Filters)
+
+Boolean value false, compared by a boolean attribute or an active filter.
+
+[source,ecl]
+----
+< 195967001 |Asthma| {{ C active = false }}
+----
+
+
+
+* * *
+
+[[ecl-term-fsn]]
+[discrete]
+==== *fsn*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Description type token for fully specified name.
+
+[source,ecl]
+----
+< 56265001 |Heart disease| {{ type = fsn }}
+----
+
+
+
+* * *
+
+[[ecl-term-history]]
+[discrete]
+==== *history*
+
+`History Supplements` -- (ECL keyword > History Supplements)
+
+History supplement: adds inactive concepts linked to the result by historical associations, all of them or those of a given subset.
+
+[source,ecl]
+----
+<< 195967001 |Asthma| {{ + history }}
+----
+
+
+
+* * *
+
+[[ecl-term-history-max]]
+[discrete]
+==== *history-max*
+
+`History Supplements` -- (ECL keyword > History Supplements)
+
+History supplement profile that follows every historical association.
+
+[source,ecl]
+----
+<< 195967001 |Asthma| {{ + history-max }}
+----
+
+
+
+* * *
+
+[[ecl-term-history-min]]
+[discrete]
+==== *history-min*
+
+`History Supplements` -- (ECL keyword > History Supplements)
+
+History supplement profile that follows only the SAME AS historical association.
+
+[source,ecl]
+----
+<< 195967001 |Asthma| {{ + history-min }}
+----
+
+
+
+* * *
+
+[[ecl-term-history-mod]]
+[discrete]
+==== *history-mod*
+
+`History Supplements` -- (ECL keyword > History Supplements)
+
+History supplement profile that follows the SAME AS, REPLACED BY, WAS A and PARTIALLY EQUIVALENT TO associations.
+
+[source,ecl]
+----
+<< 195967001 |Asthma| {{ + history-mod }}
+----
+
+
+
+* * *
+
+[[ecl-term-id]]
+[discrete]
+==== *id*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Filters descriptions by description identifier.
+
+[source,ecl]
+----
+* {{ id = 3020013 }}
+----
+
+
+
+* * *
+
+[[ecl-term-language]]
+[discrete]
+==== *language*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Filters descriptions by their two-letter language code.
+
+[source,ecl]
+----
+< 64572001 |Disease| {{ term = "hjärt", language = sv }}
+----
+
+
+
+* * *
+
+[[ecl-term-M]]
+[discrete]
+==== *M*
+
+`Member Filters` -- (ECL keyword > Member Filters)
+
+Opens a member filter constraint on the members of a reference set.
+
+[source,ecl]
+----
+^ 447562003 |ICD-10 complex map reference set| {{ M mapTarget = "J45.9" }}
+----
+
+
+
+* * *
+
+[[ecl-term-many]]
+[discrete]
+==== *many*
+
+`Cardinality` -- (ECL keyword > Cardinality)
+
+An unbounded maximum cardinality (brief syntax *).
+
+[source,ecl]
+----
+< 404684003 |Clinical finding|: [1 to many] 363698007 |Finding site| = < 91723000 |Anatomical structure|
+----
+
+
+
+* * *
+
+[[ecl-term-match]]
+[discrete]
+==== *match*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Term search type: each word in the search string must prefix a word in the term (the default).
+
+[source,ecl]
+----
+< 64572001 |Disease| {{ term = match:"heart att" }}
+----
+
+
+
+* * *
+
+[[ecl-term-memberOf]]
+[discrete]
+==== *memberOf*
+
+`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+
+Selects the referenced components of a reference set, optionally returning named member fields instead (brief syntax ^).
+
+[source,ecl]
+----
+memberOf 700043003 |Example problem list concepts reference set|
+----
+
+
+
+* * *
+
+[[ecl-term-minus]]
+[discrete]
+==== *minus*
+
+`Exclusion and Not Equals` -- (ECL keyword > Exclusion and Not Equals)
+
+Exclusion: the concepts of the first constraint that are not in the second.
+
+[source,ecl]
+----
+<< 19829001 |Disorder of lung| minus << 301867009 |Edema of trunk|
+----
+
+
+
+* * *
+
+[[ecl-term-moduleId]]
+[discrete]
+==== *moduleId*
+
+`Description Filters` · `Concept Filters` · `Member Filters` -- (ECL keyword > Description Filters, Concept Filters, Member Filters)
+
+Filters descriptions, concepts or members by module concept.
+
+[source,ecl]
+----
+< 195967001 |Asthma| {{ C moduleId = 900000000000207008 |SNOMED CT core module| }}
+----
+
+
+
+* * *
+
+[[ecl-term-or]]
+[discrete]
+==== *or*
+
+`Conjunction and Disjunction` -- (ECL keyword > Conjunction and Disjunction)
+
+Disjunction: the union of two constraints, or either of two refinements.
+
+[source,ecl]
+----
+<< 19829001 |Disorder of lung| or << 301867009 |Edema of trunk|
+----
+
+
+
+* * *
+
+[[ecl-term-parentOf]]
+[discrete]
+==== *parentOf*
+
+`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+
+Selects the immediate parents of the focus concept (brief syntax >!).
+
+[source,ecl]
+----
+parentOf 40541001 |Acute pulmonary edema|
+----
+
+
+
+* * *
+
+[[ecl-term-parentOrSelfOf]]
+[discrete]
+==== *parentOrSelfOf*
+
+`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+
+Selects the focus concept and its immediate parents (brief syntax >>!).
+
+[source,ecl]
+----
+parentOrSelfOf 40541001 |Acute pulmonary edema|
+----
+
+
+
+* * *
+
+[[ecl-term-prefer]]
+[discrete]
+==== *prefer*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Acceptability token: the description is preferred in the dialect.
+
+[source,ecl]
+----
+< 64572001 |Disease| {{ dialect = en-us (prefer) }}
+----
+
+
+
+* * *
+
+[[ecl-term-primitive]]
+[discrete]
+==== *primitive*
+
+`Concept Filters` -- (ECL keyword > Concept Filters)
+
+Definition status token: the concept is primitive (not sufficiently defined).
+
+[source,ecl]
+----
+< 56265001 |Heart disease| {{ C definitionStatus = primitive }}
+----
+
+
+
+* * *
+
+[[ecl-term-refsetContainingAny]]
+[discrete]
+==== *refsetContainingAny*
+
+`Simple Expression Constraints` -- (ECL keyword > Simple Expression Constraints)
+
+Selects the reference sets that contain any of the given concepts as members (brief syntax ^R).
+
+[source,ecl]
+----
+refsetContainingAny 73211009 |Diabetes mellitus|
+----
+
+
+
+* * *
+
+[[ecl-term-reverseOf]]
+[discrete]
+==== *reverseOf*
+
+`Refinements` -- (ECL keyword > Refinements)
+
+Reverses an attribute: selects the attribute's values rather than its sources (brief syntax R).
+
+[source,ecl]
+----
+< 91723000 |Anatomical structure|: reverseOf 363698007 |Finding site| = 125605004 |Fracture of bone|
+----
+
+
+
+* * *
+
+[[ecl-term-syn]]
+[discrete]
+==== *syn*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Description type token for synonym.
+
+[source,ecl]
+----
+< 56265001 |Heart disease| {{ type = syn }}
+----
+
+
+
+* * *
+
+[[ecl-term-term]]
+[discrete]
+==== *term*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Filters on description terms, by word-prefix match or wildcard search.
+
+[source,ecl]
+----
+< 64572001 |Disease| {{ term = "heart att" }}
+----
+
+
+
+* * *
+
+[[ecl-term-to]]
+[discrete]
+==== *to*
+
+`Cardinality` -- (ECL keyword > Cardinality)
+
+Separates the minimum and maximum of a cardinality range (brief syntax ..).
+
+[source,ecl]
+----
+< 373873005 |Pharmaceutical / biologic product|: [1 to 3] 127489000 |Has active ingredient| = < 105590001 |Substance|
+----
+
+
+
+* * *
+
+[[ecl-term-top]]
+[discrete]
+==== *top*
+
+`Top and Bottom` -- (ECL keyword > Top and Bottom)
+
+Selects the concepts of a set that have no ancestor in the set (brief syntax !!>).
+
+[source,ecl]
+----
+top (descendantOrSelfOf 73211009 |Diabetes mellitus|)
+----
+
+
+
+* * *
+
+[[ecl-term-true]]
+[discrete]
+==== *true*
+
+`Description Filters` · `Concept Filters` · `Member Filters` -- (ECL keyword > Description Filters, Concept Filters, Member Filters)
+
+Boolean value true, compared by a boolean attribute or an active filter.
+
+[source,ecl]
+----
+< 195967001 |Asthma| {{ C active = true }}
+----
+
+
+
+* * *
+
+[[ecl-term-type]]
+[discrete]
+==== *type*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Filters descriptions by description type token (syn, fsn, def).
+
+[source,ecl]
+----
+< 56265001 |Heart disease| {{ type = syn }}
+----
+
+
+
+* * *
+
+[[ecl-term-typeId]]
+[discrete]
+==== *typeId*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Filters descriptions by description type concept.
+
+[source,ecl]
+----
+< 56265001 |Heart disease| {{ typeId = 900000000000013009 |Synonym| }}
+----
+
+
+
+* * *
+
+[[ecl-term-wild]]
+[discrete]
+==== *wild*
+
+`Description Filters` -- (ECL keyword > Description Filters)
+
+Term search type: the whole term must match a pattern in which * stands for any characters.
+
+[source,ecl]
+----
+< 64572001 |Disease| {{ term = wild:"cardi*opathy" }}
+----
+
+[.small]#ECL in Komet -- keyword reference. Each entry's definition and example are the definition description of its starter-set concept.#
