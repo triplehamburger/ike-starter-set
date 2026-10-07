@@ -8,8 +8,7 @@ import java.util.UUID;
 
 /**
  * The "moduleId" section — the ECL keyword {@code moduleId} as a concept, filed under
- * Description filters ECL keywords (ECL) and Concept filters ECL keywords (ECL) and Member
- * filters ECL keywords (ECL). See {@link EclSet} for what every section here holds in common.
+ * ECL component filter keywords (ECL). See {@link EclSet} for what every section here holds in common.
  */
 final class ModuleId {
 
@@ -39,7 +38,7 @@ final class ModuleId {
                         + "|Asthma| {{ C moduleId = 900000000000207008 |SNOMED CT core module| }}",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("moduleId ECL keyword (ECL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("moduleId ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Description filters ECL keywords (ECL)")), leb.ConceptAxiom(set.conceptRef("Concept filters ECL keywords (ECL)")), leb.ConceptAxiom(set.conceptRef("Member filters ECL keywords (ECL)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("moduleId ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("ECL component filter keywords (ECL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("moduleId ECL keyword (ECL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("moduleId ECL keyword (ECL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("moduleId ECL keyword (ECL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref

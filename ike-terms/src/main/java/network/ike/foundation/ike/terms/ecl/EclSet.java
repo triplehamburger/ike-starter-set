@@ -9,10 +9,8 @@ import dev.ikm.tinkar.entity.builder.KnowledgeSet;
  *
  * <p>Each keyword becomes one concept, fully qualified as the keyword plus "ECL keyword" and
  * the {@code (ECL)} tag, with the keyword itself (its long syntax spelling) as its regular name
- * and its meaning and example as its definition. Every one is filed under the category of the
- * specification section that defines it (the filter keywords shared by description, concept
- * and member filters under all three); the sections hang from the ECL keyword root under
- * Legacy (IkeFoundation).
+ * and its meaning and example as its definition. Every one is filed under one category of the
+ * hierarchy, which hangs from the ECL keyword root under Legacy (IkeFoundation).
  *
  * <p>No identity mapping to Komet is asserted anywhere in this package.
  *

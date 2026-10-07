@@ -8,8 +8,7 @@ import java.util.UUID;
 
 /**
  * The "history-max" section — the ECL keyword {@code history-max} as a concept, filed under
- * History supplements ECL keywords (ECL). See {@link EclSet} for what every section here holds
- * in common.
+ * ECL history keyword family (ECL). See {@link EclSet} for what every section here holds in common.
  */
 final class HistoryMax {
 
@@ -39,7 +38,7 @@ final class HistoryMax {
                         + "195967001 |Asthma| {{ + history-max }}",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("history-max ECL keyword (ECL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("history-max ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("History supplements ECL keywords (ECL)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("history-max ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("ECL history keyword family (ECL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("history-max ECL keyword (ECL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("history-max ECL keyword (ECL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("history-max ECL keyword (ECL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref

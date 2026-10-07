@@ -7,8 +7,8 @@ import network.ike.foundation.ike.terms.IkeTerm;
 import java.util.UUID;
 
 /**
- * The "to" section — the ECL keyword {@code to} as a concept, filed under Cardinality ECL
- * keywords (ECL). See {@link EclSet} for what every section here holds in common.
+ * The "to" section — the ECL keyword {@code to} as a concept, filed under
+ * ECL logic and refinement keyword family (ECL). See {@link EclSet} for what every section here holds in common.
  */
 final class To {
 
@@ -39,7 +39,7 @@ final class To {
                         + "|Has active ingredient| = < 105590001 |Substance|",
                         IkeTerm.DESCRIPTION_NOT_CASE_SENSITIVE, IkeTerm.DEFINITION_DESCRIPTION_TYPE)  // definition
                 .semantic(IkeTerm.IDENTIFIER_PATTERN, PublicIds.of(set.uuidFor("to ECL keyword (ECL) UUID identifier")), IkeTerm.UNIVERSALLY_UNIQUE_IDENTIFIER, concept.toString())  // UUID identifier
-                .statedAxioms(PublicIds.of(set.uuidFor("to ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("Cardinality ECL keywords (ECL)")))))
+                .statedAxioms(PublicIds.of(set.uuidFor("to ECL keyword (ECL) stated axioms")), leb -> leb.NecessarySet(leb.And(leb.ConceptAxiom(set.conceptRef("ECL logic and refinement keyword family (ECL)")))))
                 .semanticOn(PublicIds.of(fullyQualifiedName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("to ECL keyword (ECL) fully qualified name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(regularName), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("to ECL keyword (ECL) regular name US dialect")), IkeTerm.PREFERRED)  // dialect pref
                 .semanticOn(PublicIds.of(definition), IkeTerm.US_DIALECT_PATTERN, PublicIds.of(set.uuidFor("to ECL keyword (ECL) definition US dialect")), IkeTerm.PREFERRED)  // dialect pref
